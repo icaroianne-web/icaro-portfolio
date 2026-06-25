@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Play, Sparkles } from "lucide-react";
 
 const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663747808873/FfsF68pckBa2uV6MzkU5TV/hero-bg-E7HYZ4kGT8iWScT3p76AXn.webp";
-const ICARO_PHOTO = "/manus-storage/icaro-hero_34b888d3.jpg";
+const ICARO_OFFICE_PHOTO = "/assets/ICARO_OFFICE.png";
 
 function DecodeText({ text, delay = 0 }: { text: string; delay?: number }) {
   const [displayed, setDisplayed] = useState("");
@@ -68,37 +68,37 @@ export default function HeroSection() {
       <div
         ref={parallaxRef}
         className="absolute inset-0 z-0"
-        style={{ transform: `translateY(${scrollY * 0.4}px)` }}
+        style={{ transform: `translateY(${scrollY * 0.2}px)` }}
       >
         <img
           src={HERO_BG}
           alt=""
-          className="w-full h-full object-cover scale-110"
+          className="absolute inset-0 w-full h-full object-cover scale-110 opacity-40 mix-blend-screen"
           loading="eager"
         />
-        {/* Dark overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#080C14] via-[#080C14]/80 to-[#080C14]/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#080C14] via-transparent to-[#080C14]/50" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_40%,rgba(0,212,255,0.25),transparent_35%),radial-gradient(circle_at_95%_60%,rgba(255,107,53,0.2),transparent_30%)]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#080C14] via-[#080C14]/85 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#080C14] via-[#080C14]/10 to-[#080C14]/40" />
+        <div className="absolute inset-0 backdrop-blur-[0.5px]" />
       </div>
 
       {/* Grid overlay */}
       <div
-        className="absolute inset-0 z-0 opacity-[0.03]"
+        className="absolute inset-0 z-0 opacity-[0.04]"
         style={{
           backgroundImage: `
             linear-gradient(rgba(0,212,255,1) 1px, transparent 1px),
             linear-gradient(90deg, rgba(0,212,255,1) 1px, transparent 1px)
           `,
-          backgroundSize: "60px 60px",
+          backgroundSize: "50px 50px",
         }}
       />
 
       {/* Content */}
       <div className="container relative z-10 pt-24 pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[80vh]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center min-h-[80vh]">
           {/* Left: Text content */}
           <div className="lg:col-span-7 space-y-6">
-            {/* Tech badge */}
             <div
               className="tech-badge animate-fade-in-up"
               style={{ animationDelay: "0.2s", animationFillMode: "both" }}
@@ -107,7 +107,6 @@ export default function HeroSection() {
               Coordenador de Comunicação · Produtor Multimídia
             </div>
 
-            {/* Main title */}
             <div
               className="animate-fade-in-up"
               style={{ animationDelay: "0.4s", animationFillMode: "both" }}
@@ -125,7 +124,6 @@ export default function HeroSection() {
               </h1>
             </div>
 
-            {/* Tagline */}
             <div
               className="animate-fade-in-up"
               style={{ animationDelay: "0.7s", animationFillMode: "both" }}
@@ -138,7 +136,6 @@ export default function HeroSection() {
               </p>
             </div>
 
-            {/* Competências */}
             <div
               className="animate-fade-in-up flex flex-wrap gap-2"
               style={{ animationDelay: "0.9s", animationFillMode: "both" }}
@@ -153,7 +150,6 @@ export default function HeroSection() {
               ))}
             </div>
 
-            {/* CTA Buttons */}
             <div
               className="animate-fade-in-up flex flex-wrap gap-4 pt-2"
               style={{ animationDelay: "1.1s", animationFillMode: "both" }}
@@ -181,7 +177,6 @@ export default function HeroSection() {
               </a>
             </div>
 
-            {/* Stats */}
             <div
               className="animate-fade-in-up pt-4 grid grid-cols-3 gap-4 max-w-md"
               style={{ animationDelay: "1.3s", animationFillMode: "both" }}
@@ -199,36 +194,32 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Right: Photo */}
+          {/* Right: Photo (Moldura HUD) */}
           <div
             className="lg:col-span-5 flex justify-center lg:justify-end animate-fade-in"
-              style={{ animationDelay: "0.5s", animationFillMode: "both" }}
+            style={{ animationDelay: "0.5s", animationFillMode: "both" }}
           >
-            <div className="relative">
-              {/* Decorative frame */}
-              <div className="absolute -inset-4 border border-[rgba(0,212,255,0.12)] animate-border-pulse" />
-              <div className="absolute -inset-8 border border-[rgba(0,212,255,0.05)]" />
+            <div className="relative w-full max-w-[340px] sm:max-w-[390px] lg:max-w-none mt-8 lg:mt-0">
+              <div className="absolute -inset-10 bg-[radial-gradient(circle_at_50%_50%,rgba(0,212,255,0.22),transparent_50%)] blur-2xl" />
+              <div className="absolute -inset-3 border border-[rgba(0,212,255,0.25)] animate-border-pulse" />
+              <div className="absolute -inset-6 border border-[rgba(0,212,255,0.08)] hidden sm:block" />
 
-              {/* Corner accents */}
-              <div className="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-[#00D4FF]" />
-              <div className="absolute -top-2 -right-2 w-6 h-6 border-t-2 border-r-2 border-[#00D4FF]" />
-              <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b-2 border-l-2 border-[#FF6B35]" />
-              <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-[#FF6B35]" />
+              <div className="absolute -top-3 -left-3 w-6 h-6 border-t-2 border-l-2 border-[#00D4FF] z-20" />
+              <div className="absolute -top-3 -right-3 w-6 h-6 border-t-2 border-r-2 border-[#00D4FF] z-20" />
+              <div className="absolute -bottom-3 -left-3 w-6 h-6 border-b-2 border-l-2 border-[#FF6B35] z-20" />
+              <div className="absolute -bottom-3 -right-3 w-6 h-6 border-b-2 border-r-2 border-[#FF6B35] z-20" />
 
-              {/* Photo */}
-              <div className="relative overflow-hidden w-[320px] h-[420px] lg:w-[380px] lg:h-[500px]">
+              <div className="relative overflow-hidden w-full aspect-[0.75] lg:w-[410px] lg:h-[540px] bg-[#0F1623] border border-[rgba(0,212,255,0.15)] shadow-[0_30px_100px_rgba(0,0,0,0.7)] z-10">
                 <img
-                  src={ICARO_PHOTO}
+                  src={ICARO_OFFICE_PHOTO}
                   alt="Ícaro Albuquerque"
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-[center_12%] scale-[1.02] transition-transform duration-500 hover:scale-[1.05]"
                 />
-                {/* Gradient overlay on photo */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#080C14]/60 via-transparent to-transparent" />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#080C14]/20 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#080C14] via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#080C14]/30 via-transparent to-[#080C14]/30" />
               </div>
 
-              {/* Floating badge */}
-              <div className="absolute -bottom-4 -left-4 bg-[#0F1623] border border-[rgba(0,212,255,0.25)] p-3 backdrop-blur-sm">
+              <div className="absolute -bottom-4 -left-4 bg-[#0F1623]/90 border border-[#00D4FF]/40 p-3 backdrop-blur-md z-20 shadow-lg">
                 <div className="font-mono-tech text-[0.6rem] text-[#00D4FF] uppercase tracking-widest">
                   AI-Enhanced
                 </div>
@@ -241,7 +232,6 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <button
         onClick={scrollToNext}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-[#8892A4] hover:text-[#00D4FF] transition-colors duration-200 group"
