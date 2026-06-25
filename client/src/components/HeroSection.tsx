@@ -194,31 +194,35 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Right: Photo (Moldura HUD) */}
+          {/* Right: Photo Container (Ajustado para Desktop Perfeito) */}
           <div
             className="lg:col-span-5 flex justify-center lg:justify-end animate-fade-in"
             style={{ animationDelay: "0.5s", animationFillMode: "both" }}
           >
-            <div className="relative w-full max-w-[340px] sm:max-w-[390px] lg:max-w-none mt-8 lg:mt-0">
+            {/* Forçamos a largura exata da foto no desktop para travar o alinhamento dos efeitos */}
+            <div className="relative w-full max-w-[340px] sm:max-w-[390px] lg:w-[410px] lg:max-w-[410px] mt-8 lg:mt-0">
               <div className="absolute -inset-10 bg-[radial-gradient(circle_at_50%_50%,rgba(0,212,255,0.22),transparent_50%)] blur-2xl" />
-              <div className="absolute -inset-3 border border-[rgba(0,212,255,0.25)] animate-border-pulse" />
-              <div className="absolute -inset-6 border border-[rgba(0,212,255,0.08)] hidden sm:block" />
+              
+              {/* Linhas de contorno grudadas na imagem */}
+              <div className="absolute -inset-3 border border-[rgba(0,212,255,0.25)] animate-border-pulse z-0" />
+              <div className="absolute -inset-6 border border-[rgba(0,212,255,0.08)] hidden sm:block z-0" />
 
+              {/* Cantoneiras HUD perfeitamente encaixadas */}
               <div className="absolute -top-3 -left-3 w-6 h-6 border-t-2 border-l-2 border-[#00D4FF] z-20" />
               <div className="absolute -top-3 -right-3 w-6 h-6 border-t-2 border-r-2 border-[#00D4FF] z-20" />
               <div className="absolute -bottom-3 -left-3 w-6 h-6 border-b-2 border-l-2 border-[#FF6B35] z-20" />
               <div className="absolute -bottom-3 -right-3 w-6 h-6 border-b-2 border-r-2 border-[#FF6B35] z-20" />
 
-              <div className="relative overflow-hidden w-full aspect-[0.75] lg:w-[410px] lg:h-[540px] bg-[#0F1623] border border-[rgba(0,212,255,0.15)] shadow-[0_30px_100px_rgba(0,0,0,0.7)] z-10">
+              {/* Box da Imagem com fundo transparente para aceitar o PNG do Photoshop */}
+              <div className="relative overflow-hidden w-full aspect-[0.76] lg:h-[540px] bg-transparent z-10">
                 <img
                   src={ICARO_OFFICE_PHOTO}
                   alt="Ícaro Albuquerque"
-                  className="w-full h-full object-cover object-[center_12%] scale-[1.02] transition-transform duration-500 hover:scale-[1.05]"
+                  className="w-full h-full object-cover object-center"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#080C14] via-transparent to-transparent opacity-80" />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#080C14]/30 via-transparent to-[#080C14]/30" />
               </div>
 
+              {/* Crachá Virtual */}
               <div className="absolute -bottom-4 -left-4 bg-[#0F1623]/90 border border-[#00D4FF]/40 p-3 backdrop-blur-md z-20 shadow-lg">
                 <div className="font-mono-tech text-[0.6rem] text-[#00D4FF] uppercase tracking-widest">
                   AI-Enhanced
@@ -232,6 +236,7 @@ export default function HeroSection() {
         </div>
       </div>
 
+      {/* Scroll indicator */}
       <button
         onClick={scrollToNext}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-[#8892A4] hover:text-[#00D4FF] transition-colors duration-200 group"
