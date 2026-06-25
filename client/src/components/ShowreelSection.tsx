@@ -22,7 +22,7 @@ const stats = [
     value: 5, 
     suffix: "+", 
     label: "Projetos Internacionais", 
-    desc: "COP28 Dubai · Conecon 2025 · Orla do Sol e +" 
+    desc: "COP28 DUBAI, CONECON 2025, PROJETO ORLA DO SOL e +" 
   }
 ];
 
@@ -43,7 +43,8 @@ function AnimatedNumber({ target, suffix }: { target: number; suffix: string }) 
   useEffect(() => {
     if (!started) return;
     let frame: number;
-    const duration = 3000; // 3 segundos de contagem fluida
+    // 3000ms = 3 segundos cravados para a contagem ser elegante e bem visível
+    const duration = 3000; 
     const start = performance.now();
     const animate = (now: number) => {
       const elapsed = now - start;
@@ -71,7 +72,7 @@ export default function StatsSection() {
       <div className="line-accent mb-0" />
 
       <div className="container">
-        {/* Forçando estritamente 3 colunas no desktop */}
+        {/* Forçando a divisão perfeita em apenas 3 colunas no computador */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
           {stats.map((stat) => (
             <div
