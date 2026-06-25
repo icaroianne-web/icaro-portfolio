@@ -179,26 +179,9 @@ export default function HeroSection() {
                 Cases de Sucesso
               </a>
             </div>
-
-            {/* Stats */}
-            <div
-              className="animate-fade-in-up pt-4 grid grid-cols-3 gap-4 max-w-md"
-              style={{ animationDelay: "1.3s", animationFillMode: "both" }}
-            >
-              {[
-                { value: "10+", label: "Anos de Experiência" },
-                { value: "COP28", label: "Dubai · Internacional" },
-                { value: "IA", label: "Integrada ao Workflow" },
-              ].map((stat) => (
-                <div key={stat.label} className="stat-item">
-                  <div className="font-display font-800 text-xl text-[#00D4FF]">{stat.value}</div>
-                  <div className="font-mono-tech text-[0.6rem] text-[#8892A4] uppercase tracking-wider mt-1">{stat.label}</div>
-                </div>
-              ))}
-            </div>
           </div>
 
-          {/* Right: Photo Container (Sem a caixinha flutuante do AI-Enhanced) */}
+          {/* Right: Photo Container */}
           <div
             className="lg:col-span-5 flex justify-center lg:justify-end animate-fade-in"
             style={{ animationDelay: "0.5s", animationFillMode: "both" }}
