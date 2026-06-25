@@ -99,14 +99,16 @@ export default function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center min-h-[80vh]">
           {/* Left: Text content */}
           <div className="lg:col-span-7 space-y-6">
+            {/* Tech badge atualizado com Comunicação e Marketing */}
             <div
               className="tech-badge animate-fade-in-up"
               style={{ animationDelay: "0.2s", animationFillMode: "both" }}
             >
               <Sparkles size={10} />
-              Coordenador de Comunicação · Produtor Multimídia
+              COORDENADOR DE COMUNICAÇÃO E MARKETING - PRODUÇÃO MULTIMÍDIA
             </div>
 
+            {/* Main title */}
             <div
               className="animate-fade-in-up"
               style={{ animationDelay: "0.4s", animationFillMode: "both" }}
@@ -124,18 +126,18 @@ export default function HeroSection() {
               </h1>
             </div>
 
+            {/* Tagline com os novos textos corporativos e destaques visuais */}
             <div
               className="animate-fade-in-up"
               style={{ animationDelay: "0.7s", animationFillMode: "both" }}
             >
               <div className="line-accent w-16 mb-4" />
-              <p className="text-[#8892A4] font-outfit text-lg leading-relaxed max-w-xl">
-                🎬 Criador de narrativas audiovisuais e estrategista de comunicação.
-                De <span className="text-[#F0F4FF] font-medium">Ministérios</span> à{" "}
-                <span className="text-[#C9A84C] font-medium">COP28 em Dubai</span>.
+              <p className="text-[#8892A4] font-outfit text-lg leading-relaxed max-w-2xl">
+                Estrategista de Comunicação Corporativa, criador de narrativas audiovisuais com campanhas que alcançaram desde <span className="text-[#F0F4FF] font-medium">Ministérios brasileiros</span> até a <span className="text-[#C9A84C] font-medium">Conferência Mundial do Clima (COP28), em Dubai</span>.
               </p>
             </div>
 
+            {/* Competências */}
             <div
               className="animate-fade-in-up flex flex-wrap gap-2"
               style={{ animationDelay: "0.9s", animationFillMode: "both" }}
@@ -150,6 +152,7 @@ export default function HeroSection() {
               ))}
             </div>
 
+            {/* CTA Buttons */}
             <div
               className="animate-fade-in-up flex flex-wrap gap-4 pt-2"
               style={{ animationDelay: "1.1s", animationFillMode: "both" }}
@@ -177,6 +180,7 @@ export default function HeroSection() {
               </a>
             </div>
 
+            {/* Stats */}
             <div
               className="animate-fade-in-up pt-4 grid grid-cols-3 gap-4 max-w-md"
               style={{ animationDelay: "1.3s", animationFillMode: "both" }}
@@ -194,42 +198,31 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Right: Photo Container (Ajustado para Desktop Perfeito) */}
+          {/* Right: Photo Container (Sem a caixinha flutuante do AI-Enhanced) */}
           <div
             className="lg:col-span-5 flex justify-center lg:justify-end animate-fade-in"
             style={{ animationDelay: "0.5s", animationFillMode: "both" }}
           >
-            {/* Forçamos a largura exata da foto no desktop para travar o alinhamento dos efeitos */}
             <div className="relative w-full max-w-[340px] sm:max-w-[390px] lg:w-[410px] lg:max-w-[410px] mt-8 lg:mt-0">
               <div className="absolute -inset-10 bg-[radial-gradient(circle_at_50%_50%,rgba(0,212,255,0.22),transparent_50%)] blur-2xl" />
               
-              {/* Linhas de contorno grudadas na imagem */}
+              {/* Linhas de contorno */}
               <div className="absolute -inset-3 border border-[rgba(0,212,255,0.25)] animate-border-pulse z-0" />
               <div className="absolute -inset-6 border border-[rgba(0,212,255,0.08)] hidden sm:block z-0" />
 
-              {/* Cantoneiras HUD perfeitamente encaixadas */}
+              {/* Cantoneiras HUD */}
               <div className="absolute -top-3 -left-3 w-6 h-6 border-t-2 border-l-2 border-[#00D4FF] z-20" />
               <div className="absolute -top-3 -right-3 w-6 h-6 border-t-2 border-r-2 border-[#00D4FF] z-20" />
               <div className="absolute -bottom-3 -left-3 w-6 h-6 border-b-2 border-l-2 border-[#FF6B35] z-20" />
               <div className="absolute -bottom-3 -right-3 w-6 h-6 border-b-2 border-r-2 border-[#FF6B35] z-20" />
 
-              {/* Box da Imagem com fundo transparente para aceitar o PNG do Photoshop */}
+              {/* Box da Imagem */}
               <div className="relative overflow-hidden w-full aspect-[0.76] lg:h-[540px] bg-transparent z-10">
                 <img
                   src={ICARO_OFFICE_PHOTO}
                   alt="Ícaro Albuquerque"
                   className="w-full h-full object-cover object-center"
                 />
-              </div>
-
-              {/* Crachá Virtual */}
-              <div className="absolute -bottom-4 -left-4 bg-[#0F1623]/90 border border-[#00D4FF]/40 p-3 backdrop-blur-md z-20 shadow-lg">
-                <div className="font-mono-tech text-[0.6rem] text-[#00D4FF] uppercase tracking-widest">
-                  AI-Enhanced
-                </div>
-                <div className="font-display font-700 text-sm text-[#F0F4FF]">
-                  Comunicação
-                </div>
               </div>
             </div>
           </div>
