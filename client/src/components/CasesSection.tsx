@@ -1,10 +1,10 @@
 /* ============================================================
    DESIGN: "Deep Space Broadcast" — Cases Section
-   Grid masonry com cards interativos e overlay de detalhes
+   Grid simétrico com 3 pilares de autoridade corporativa
    ============================================================ */
 
 import { useEffect, useRef, useState } from "react";
-import { ExternalLink, Globe, Building2, Leaf, Tv, Users, Megaphone } from "lucide-react";
+import { ExternalLink, Globe, Building2, ShieldAlert } from "lucide-react";
 
 const CASES_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663747808873/FfsF68pckBa2uV6MzkU5TV/cases-bg-QeazzTAEWuWpntiEmDoMC7.webp";
 const DUBAI_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663747808873/FfsF68pckBa2uV6MzkU5TV/dubai-cop28-54NchRQcmNgEMvWqnqgHxH.webp";
@@ -14,86 +14,47 @@ const cases = [
     id: 1,
     tag: "Internacional",
     icon: Globe,
-    title: "COP28 — Dubai",
-    subtitle: "Conferência das Nações Unidas sobre Mudanças Climáticas",
+    title: "COP28 — Dubai (EDS)",
+    subtitle: "Do Atendimento na Amazônia ao Palco Global da ONU",
     year: "2023",
     location: "Dubai, Emirados Árabes",
-    description: "Cobertura audiovisual completa e produção de conteúdo para a 28ª Conferência do Clima da ONU. Criação de narrativas visuais que comunicaram os compromissos climáticos do Brasil para o mundo.",
-    results: ["Cobertura internacional", "Conteúdo multilíngue", "Alcance global"],
+    desafio: "Primeira ONG de saúde da história convidada a palestrar em uma COP da ONU. O desafio era converter programas assistenciais complexos de saúde indígena em 'produtos institucionais' claros, atraentes e de rápido entendimento para lideranças globais e investidores internacionais sob o ritmo frenético e escasso de tempo da conferência climática.",
+    execucao: "Criação de identidade visual própria para os programas sociais (4 logotipos exclusivos), desenvolvimento de materiais editoriais premium bilíngues (Catálogo Editorial, Menu Institucional e Cardápio Estratégico de captação) e produção completa do vídeo de abertura da COP28 e mini clipes emocionais rodando em ecossistema transmídia ágil via iPads.",
+    impacto: "Reconhecimento institucional de alto nível perante a OMS e FUNAI, consolidação mundial da saúde indígena como eixo central da preservação ambiental, abertura de novas pontes diplomáticas internacionais e um aumento expressivo no volume de doações financeiras captadas.",
+    results: ["Branding Transmídia", "Estratégia Bilíngue", "Pitches de Alto Impacto"],
     color: "#C9A84C",
-    featured: true,
     image: DUBAI_IMG,
   },
   {
     id: 2,
     tag: "Governo Federal",
     icon: Building2,
-    title: "Ministério Federal",
-    subtitle: "Coordenação de Comunicação Institucional",
+    title: "Projeto Orla do Sol",
+    subtitle: "Produção Audiovisual Estratégica para Ministérios",
     year: "2022",
     location: "Brasília, Brasil",
-    description: "Coordenação completa da comunicação institucional, incluindo produção audiovisual, gestão de redes sociais e estratégia de conteúdo para órgão do governo federal.",
-    results: ["Estratégia de conteúdo", "Produção audiovisual", "Gestão de crise"],
+    desafio: "Janela de tempo criticamente escassa para estruturar, captar em campo, roteirizar e editar um projeto audiovisual institucional complexo e de altíssima exigência técnica, demandado com urgência para apresentação estratégica e validação interna dentro de Ministérios federais.",
+    execucao: "Implementação de uma força-tarefa ágil de produção audiovisual de ponta. Coordenação de captação externa acelerada combinada a uma pós-produção em tempo recorde, fundindo uma narrativa documental altamente impactante com o rigor técnico, relatórios e prazos exigidos pelas pastas governamentais.",
+    impacto: "Aprovação unânime e imediata do projeto escrito e exibição oficial do material audiovisual nos Ministérios em Brasília, assegurando a chancela institucional da iniciativa, o cumprimento do cronograma governamental e a liberação de fluxos subsequentes.",
+    results: ["Gestão de Prazo Crítico", "Audiovisual de Elite", "Articulação Técnica"],
     color: "#00D4FF",
-    featured: false,
     image: null,
   },
   {
     id: 3,
-    tag: "Sustentabilidade",
-    icon: Leaf,
-    title: "Campanha Ambiental",
-    subtitle: "Comunicação para Impacto Social",
-    year: "2023",
-    location: "Brasil",
-    description: "Desenvolvimento de campanha de comunicação para conscientização ambiental, com produção de vídeos, reels e conteúdo para redes sociais com uso de IA.",
-    results: ["Vídeos virais", "IA integrada", "Alto engajamento"],
-    color: "#4CAF50",
-    featured: false,
-    image: null,
-  },
-  {
-    id: 4,
-    tag: "Broadcast",
-    icon: Tv,
-    title: "Vídeos Institucionais",
-    subtitle: "Produção Audiovisual de Alto Nível",
-    year: "2021-2024",
-    location: "Brasil",
-    description: "Direção e produção de vídeos institucionais para grandes organizações, com roteiro, captação, edição e pós-produção completa.",
-    results: ["Múltiplos clientes", "Premiações", "Alta qualidade"],
+    tag: "Gestão de Crise",
+    icon: ShieldAlert,
+    title: "Comunicação Pública Pandemia",
+    subtitle: "Estratégia Institucional de Contenção de Danos",
+    year: "2020-2021",
+    location: "Santa Fé do Sul, SP",
+    desafio: "Gerenciar e liderar a comunicação oficial do município durante o ápice crítico da pandemia de COVID-19. O desafio era conter o pânico social, combater ondas de desinformação em tempo real e traduzir decretos de saúde complexos e dinâmicos em mensagens públicas de imediata adesão da população.",
+    execucao: "Desenvolvimento e execução de um plano de contingência de comunicação integrada. Criação de canais digitais de atendimento e orientação direta ao cidadão, campanhas publicitárias em massa focadas em medidas protetivas e monitoramento ostensivo em redes sociais para contenção de crises reputacionais e informativas.",
+    impacto: "Garantia de total transparência e governança da informação pública, mitigações severas de fake news locais, posicionamento seguro da prefeitura como fonte única de autoridade e altos índices históricos de engajamento e adesão da sociedade civil às normas de segurança em saúde.",
+    results: ["Contenção de Danos", "Estratégia em Tempo Real", "Relações Públicas"],
     color: "#FF6B35",
-    featured: false,
     image: null,
-  },
-  {
-    id: 5,
-    tag: "Redes Sociais",
-    icon: Users,
-    title: "Estratégia Digital com IA",
-    subtitle: "Gestão e Automação de Conteúdo",
-    year: "2020-2024",
-    location: "Remoto",
-    description: "Implementação de estratégias avançadas de redes sociais com uso de ferramentas de Inteligência Artificial para criação, automação e análise de conteúdo.",
-    results: ["Crescimento orgânico", "Automação IA", "ROI comprovado"],
-    color: "#9B59B6",
-    featured: false,
-    image: null,
-  },
-  {
-    id: 6,
-    tag: "Eventos",
-    icon: Megaphone,
-    title: "Cobertura de Eventos",
-    subtitle: "Produção ao Vivo e Pós-Produção",
-    year: "2019-2024",
-    location: "Brasil e Internacional",
-    description: "Cobertura audiovisual de grandes eventos corporativos, conferências e cerimônias, com transmissão ao vivo e produção de conteúdo para redes sociais em tempo real.",
-    results: ["Transmissão ao vivo", "Cobertura completa", "Entrega rápida"],
-    color: "#00D4FF",
-    featured: false,
-    image: null,
-  },
+  }
 ];
 
 function useInView(threshold = 0.1) {
@@ -115,11 +76,11 @@ export default function CasesSection() {
   const [activeCase, setActiveCase] = useState<number | null>(null);
 
   return (
-    <section id="cases" className="relative py-24 overflow-hidden">
+    <section id="cases" className="relative py-24 overflow-hidden bg-[#080C14]">
       {/* Background */}
       <div className="absolute inset-0 z-0">
-        <img src={CASES_BG} alt="" className="w-full h-full object-cover opacity-30" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080C14] via-[#080C14]/85 to-[#080C14]" />
+        <img src={CASES_BG} alt="" className="w-full h-full object-cover opacity-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080C14] via-[#080C14]/90 to-[#080C14]" />
       </div>
 
       <div className="container relative z-10" ref={ref}>
@@ -137,42 +98,52 @@ export default function CasesSection() {
           </div>
           <div className="line-accent max-w-xs ml-[calc(clamp(4rem,10vw,8rem)+1rem)]" />
           <p className="text-[#8892A4] mt-4 ml-[calc(clamp(4rem,10vw,8rem)+1rem)] max-w-lg">
-            Projetos que deixaram marca — do âmbito local ao palco internacional.
+            Projetos estratégicos de alto impacto — do âmbito local ao palco diplomático internacional.
           </p>
         </div>
 
-        {/* Cases grid */}
+        {/* Cases grid - Fixado em 3 colunas simétricas no desktop */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {cases.map((item, i) => (
             <div
               key={item.id}
-              className={`case-card group cursor-pointer transition-all duration-500 ${
-                item.featured ? "md:col-span-2 lg:col-span-2" : ""
-              } ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              className={`case-card group cursor-pointer transition-all duration-500 flex flex-col justify-between ${
+                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
               style={{ transitionDelay: `${i * 80}ms` }}
               onClick={() => setActiveCase(activeCase === item.id ? null : item.id)}
             >
-              {/* Featured image */}
-              {item.featured && item.image && (
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0F1623] to-transparent" />
-                  <div className="absolute top-4 right-4">
-                    <span className="tech-badge" style={{ borderColor: `${item.color}40`, color: item.color }}>
-                      {item.tag}
-                    </span>
+              <div>
+                {/* Imagem do Card (Apenas para COP28 Dubai) */}
+                {item.image && (
+                  <div className="relative h-48 overflow-hidden border-b border-[rgba(0,212,255,0.08)]">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0F1623] to-transparent" />
+                    <div className="absolute top-4 right-4">
+                      <span className="tech-badge" style={{ borderColor: `${item.color}40`, color: item.color, backgroundColor: "#0F1623/90" }}>
+                        {item.tag}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
 
-              <div className="p-6">
-                {/* Header */}
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center gap-3">
+                <div className="p-6">
+                  {/* Card Header sem imagem */}
+                  {!item.image && (
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="font-mono-tech text-[0.6rem] uppercase tracking-widest" style={{ color: item.color }}>
+                        {item.tag}
+                      </span>
+                      <div className="font-mono-tech text-[0.65rem] text-[#8892A4]">{item.year}</div>
+                    </div>
+                  )}
+
+                  {/* Icon e Títulos */}
+                  <div className="flex items-center gap-3 mb-4">
                     <div
                       className="w-10 h-10 flex items-center justify-center border transition-colors duration-300"
                       style={{
@@ -183,69 +154,78 @@ export default function CasesSection() {
                       <item.icon size={18} style={{ color: item.color }} />
                     </div>
                     <div>
-                      {!item.featured && (
-                        <span
-                          className="font-mono-tech text-[0.6rem] uppercase tracking-widest"
-                          style={{ color: item.color }}
-                        >
-                          {item.tag}
-                        </span>
-                      )}
-                      <div className="font-mono-tech text-[0.65rem] text-[#8892A4]">{item.year}</div>
+                      {item.image && <div className="font-mono-tech text-[0.65rem] text-[#8892A4]">{item.year}</div>}
+                      <h3 className="font-display font-800 text-base text-[#F0F4FF] leading-tight group-hover:text-[#00D4FF] transition-colors duration-200">{item.title}</h3>
                     </div>
                   </div>
-                  <ExternalLink
-                    size={14}
-                    className="text-[#8892A4] group-hover:text-[#00D4FF] transition-colors duration-200 mt-1"
-                  />
-                </div>
 
-                <h3 className="font-display font-800 text-lg text-[#F0F4FF] mb-1">{item.title}</h3>
-                <p className="text-[#8892A4] text-xs mb-3">{item.subtitle}</p>
+                  <p className="text-[#8892A4] text-xs mb-4 font-outfit leading-relaxed">{item.subtitle}</p>
 
-                {/* Expandable content */}
-                <div
-                  className={`overflow-hidden transition-all duration-400 ${
-                    activeCase === item.id ? "max-h-48 opacity-100" : "max-h-0 opacity-0"
-                  }`}
-                >
-                  <p className="text-[#8892A4] text-sm leading-relaxed mb-4">{item.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {item.results.map((r) => (
-                      <span
-                        key={r}
-                        className="px-2 py-0.5 text-xs font-mono-tech"
-                        style={{
-                          color: item.color,
-                          backgroundColor: `${item.color}0D`,
-                          border: `1px solid ${item.color}25`,
-                        }}
-                      >
-                        {r}
-                      </span>
-                    ))}
+                  {/* Expandable content com a estrutura Desafio, Execução e Impacto */}
+                  <div
+                    className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                      activeCase === item.id ? "max-h-[600px] opacity-100 mt-4 pt-4 border-t border-[rgba(0,212,255,0.08)]" : "max-h-0 opacity-0"
+                    }`}
+                  >
+                    <div className="space-y-4 text-xs leading-relaxed text-[#8892A4] font-outfit">
+                      <div>
+                        <strong className="text-[#00D4FF] block mb-1 font-display tracking-wide uppercase text-[0.7rem]">⚡ O DESAFIO</strong>
+                        <p>{item.desafio}</p>
+                      </div>
+                      <div>
+                        <strong className="text-[#C9A84C] block mb-1 font-display tracking-wide uppercase text-[0.7rem]">🛠️ A EXECUÇÃO</strong>
+                        <p>{item.execucao}</p>
+                      </div>
+                      <div>
+                        <strong className="text-[#FF6B35] block mb-1 font-display tracking-wide uppercase text-[0.7rem]">📈 O IMPACTO</strong>
+                        <p>{item.impacto}</p>
+                      </div>
+                    </div>
+
+                    {/* Tags de Resultados/Skills */}
+                    <div className="flex flex-wrap gap-2 mt-5">
+                      {item.results.map((r) => (
+                        <span
+                          key={r}
+                          className="px-2 py-0.5 text-[0.6rem] font-mono-tech tracking-wide"
+                          style={{
+                            color: item.color,
+                            backgroundColor: `${item.color}0D`,
+                            border: `1px solid ${item.color}25`,
+                          }}
+                        >
+                          {r}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
+              </div>
 
-                {/* Location */}
-                <div className="flex items-center gap-2 mt-3 pt-3 border-t border-[rgba(0,212,255,0.08)]">
-                  <Globe size={11} className="text-[#8892A4]" />
-                  <span className="font-mono-tech text-[0.65rem] text-[#8892A4]">{item.location}</span>
+              {/* Card Footer com Localização */}
+              <div className="p-6 pt-0">
+                <div className="flex items-center justify-between pt-3 border-t border-[rgba(0,212,255,0.05)]">
+                  <div className="flex items-center gap-2">
+                    <Globe size={11} className="text-[#8892A4]" />
+                    <span className="font-mono-tech text-[0.65rem] text-[#8892A4]">{item.location}</span>
+                  </div>
+                  <ExternalLink size={12} className="text-[#8892A4] group-hover:text-[#00D4FF] transition-colors duration-200" />
                 </div>
               </div>
+
             </div>
           ))}
         </div>
 
         {/* CTA */}
-        <div className={`mt-12 text-center transition-all duration-700 delay-500 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className={`mt-16 text-center transition-all duration-700 delay-500 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <a
             href="https://wa.me/5511940684068"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-outline inline-flex"
+            className="btn-outline inline-flex text-xs"
           >
-            Vamos criar juntos o próximo case?
+            Vamos criar juntos o próximo case de sucesso?
           </a>
         </div>
       </div>
