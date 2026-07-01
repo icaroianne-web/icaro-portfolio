@@ -1,10 +1,10 @@
 /* ============================================================
    DESIGN: "Deep Space Broadcast" — Cases Section
-   Grid simétrico com 3 pilares de autoridade corporativa
+   Grid simétrico com Dossiê Transmídia, Indicador UX e Zoom Lightbox
    ============================================================ */
 
 import { useEffect, useRef, useState } from "react";
-import { ExternalLink, Globe, Building2, ShieldAlert } from "lucide-react";
+import { ExternalLink, Globe, Building2, ShieldAlert, X, Eye, ChevronDown, ChevronUp } from "lucide-react";
 
 const CASES_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663747808873/FfsF68pckBa2uV6MzkU5TV/cases-bg-QeazzTAEWuWpntiEmDoMC7.webp";
 const DUBAI_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663747808873/FfsF68pckBa2uV6MzkU5TV/dubai-cop28-54NchRQcmNgEMvWqnqgHxH.webp";
@@ -24,6 +24,11 @@ const cases = [
     results: ["Branding Transmídia", "Estratégia Bilíngue", "Pitches de Alto Impacto"],
     color: "#C9A84C",
     image: DUBAI_IMG,
+    materials: [
+      { url: "/assets/eds_1.jpg", caption: "Repercussão na Mídia Nacional" },
+      { url: "/assets/eds_2.jpg", caption: "Design das Marcas Criadas" },
+      { url: "/assets/eds_3.jpg", caption: "Materiais Editoriais Premium" }
+    ]
   },
   {
     id: 2,
@@ -36,9 +41,13 @@ const cases = [
     desafio: "Janela de tempo criticamente escassa para estruturar, captar em campo, roteirizar e editar um projeto audiovisual institucional complexo e de altíssima exigência técnica, demandado com urgência para apresentação estratégica e validação interna dentro de Ministérios federais.",
     execucao: "Implementação de uma força-tarefa ágil de produção audiovisual de ponta. Coordenação de captação externa acelerada combinada a uma pós-produção em tempo recorde, fundindo uma narrativa documental altamente impactante com o rigor técnico, relatórios e prazos exigidos pelas pastas governamentais.",
     impacto: "Aprovação unânime e imediata do projeto escrito e exibição oficial do material audiovisual nos Ministérios em Brasília, assegurando a chancela institucional da iniciativa, o cumprimento do cronograma governamental e a liberação de fluxos subsequentes.",
-    results: ["Gestão de Prazo Crítico", "Audiovisual de Elite", "Articulação Técnica"],
+    results: ["Gestão de Prazo Crítico", "Audiovisual de Elite", "Articulação Técnico"],
     color: "#00D4FF",
     image: null,
+    materials: [
+      { url: "/assets/orla_1.jpg", caption: "Direção de Produção em Campo" },
+      { url: "/assets/orla_2.jpg", caption: "Material Entregue nos Ministérios" }
+    ]
   },
   {
     id: 3,
@@ -54,6 +63,10 @@ const cases = [
     results: ["Contenção de Danos", "Estratégia em Tempo Real", "Relações Públicas"],
     color: "#FF6B35",
     image: null,
+    materials: [
+      { url: "/assets/crise_1.jpg", caption: "Campanhas de Orientação Digital" },
+      { url: "/assets/crise_2.jpg", caption: "Gerenciamento de Relações Públicas" }
+    ]
   }
 ];
 
@@ -74,6 +87,7 @@ function useInView(threshold = 0.1) {
 export default function CasesSection() {
   const { ref, inView } = useInView();
   const [activeCase, setActiveCase] = useState<number | null>(null);
+  const [selectedImage, setSelectedImage] = useState<{ url: string; caption: string } | null>(null);
 
   return (
     <section id="cases" className="relative py-24 overflow-hidden bg-[#080C14]">
@@ -102,8 +116,8 @@ export default function CasesSection() {
           </p>
         </div>
 
-        {/* Cases grid - Fixado em 3 colunas simétricas no desktop */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Cases grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {cases.map((item, i) => (
             <div
               key={item.id}
@@ -114,7 +128,7 @@ export default function CasesSection() {
               onClick={() => setActiveCase(activeCase === item.id ? null : item.id)}
             >
               <div>
-                {/* Imagem do Card (Apenas para COP28 Dubai) */}
+                {/* Imagem de topo para COP28 */}
                 {item.image && (
                   <div className="relative h-48 overflow-hidden border-b border-[rgba(0,212,255,0.08)]">
                     <img
@@ -124,7 +138,7 @@ export default function CasesSection() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0F1623] to-transparent" />
                     <div className="absolute top-4 right-4">
-                      <span className="tech-badge" style={{ borderColor: `${item.color}40`, color: item.color, backgroundColor: "#0F1623/90" }}>
+                      <span className="tech-badge" style={{ borderColor: `${item.color}40`, color: item.color, backgroundColor: "#0F1623" }}>
                         {item.tag}
                       </span>
                     </div>
@@ -132,7 +146,6 @@ export default function CasesSection() {
                 )}
 
                 <div className="p-6">
-                  {/* Card Header sem imagem */}
                   {!item.image && (
                     <div className="flex items-center justify-between mb-4">
                       <span className="font-mono-tech text-[0.6rem] uppercase tracking-widest" style={{ color: item.color }}>
@@ -142,7 +155,6 @@ export default function CasesSection() {
                     </div>
                   )}
 
-                  {/* Icon e Títulos */}
                   <div className="flex items-center gap-3 mb-4">
                     <div
                       className="w-10 h-10 flex items-center justify-center border transition-colors duration-300"
@@ -159,13 +171,31 @@ export default function CasesSection() {
                     </div>
                   </div>
 
-                  <p className="text-[#8892A4] text-xs mb-4 font-outfit leading-relaxed">{item.subtitle}</p>
+                  <p className="text-[#8892A4] text-xs mb-3 font-outfit leading-relaxed">{item.subtitle}</p>
 
-                  {/* Expandable content com a estrutura Desafio, Execução e Impacto */}
+                  {/* INDICADOR INTERATIVO DE CLIQUE UX */}
+                  <div 
+                    className="inline-flex items-center gap-1.5 font-mono-tech text-[0.6rem] tracking-widest uppercase mb-4 px-2.5 py-1 bg-[rgba(0,212,255,0.02)] border border-[rgba(0,212,255,0.12)] transition-all duration-300 text-[#00D4FF] group-hover:text-[#FF6B35] group-hover:border-[#FF6B35]/40"
+                  >
+                    {activeCase === item.id ? (
+                      <>
+                        <ChevronUp size={12} />
+                        <span>[-] Fechar Dossiê</span>
+                      </>
+                    ) : (
+                      <>
+                        <ChevronDown size={12} />
+                        <span>[+] Clique para Abrir o Case</span>
+                      </>
+                    )}
+                  </div>
+
+                  {/* Dossiê Expandido */}
                   <div
                     className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                      activeCase === item.id ? "max-h-[600px] opacity-100 mt-4 pt-4 border-t border-[rgba(0,212,255,0.08)]" : "max-h-0 opacity-0"
+                      activeCase === item.id ? "max-h-[1200px] opacity-100 pt-4 border-t border-[rgba(0,212,255,0.08)]" : "max-h-0 opacity-0"
                     }`}
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <div className="space-y-4 text-xs leading-relaxed text-[#8892A4] font-outfit">
                       <div>
@@ -182,7 +212,33 @@ export default function CasesSection() {
                       </div>
                     </div>
 
-                    {/* Tags de Resultados/Skills */}
+                    {/* Subseção de Anexos Visuais com Carrossel */}
+                    {item.materials && item.materials.length > 0 && (
+                      <div className="mt-6 pt-4 border-t border-[rgba(0,212,255,0.05)]">
+                        <strong className="text-[#F0F4FF] block mb-3 font-display tracking-wide uppercase text-[0.7rem]">📁 EVIDÊNCIAS VISUAIS DO CASE</strong>
+                        
+                        <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-thin snap-x overflow-y-hidden">
+                          {item.materials.map((mat, idx) => (
+                            <div 
+                              key={idx} 
+                              className="relative flex-none w-[140px] aspect-[0.75] bg-[#0F1623] border border-[rgba(0,212,255,0.1)] group/img cursor-zoom-in snap-start overflow-hidden"
+                              onClick={() => setSelectedImage(mat)}
+                            >
+                              <img 
+                                src={mat.url} 
+                                alt={mat.caption} 
+                                className="w-full h-full object-cover opacity-80 group-hover/img:opacity-100 group-hover/img:scale-105 transition-all duration-300"
+                              />
+                              <div className="absolute inset-0 bg-black/40 opacity-100 group-hover/img:opacity-0 transition-opacity duration-200 flex items-center justify-center">
+                                <Eye size={16} className="text-[#00D4FF] opacity-60 group-hover/img:opacity-100" />
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Tags Finais */}
                     <div className="flex flex-wrap gap-2 mt-5">
                       {item.results.map((r) => (
                         <span
@@ -202,7 +258,7 @@ export default function CasesSection() {
                 </div>
               </div>
 
-              {/* Card Footer com Localização */}
+              {/* Card Footer */}
               <div className="p-6 pt-0">
                 <div className="flex items-center justify-between pt-3 border-t border-[rgba(0,212,255,0.05)]">
                   <div className="flex items-center gap-2">
@@ -218,17 +274,39 @@ export default function CasesSection() {
         </div>
 
         {/* CTA */}
-        <div className={`mt-16 text-center transition-all duration-700 delay-500 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <a
-            href="https://wa.me/5511940684068"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-outline inline-flex text-xs"
-          >
+        <div className="mt-16 text-center">
+          <a href="https://wa.me/5511940684068" target="_blank" rel="noopener noreferrer" className="btn-outline inline-flex text-xs">
             Vamos criar juntos o próximo case de sucesso?
           </a>
         </div>
       </div>
+
+      {/* Lightbox Zoom em Tela Cheia */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 bg-black/95 backdrop-blur-md z-[999] flex flex-col items-center justify-center p-4 animate-fade-in"
+          onClick={() => setSelectedImage(null)}
+        >
+          <button 
+            className="absolute top-6 right-6 text-[#8892A4] hover:text-[#00D4FF] bg-[#0F1623]/80 p-2 rounded-full border border-[rgba(0,212,255,0.1)] transition-colors"
+            onClick={() => setSelectedImage(null)}
+          >
+            <X size={24} />
+          </button>
+          
+          <div className="relative max-w-full max-h-[80vh] border border-[rgba(0,212,255,0.2)] shadow-2xl overflow-hidden" onClick={(e) => e.stopPropagation()}>
+            <img 
+              src={selectedImage.url} 
+              alt={selectedImage.caption} 
+              className="max-w-full max-h-[80vh] object-contain"
+            />
+          </div>
+          
+          <p className="text-[#F0F4FF] font-mono-tech text-xs tracking-wider uppercase mt-4 bg-[#0F1623] border border-[rgba(0,212,255,0.1)] px-4 py-2">
+            📂 {selectedImage.caption}
+          </p>
+        </div>
+      )}
     </section>
   );
 }
