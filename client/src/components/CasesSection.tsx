@@ -19,9 +19,9 @@ const cases = [
     year: "2023",
     location: "Dubai, Emirados Árabes",
     desafio: "Primeira ONG de saúde da história convidada a palestrar em uma COP da ONU. O desafio era converter programas assistenciais complexos de saúde indígena em 'produtos institucionais' claros, atraentes e de rápido entendimento para lideranças globais e investidores internacionais sob o ritmo frenético e escasso de tempo da conferência climática.",
-    execucao: "Criação de identidade visual própria para os programas sociais (4 logotipos exclusivos), desenvolvimento de materiais editoriais premium bilíngues (Catálogo Editorial, Menu Institucional e Cardápio Estratégico de captação) e produção completa do vídeo de abertura da COP28 e mini clipes emocionais rodando em ecossistema transmídia ágil via iPads.",
-    impacto: "Reconhecimento institucional de alto nível perante a OMS e FUNAI, consolidação mundial da saúde indígena como eixo central da preservação ambiental, abertura de novas pontes diplomáticas internacionais e um aumento expressivo no volume de doações financeiras captadas.",
-    results: ["Branding Transmídia", "Estratégia Bilíngue", "Pitches de Alto Impacto"],
+    execucao: "Criação de identidade visual própria para os programas sociais (4 logotipos exclusivos), desenvolvimento de materiais editoriais premium bilíngues (Catálogo Editorial, Menu Institucional e Cardápio Estratégico de captação) e produção do vídeo de abertura da COP28. Liderou o desenvolvimento do Guia de Comunicação para Povos Indígenas, realizando o compliance das diretrizes do Governo Federal para orientar as agências prestadoras de serviço sobre práticas éticas, narrativas e respeito cultural em campo.",
+    impacto: "Reconhecimento institucional de alto nível perante a OMS e FUNAI, consolidação mundial da saúde indígena como eixo central da preservação ambiental e aumento expressivo no volume de captação de recursos. O Guia de Comunicação tornou-se referência de governança de marca, sendo amplamente elogiado e chancelado pelas próprias lideranças indígenas.",
+    results: ["Compliance de Marca", "Estratégia Bilíngue", "Liderança Étnico-Cultural"],
     color: "#C9A84C",
     image: DUBAI_IMG,
     materials: [
@@ -41,11 +41,11 @@ const cases = [
     desafio: "Janela de tempo criticamente escassa para estruturar, captar em campo, roteirizar e editar um projeto audiovisual institucional complexo e de altíssima exigência técnica, demandado com urgência para apresentação estratégica e validação interna dentro de Ministérios federais.",
     execucao: "Implementação de uma força-tarefa ágil de produção audiovisual de ponta. Coordenação de captação externa acelerada combinada a uma pós-produção em tempo recorde, fundindo uma narrativa documental altamente impactante com o rigor técnico, relatórios e prazos exigidos pelas pastas governamentais.",
     impacto: "Aprovação unânime e imediata do projeto escrito e exibição oficial do material audiovisual nos Ministérios em Brasília, assegurando a chancela institucional da iniciativa, o cumprimento do cronograma governamental e a liberação de fluxos subsequentes.",
-    results: ["Gestão de Prazo Crítico", "Audiovisual de Elite", "Articulação Técnico"],
+    results: ["Gestão de Prazo Crítico", "Audiovisual de Elite", "Articulação Técnica"],
     color: "#00D4FF",
     image: null,
     materials: [
-      { url: "/assets/orla_1.jpg", caption: "Direção de Produção em Campo" },
+      { url: "/assets/orla_1.jpg", caption: "Direção de ... em Campo" },
       { url: "/assets/orla_2.jpg", caption: "Material Entregue nos Ministérios" }
     ]
   },
