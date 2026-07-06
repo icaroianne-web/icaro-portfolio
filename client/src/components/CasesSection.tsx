@@ -1,6 +1,6 @@
 /* ============================================================
    DESIGN: "Deep Space Broadcast" — Cases Section
-   Grid simétrico com Dossiê Transmídia, Indicador UX e Zoom Lightbox
+   Grid simétrico com Dossiê Transmídia, Indicador UX e Imagens Reais do Site da EDS
    ============================================================ */
 
 import { useEffect, useRef, useState } from "react";
@@ -24,10 +24,13 @@ const cases = [
     results: ["Compliance de Marca", "Estratégia Bilíngue", "Liderança Étnico-Cultural"],
     color: "#C9A84C",
     image: DUBAI_IMG,
+    // Puxando os links oficiais de produção direto do site da EDS que você estruturou
     materials: [
-      { url: "/assets/eds_1.jpg", caption: "Repercussão na Mídia Nacional" },
-      { url: "/assets/eds_2.jpg", caption: "Design das Marcas Criadas" },
-      { url: "/assets/eds_3.jpg", caption: "Materiais Editoriais Premium" }
+      { url: "https://eds.org.br/wp-content/uploads/2023/11/programa-eds-card-01.webp", caption: "Produto 01: Centro Cirúrgico Móvel (Tecnologia Social)" },
+      { url: "https://eds.org.br/wp-content/uploads/2023/11/programa-eds-card-02.webp", caption: "Produto 02: Saúde da Mulher Indígena" },
+      { url: "https://eds.org.br/wp-content/uploads/2023/11/programa-eds-card-03.webp", caption: "Produto 03: Ortopedia e Reabilitação na Amazônia" },
+      { url: "https://eds.org.br/wp-content/uploads/2023/11/programa-eds-card-04.webp", caption: "Produto 04: Telemedicina e Conectividade de Guardiões" },
+      { url: "https://eds.org.br/wp-content/uploads/2023/11/programa-eds-card-05.webp", caption: "Produto 05: Infraestrutura de Unidades de Saúde" }
     ]
   },
   {
@@ -45,7 +48,7 @@ const cases = [
     color: "#00D4FF",
     image: null,
     materials: [
-      { url: "/assets/orla_1.jpg", caption: "Direção de ... em Campo" },
+      { url: "/assets/orla_1.jpg", caption: "Direção de Produção em Campo" },
       { url: "/assets/orla_2.jpg", caption: "Material Entregue nos Ministérios" }
     ]
   },
@@ -221,16 +224,17 @@ export default function CasesSection() {
                           {item.materials.map((mat, idx) => (
                             <div 
                               key={idx} 
-                              className="relative flex-none w-[140px] aspect-[0.75] bg-[#0F1623] border border-[rgba(0,212,255,0.1)] group/img cursor-zoom-in snap-start overflow-hidden"
+                              className="relative flex-none w-[140px] aspect-[1] bg-[#0F1623] border border-[rgba(0,212,255,0.1)] group/img cursor-zoom-in snap-start overflow-hidden"
                               onClick={() => setSelectedImage(mat)}
                             >
                               <img 
                                 src={mat.url} 
                                 alt={mat.caption} 
-                                className="w-full h-full object-cover opacity-80 group-hover/img:opacity-100 group-hover/img:scale-105 transition-all duration-300"
+                                className="w-full h-full object-cover opacity-85 group-hover/img:opacity-100 group-hover/img:scale-105 transition-all duration-300"
+                                crossOrigin="anonymous"
                               />
-                              <div className="absolute inset-0 bg-black/40 opacity-100 group-hover/img:opacity-0 transition-opacity duration-200 flex items-center justify-center">
-                                <Eye size={16} className="text-[#00D4FF] opacity-60 group-hover/img:opacity-100" />
+                              <div className="absolute inset-0 bg-black/20 opacity-100 group-hover/img:opacity-0 transition-opacity duration-200 flex items-center justify-center">
+                                <Eye size={14} className="text-[#00D4FF] opacity-80 group-hover/img:opacity-100" />
                               </div>
                             </div>
                           ))}
