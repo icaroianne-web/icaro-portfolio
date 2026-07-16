@@ -110,9 +110,9 @@ const cases = [
     ],
     results: ["Conceito Ice Tech", "Estética Tesla", "TikTok & YouTube", "+31% Novos Leads", "HubSpot & Ads"],
     color: "#FF6B35",
-    image: "/assets/finamac_ice_tech.jpg",
+    image: "/assets/finamac_header.jpg",
     evidences: [
-      { type: "image", url: "/assets/finamac_ice_tech.jpg", caption: "Estética Tesla: Equipamento Conceito Ice Tech" },
+      { type: "image", url: "/assets/finamac_header.jpg", caption: "Lançamento 2026: Equipamento Flash (Sorvete Americano)" },
       { type: "video", url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", caption: "Cortes YouTube: Pessoas que são Máquinas de Sucesso" },
       { type: "video", url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", caption: "Workshop ao vivo direto do Showroom" }
     ] as Evidence[]
