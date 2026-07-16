@@ -13,16 +13,36 @@ const DUBAI_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663747808873/FfsF
 const cases = [
   {
     id: 1,
-    tag: "Internacional",
+    tag: "Gestão Pública & Crise",
+    icon: Building2,
+    title: "Prefeitura de Santa Fé do Sul",
+    subtitle: "Estratégia Ágil, Contenção de Danos e Mobilização Comunitária",
+    year: "2020-2024",
+    location: "São Paulo, Brasil",
+    desafio: "A gestão da Prefeitura de Santa Fé do Sul enfrentou desafios simultâneos e heterogêneos: criar, em apenas uma semana, a campanha audiovisual do maior projeto turístico da história da cidade (Orla do Sol); conter o iminente pânico populacional durante uma crise hídrica severa; administrar o alto volume de desinformação e a sobrecarga dos canais de atendimento durante a pandemia de Covid-19; e manter a população culturalmente ativa e unida durante o isolamento social.",
+    execucao: "Para a Orla do Sol, roteirizei, captei (com drone) e editei um material cinematográfico mesclando imagens reais e projetos 3D, utilizado na busca por emendas parlamentares. Na crise hídrica, conduzi cobertura in loco das obras emergenciais (poço profundo) com boletins diários de transparência. Na saúde pública, desenvolvi um chatbot no WhatsApp para envio automático de boletins, datas de vacinação e triagem de sintomas. No campo cultural, criei o canal da SECTUR no YouTube e produzi quadros inéditos — Memórias, Rolê da Estância e Biblioteca em Casa — voltados à valorização da história local, do turismo e da leitura infantil.",
+    impacto: "A campanha da Orla do Sol elevou a credibilidade da proposta, escalando-a da esfera estadual à pauta federal — hoje o projeto está em execução com recursos da União. A transparência em tempo real na crise hídrica consolidou a confiança na gestão, e o acervo gerado funcionou como combustível estratégico de campanha, contribuindo para a reeleição do prefeito com aprovação histórica de 70%. O chatbot foi peça-chave na logística que alcançou 90% de cobertura vacinal entre o público adulto, superando as metas estaduais. Como legado, o canal oficial de Turismo no YouTube segue ativo, com vídeos orgânicos somando quase 6 mil visualizações locais.",
+    results: ["Recursos Federais", "90% Cobertura Vacinal", "70% Aprovação Pública", "Canal SECTUR (YouTube)"],
+    color: "#00D4FF",
+    image: null,
+    // TODO: substituir/complementar pelos arquivos reais (Orla do Sol, crise hídrica, chatbot, canal SECTUR)
+    evidences: [
+      { type: "image", url: "/assets/orla_1.jpg", caption: "Orla do Sol: Direção de Produção em Campo (Drone)" },
+      { type: "image", url: "/assets/orla_2.jpg", caption: "Orla do Sol: Material Entregue para Emendas Parlamentares" }
+    ] as Evidence[]
+  },
+  {
+    id: 2,
+    tag: "Impacto Global",
     icon: Globe,
-    title: "COP28 — Dubai (EDS)",
-    subtitle: "Do Atendimento na Amazônia ao Palco Global da ONU",
+    title: "COP28 Dubai — EDS",
+    subtitle: "Comunicação de Impacto: Da Amazônia ao Palco Global da ONU",
     year: "2023",
     location: "Dubai, Emirados Árabes",
-    desafio: "Primeira ONG de saúde da história convidada a palestrar em uma COP da ONU. O desafio era converter programas assistenciais complexos de saúde indígena em 'produtos institucionais' claros, atraentes e de rápido entendimento para lideranças globais e investidores internacionais sob o ritmo frenético e escasso de tempo da conferência climática.",
-    execucao: "Criação de identidade visual própria para os programas sociais (4 logotipos exclusivos), desenvolvimento de materiais editoriais premium bilíngues (Catálogo Editorial, Menu Institucional e Cardápio Estratégico de captação) e produção do vídeo de abertura da COP28. Liderou o desenvolvimento do Guia de Comunicação para Povos Indígenas, realizando o compliance das diretrizes do Governo Federal para orientar as agências prestadoras de serviço sobre práticas éticas, narrativas e respeito cultural em campo.",
-    impacto: "Reconhecimento institucional de alto nível perante a OMS e FUNAI, consolidação mundial da saúde indígena como eixo central da preservação ambiental e aumento expressivo no volume de captação de recursos. O Guia de Comunicação tornou-se referência de governança de marca, sendo amplamente elogiado e chancelado pelas próprias lideranças indígenas.",
-    results: ["Compliance de Marca", "Estratégia Bilíngue", "Liderança Étnico-Cultural"],
+    desafio: "Agências parceiras não dominavam a complexidade do tema indígena, o que gerava propostas inadequadas e retrabalho constante. Na COP28, a primeira ONG de saúde a participar historicamente de uma conferência climática da ONU precisava transformar programas puramente técnicos em produtos visuais robustos, capazes de atrair investidores de alto escalão. O desafio central era tangibilizar, em números, para líderes mundiais do clima, a relação direta entre saúde indígena e preservação ambiental.",
+    execucao: "Criei um Guia de Governança Indígena focado em povos isolados, padronizando nomenclaturas e estabelecendo diretrizes éticas rigorosas para uso de imagens e hierarquia de órgãos competentes. Empacotei a ONG em cardápios de investimento e catálogos premium, e armei a equipe, na própria COP28, com iPads contendo vídeos cinematográficos e dossiês compartilháveis via QR Code — um verdadeiro arsenal transmídia de pitch de guerrilha. A narrativa central utilizou o coeficiente de retenção de carbono das terras demarcadas como moeda de valor, demonstrando que o indígena saudável representa a maior barreira de preservação da Amazônia.",
+    impacto: "O alinhamento reduziu a zero o retrabalho das agências parceiras, e o Guia de Governança passou a integrar o Manual de Conduta oficial dos médicos voluntários da ONG. A apresentação transmídia institucional pavimentou a recepção da ONG pelo presidente da COP28 e resultou no prêmio de Inovação Tecnológica, pelo Centro Cirúrgico Móvel. A narrativa do carbono, aliada ao cardápio de investimentos, aumentou em 15% a base de doadores internacionais e viabilizou parcerias com indústrias farmacêuticas para as próximas expedições.",
+    results: ["Primeira ONG (COP28)", "+15% Doações Internacionais", "Coeficiente de Carbono", "Guia de Governança"],
     color: "#C9A84C",
     image: DUBAI_IMG,
     // TODO: adicionar vídeos de produção da COP28 (evidences do tipo "video")
@@ -35,39 +55,20 @@ const cases = [
     ] as Evidence[]
   },
   {
-    id: 2,
-    tag: "Governo Federal",
-    icon: Building2,
-    title: "Projeto Orla do Sol",
-    subtitle: "Produção Audiovisual Estratégica para Ministérios",
-    year: "2022",
-    location: "Brasília, Brasil",
-    desafio: "Janela de tempo criticamente escassa para estruturar, captar em campo, roteirizar e editar um projeto audiovisual institucional complexo e de altíssima exigência técnica, demandado com urgência para apresentação estratégica e validação interna dentro de Ministérios federais.",
-    execucao: "Implementação de uma força-tarefa ágil de produção audiovisual de ponta. Coordenação de captação externa acelerada combinada a uma pós-produção em tempo recorde, fundindo uma narrativa documental altamente impactante com o rigor técnico, relatórios e prazos exigidos pelas pastas governamentais.",
-    impacto: "Aprovação unânime e imediata do projeto escrito e exibição oficial do material audiovisual nos Ministérios em Brasília, assegurando a chancela institucional da iniciativa, o cumprimento do cronograma governamental e a liberação de fluxos subsequentes.",
-    results: ["Gestão de Prazo Crítico", "Audiovisual de Elite", "Articulação Técnica"],
-    color: "#00D4FF",
-    image: null,
-    evidences: [
-      { type: "image", url: "/assets/orla_1.jpg", caption: "Direção de Produção em Campo" },
-      { type: "image", url: "/assets/orla_2.jpg", caption: "Material Entregue nos Ministérios" }
-    ] as Evidence[]
-  },
-  {
     id: 3,
     tag: "Rebranding & Growth",
     icon: TrendingUp,
-    title: "Global",
-    subtitle: "Finamac Global: De Commodity a Produto Premium",
+    title: "Finamac Global",
+    subtitle: "A Revolução \"Ice Tech\" e a Construção de uma Máquina de Vendas",
     year: "2025/2026",
-    location: "Brasil", // TODO: confirmar cidade/UF a exibir
-    desafio: "As maquininhas de pagamento da Finamac Global eram percebidas e comercializadas como produto de baixo custo — sem diferenciação estética, tecnológica ou de marca frente à concorrência do setor.",
-    execucao: "Reestruturação completa da identidade visual do produto, elevando-o a um patamar premium — na mesma lógica de marcas de referência em design no varejo de eletrodomésticos, onde tecnologia e design deixam de ser suporte e passam a ser o próprio argumento de venda. Para viabilizar o novo volume de produção de peças multimídia com uma equipe reduzida, foram integradas ferramentas de IA à automação criativa. Em paralelo, implementou-se automação de campanhas via HubSpot, robustecendo o CRM, e conduziu-se a migração do site institucional para uma plataforma bivalente (institucional + e-commerce, via Shopify).",
-    impacto: "Aumento de 22% no número de novos leads gerados, com CRM e captação de leads significativamente mais robustos e escaláveis.",
-    results: ["+22% Novos Leads", "Rebranding Premium", "Automação com IA", "HubSpot + Shopify"],
+    location: "Brasil",
+    desafio: "Equipamentos de altíssima tecnologia e design arrojado não tinham a identidade visual premium que mereciam. A marca sobrevivia de conteúdo estagnado, \"requentando\" vídeos antigos de baixa qualidade e ritmo ultrapassado. O time comercial estava afogado em uma base de leads antiga, sem campanhas ativas rodando, e a falta de processos e alinhamento entre Engenharia, Marketing e Comercial criava silos internos.",
+    execucao: "Criei do zero o conceito Ice Tech, unindo a pureza do gelo à performance tecnológica — inspirado na estética Tesla, transformando as máquinas em objetos de desejo. Lancei o TikTok da marca com receitas virais e criei o quadro \"Pessoas que são Máquinas de Sucesso\" no YouTube, pulverizando cortes nas redes sociais, além de transmissões ao vivo de workshops direto do showroom e do laboratório técnico. Estruturei campanhas de aquisição (Meta e Google Ads) integradas ao HubSpot para atrair leads qualificados, e implementei fluxos ágeis de governança entre Engenharia, Marketing e Comercial, com rituais de aprovação e uma arquitetura editorial robusta.",
+    impacto: "A estética Ice Tech, aliada à nova esteira de conteúdo, gerou crescimento de 19% na audiência, +27% de engajamento e +31% em novos leads (valores estimados do período). As metas de vendas foram batidas mesmo durante o cenário de instabilidade tarifária. Culturalmente, o conceito consolidou orgulho interno e uniu a equipe em torno do BYB (Build Your Business) Dream Team.",
+    results: ["Conceito Ice Tech", "Estética Tesla", "TikTok & YouTube", "+31% Novos Leads", "HubSpot & Ads"],
     color: "#FF6B35",
     image: null,
-    // TODO: substituir pelos arquivos reais (antes/depois de redes sociais, site e produto)
+    // TODO: substituir pelos arquivos reais (antes/depois de redes sociais, site e produto; cortes do TikTok/YouTube)
     evidences: [
       // { type: "before_after", before: "/assets/global_social_antes.jpg", after: "/assets/global_social_depois.jpg", caption: "Redes Sociais: Antes x Depois" },
       // { type: "before_after", before: "/assets/global_site_antes.jpg", after: "/assets/global_site_depois.jpg", caption: "Site Institucional: Antes x Depois" },
