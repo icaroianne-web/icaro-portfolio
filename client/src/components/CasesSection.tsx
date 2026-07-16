@@ -21,7 +21,7 @@ const cases = [
     location: "Dubai, Emirados Árabes",
     desafio: "Primeira ONG de saúde da história convidada a palestrar em uma COP da ONU. O desafio era converter programas assistenciais complexos de saúde indígena em 'produtos institucionais' claros, atraentes e de rápido entendimento para lideranças globais e investidores internacionais sob o ritmo frenético e escasso de tempo da conferência climática.",
     execucao: "Criação de identidade visual própria para os programas sociais (4 logotipos exclusivos), desenvolvimento de materiais editoriais premium bilíngues (Catálogo Editorial, Menu Institucional e Cardápio Estratégico de captação) e produção do vídeo de abertura da COP28. Liderou o desenvolvimento do Guia de Comunicação para Povos Indígenas, realizando o compliance das diretrizes do Governo Federal para orientar as agências prestadoras de serviço sobre práticas éticas, narrativas e respeito cultural em campo.",
-    impacto: "Reconhecimento institutional de alto nível perante a OMS e FUNAI, consolidação mundial da saúde indígena como eixo central da preservação ambiental e aumento expressivo no volume de captação de recursos. O Guia de Comunicação tornou-se referência de governança de marca, sendo amplamente elogiado e chancelado pelas próprias lideranças indígenas.",
+    impacto: "Reconhecimento institucional de alto nível perante a OMS e FUNAI, consolidação mundial da saúde indígena como eixo central da preservação ambiental e aumento expressivo no volume de captação de recursos. O Guia de Comunicação tornou-se referência de governança de marca, sendo amplamente elogiado e chancelado pelas próprias lideranças indígenas.",
     results: ["Compliance de Marca", "Estratégia Bilíngue", "Liderança Étnico-Cultural"],
     color: "#C9A84C",
     image: DUBAI_IMG,
@@ -60,32 +60,18 @@ const cases = [
     title: "Global",
     subtitle: "Finamac Global: De Commodity a Produto Premium",
     year: "2025/2026",
-    location: "Brasil",
-    desafio: "As maquininhas de pagamento da Finamac Global eram percebidas e comercializadas como commodities de baixo valor — sem diferenciação estética ou tecnológica, sendo muitas vezes comparadas a equipamentos de 'quinta categoria' frente à forte concorrência do setor.",
-    execucao: "Reestruturação completa da comunicação e identidade visual do produto, adotando um conceito focado em uma plástica ultra-premium — apresentando a máquina como uma verdadeira 'Brastempo' do setor, onde o design sofisticado e a tecnologia de ponta deixam de ser opcionais e tornam-se o próprio argumento de venda. Devido à redução da equipe interna, integrei ferramentas de Inteligência Artificial para automatizar e otimizar a criação de peças multimídia de alta escala. Além disso, estruturei campanhas automatizadas e fluxos de CRM robustos dentro do HubSpot e liderei a transição do site oficial para uma plataforma bivalente (institucional + e-commerce) integrada ao Shopify.",
-    impacto: "Aumento real de 22% na captação de novos leads qualificados, além da consolidação de um ecossistema de CRM automatizado e escalável. O produto foi reposicionado no mercado com altíssima percepção de valor.",
-    results: ["+22% Novos Leads", "Conceito Brastempo", "Automação com IA", "HubSpot + Shopify"],
+    location: "Brasil", // TODO: confirmar cidade/UF a exibir
+    desafio: "As maquininhas de pagamento da Finamac Global eram percebidas e comercializadas como produto de baixo custo — sem diferenciação estética, tecnológica ou de marca frente à concorrência do setor.",
+    execucao: "Reestruturação completa da identidade visual do produto, elevando-o a um patamar premium — na mesma lógica de marcas de referência em design no varejo de eletrodomésticos, onde tecnologia e design deixam de ser suporte e passam a ser o próprio argumento de venda. Para viabilizar o novo volume de produção de peças multimídia com uma equipe reduzida, foram integradas ferramentas de IA à automação criativa. Em paralelo, implementou-se automação de campanhas via HubSpot, robustecendo o CRM, e conduziu-se a migração do site institucional para uma plataforma bivalente (institucional + e-commerce, via Shopify).",
+    impacto: "Aumento de 22% no número de novos leads gerados, com CRM e captação de leads significativamente mais robustos e escaláveis.",
+    results: ["+22% Novos Leads", "Rebranding Premium", "Automação com IA", "HubSpot + Shopify"],
     color: "#FF6B35",
     image: null,
+    // TODO: substituir pelos arquivos reais (antes/depois de redes sociais, site e produto)
     evidences: [
-      { 
-        type: "before_after", 
-        before: "/assets/global_social_antes.jpg", 
-        after: "/assets/global_social_depois.jpg", 
-        caption: "Redes Sociais: Antes x Depois" 
-      },
-      { 
-        type: "before_after", 
-        before: "/assets/global_site_antes.jpg", 
-        after: "/assets/global_site_depois.jpg", 
-        caption: "Site Institucional: Antes x Depois" 
-      },
-      { 
-        type: "before_after", 
-        before: "/assets/global_produto_antes.jpg", 
-        after: "/assets/global_produto_depois.jpg", 
-        caption: "Apresentação do Produto: Antes x Depois" 
-      }
+      // { type: "before_after", before: "/assets/global_social_antes.jpg", after: "/assets/global_social_depois.jpg", caption: "Redes Sociais: Antes x Depois" },
+      // { type: "before_after", before: "/assets/global_site_antes.jpg", after: "/assets/global_site_depois.jpg", caption: "Site Institucional: Antes x Depois" },
+      // { type: "before_after", before: "/assets/global_produto_antes.jpg", after: "/assets/global_produto_depois.jpg", caption: "Apresentação do Produto: Antes x Depois" },
     ] as Evidence[]
   }
 ];
