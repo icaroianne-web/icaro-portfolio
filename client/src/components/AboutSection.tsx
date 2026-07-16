@@ -19,10 +19,24 @@ const skills = [
 ];
 
 const trajectory = [
-  { year: "2023", event: "COP28 — Dubai", desc: "Cobertura e produção audiovisual da 28ª Conferência das Nações Unidas sobre Mudanças Climáticas.", highlight: true },
-  { year: "2022", event: "Ministério Federal", desc: "Coordenação de comunicação e produção multimídia para órgão do governo federal.", highlight: false },
-  { year: "2020", event: "Expansão Digital", desc: "Implementação de estratégias de IA e automação para gestão de redes sociais.", highlight: false },
-  { year: "2018", event: "Produção Executiva", desc: "Produção de vídeos institucionais e showreels para clientes corporativos.", highlight: false },
+  {
+    year: "2025/2026",
+    event: "Finamac",
+    desc: "Coordenador de Comunicação e Marketing. Liderança em rebranding global (estética Ice Tech), direção criativa de e-commerce (Shopify), gestão de equipes e análise de performance (KPIs/ROI) com foco em dados.",
+    highlight: true
+  },
+  {
+    year: "2023/2024",
+    event: "Conveniência Adulta",
+    desc: "Sócio-Gerente de Comunicação. Gestão de marketing digital, desenvolvimento de personas com IA Conversacional e planejamento de campanhas transmídia com forte apelo social e educativo.",
+    highlight: false
+  },
+  {
+    year: "2023",
+    event: "Expedicionários da Saúde (EDS)",
+    desc: "Coordenador de Comunicação e Marketing. Coordenação da comunicação institucional na COP28 Dubai, produção audiovisual de materiais premium e compliance de marca através do Guia de Governança Indígena.",
+    highlight: false
+  }
 ];
 
 function useInView(threshold = 0.15) {

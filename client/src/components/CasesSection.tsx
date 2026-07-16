@@ -38,7 +38,7 @@ const cases = [
     ],
     results: ["Recursos Federais", "90% Cobertura Vacinal", "70% Aprovação Pública", "Canal SECTUR (YouTube)"],
     color: "#00D4FF",
-    image: "/assets/orla_rota_aerea_mapa.png",
+    image: "/assets/orla_do_sol_header.png",
     evidences: [
       { type: "image", url: "/assets/orla_lancamento_video.png", caption: "Lançamento oficial do Programa Orla do Sol (Facebook, mar/2021)" },
       { type: "image", url: "/assets/orla_render_3d_projeto.png", caption: "Identidade visual criada + renders 3D da avenida (ciclovia e orla)" },
