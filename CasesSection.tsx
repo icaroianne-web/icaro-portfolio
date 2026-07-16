@@ -4,7 +4,8 @@
    ============================================================ */
 
 import { useEffect, useRef, useState } from "react";
-import { ExternalLink, Globe, Building2, ShieldAlert, X, Eye, ChevronDown, ChevronUp } from "lucide-react";
+import { ExternalLink, Globe, Building2, TrendingUp, ChevronDown, ChevronUp } from "lucide-react";
+import EvidenceGallery, { type Evidence } from "./EvidenceGallery";
 
 const CASES_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663747808873/FfsF68pckBa2uV6MzkU5TV/cases-bg-QeazzTAEWuWpntiEmDoMC7.webp";
 const DUBAI_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663747808873/FfsF68pckBa2uV6MzkU5TV/dubai-cop28-54NchRQcmNgEMvWqnqgHxH.webp";
@@ -24,14 +25,14 @@ const cases = [
     results: ["Compliance de Marca", "Estratégia Bilíngue", "Liderança Étnico-Cultural"],
     color: "#C9A84C",
     image: DUBAI_IMG,
-    // Puxando os links oficiais de produção direto do site da EDS que você estruturou
-    materials: [
-      { url: "https://eds.org.br/wp-content/uploads/2023/11/programa-eds-card-01.webp", caption: "Produto 01: Centro Cirúrgico Móvel (Tecnologia Social)" },
-      { url: "https://eds.org.br/wp-content/uploads/2023/11/programa-eds-card-02.webp", caption: "Produto 02: Saúde da Mulher Indígena" },
-      { url: "https://eds.org.br/wp-content/uploads/2023/11/programa-eds-card-03.webp", caption: "Produto 03: Ortopedia e Reabilitação na Amazônia" },
-      { url: "https://eds.org.br/wp-content/uploads/2023/11/programa-eds-card-04.webp", caption: "Produto 04: Telemedicina e Conectividade de Guardiões" },
-      { url: "https://eds.org.br/wp-content/uploads/2023/11/programa-eds-card-05.webp", caption: "Produto 05: Infraestrutura de Unidades de Saúde" }
-    ]
+    // TODO: adicionar vídeos de produção da COP28 (evidences do tipo "video")
+    evidences: [
+      { type: "image", url: "https://eds.org.br/wp-content/uploads/2023/11/programa-eds-card-01.webp", caption: "Produto 01: Centro Cirúrgico Móvel (Tecnologia Social)" },
+      { type: "image", url: "https://eds.org.br/wp-content/uploads/2023/11/programa-eds-card-02.webp", caption: "Produto 02: Saúde da Mulher Indígena" },
+      { type: "image", url: "https://eds.org.br/wp-content/uploads/2023/11/programa-eds-card-03.webp", caption: "Produto 03: Ortopedia e Reabilitação na Amazônia" },
+      { type: "image", url: "https://eds.org.br/wp-content/uploads/2023/11/programa-eds-card-04.webp", caption: "Produto 04: Telemedicina e Conectividade de Guardiões" },
+      { type: "image", url: "https://eds.org.br/wp-content/uploads/2023/11/programa-eds-card-05.webp", caption: "Produto 05: Infraestrutura de Unidades de Saúde" }
+    ] as Evidence[]
   },
   {
     id: 2,
@@ -47,29 +48,31 @@ const cases = [
     results: ["Gestão de Prazo Crítico", "Audiovisual de Elite", "Articulação Técnica"],
     color: "#00D4FF",
     image: null,
-    materials: [
-      { url: "/assets/orla_1.jpg", caption: "Direção de Produção em Campo" },
-      { url: "/assets/orla_2.jpg", caption: "Material Entregue nos Ministérios" }
-    ]
+    evidences: [
+      { type: "image", url: "/assets/orla_1.jpg", caption: "Direção de Produção em Campo" },
+      { type: "image", url: "/assets/orla_2.jpg", caption: "Material Entregue nos Ministérios" }
+    ] as Evidence[]
   },
   {
     id: 3,
-    tag: "Gestão de Crise",
-    icon: ShieldAlert,
-    title: "Comunicação Pública Pandemia",
-    subtitle: "Estratégia Institucional de Contenção de Danos",
-    year: "2020-2021",
-    location: "Santa Fé do Sul, SP",
-    desafio: "Gerenciar e liderar a comunicação oficial do município durante o ápice crítico da pandemia de COVID-19. O desafio era conter o pânico social, combater ondas de desinformação em tempo real e traduzir decretos de saúde complexos e dinâmicos em mensagens públicas de imediata adesão da população.",
-    execucao: "Desenvolvimento e execução de um plano de contingência de comunicação integrada. Criação de canais digitais de atendimento e orientação direta ao cidadão, campanhas publicitárias em massa focadas em medidas protetivas e monitoramento ostensivo em redes sociais para contenção de crises reputacionais e informativas.",
-    impacto: "Garantia de total transparência e governança da informação pública, mitigações severas de fake news locais, posicionamento seguro da prefeitura como fonte única de autoridade e altos índices históricos de engajamento e adesão da sociedade civil às normas de segurança em saúde.",
-    results: ["Contenção de Danos", "Estratégia em Tempo Real", "Relações Públicas"],
+    tag: "Rebranding & Growth",
+    icon: TrendingUp,
+    title: "Global",
+    subtitle: "Finamac Global: De Commodity a Produto Premium",
+    year: "2025/2026",
+    location: "Brasil", // TODO: confirmar cidade/UF a exibir
+    desafio: "As maquininhas de pagamento da Finamac Global eram percebidas e comercializadas como produto de baixo custo — sem diferenciação estética, tecnológica ou de marca frente à concorrência do setor.",
+    execucao: "Reestruturação completa da identidade visual do produto, elevando-o a um patamar premium — na mesma lógica de marcas de referência em design no varejo de eletrodomésticos, onde tecnologia e design deixam de ser suporte e passam a ser o próprio argumento de venda. Para viabilizar o novo volume de produção de peças multimídia com uma equipe reduzida, foram integradas ferramentas de IA à automação criativa. Em paralelo, implementou-se automação de campanhas via HubSpot, robustecendo o CRM, e conduziu-se a migração do site institucional para uma plataforma bivalente (institucional + e-commerce, via Shopify).",
+    impacto: "Aumento de 22% no número de novos leads gerados, com CRM e captação de leads significativamente mais robustos e escaláveis.",
+    results: ["+22% Novos Leads", "Rebranding Premium", "Automação com IA", "HubSpot + Shopify"],
     color: "#FF6B35",
     image: null,
-    materials: [
-      { url: "/assets/crise_1.jpg", caption: "Campanhas de Orientação Digital" },
-      { url: "/assets/crise_2.jpg", caption: "Gerenciamento de Relações Públicas" }
-    ]
+    // TODO: substituir pelos arquivos reais (antes/depois de redes sociais, site e produto)
+    evidences: [
+      // { type: "before_after", before: "/assets/global_social_antes.jpg", after: "/assets/global_social_depois.jpg", caption: "Redes Sociais: Antes x Depois" },
+      // { type: "before_after", before: "/assets/global_site_antes.jpg", after: "/assets/global_site_depois.jpg", caption: "Site Institucional: Antes x Depois" },
+      // { type: "before_after", before: "/assets/global_produto_antes.jpg", after: "/assets/global_produto_depois.jpg", caption: "Apresentação do Produto: Antes x Depois" },
+    ] as Evidence[]
   }
 ];
 
@@ -90,7 +93,6 @@ function useInView(threshold = 0.1) {
 export default function CasesSection() {
   const { ref, inView } = useInView();
   const [activeCase, setActiveCase] = useState<number | null>(null);
-  const [selectedImage, setSelectedImage] = useState<{ url: string; caption: string } | null>(null);
 
   return (
     <section id="cases" className="relative py-24 overflow-hidden bg-[#080C14]">
@@ -215,31 +217,9 @@ export default function CasesSection() {
                       </div>
                     </div>
 
-                    {/* Subseção de Anexos Visuais com Carrossel */}
-                    {item.materials && item.materials.length > 0 && (
-                      <div className="mt-6 pt-4 border-t border-[rgba(0,212,255,0.05)]">
-                        <strong className="text-[#F0F4FF] block mb-3 font-display tracking-wide uppercase text-[0.7rem]">📁 EVIDÊNCIAS VISUAIS DO CASE</strong>
-                        
-                        <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-thin snap-x overflow-y-hidden">
-                          {item.materials.map((mat, idx) => (
-                            <div 
-                              key={idx} 
-                              className="relative flex-none w-[140px] aspect-[1] bg-[#0F1623] border border-[rgba(0,212,255,0.1)] group/img cursor-zoom-in snap-start overflow-hidden"
-                              onClick={() => setSelectedImage(mat)}
-                            >
-                              <img 
-                                src={mat.url} 
-                                alt={mat.caption} 
-                                className="w-full h-full object-cover opacity-85 group-hover/img:opacity-100 group-hover/img:scale-105 transition-all duration-300"
-                                crossOrigin="anonymous"
-                              />
-                              <div className="absolute inset-0 bg-black/20 opacity-100 group-hover/img:opacity-0 transition-opacity duration-200 flex items-center justify-center">
-                                <Eye size={14} className="text-[#00D4FF] opacity-80 group-hover/img:opacity-100" />
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
+                    {/* Módulo de Evidências: abas exibidas conforme conteúdo disponível */}
+                    {item.evidences && item.evidences.length > 0 && (
+                      <EvidenceGallery evidences={item.evidences} color={item.color} />
                     )}
 
                     {/* Tags Finais */}
@@ -284,33 +264,6 @@ export default function CasesSection() {
           </a>
         </div>
       </div>
-
-      {/* Lightbox Zoom em Tela Cheia */}
-      {selectedImage && (
-        <div 
-          className="fixed inset-0 bg-black/95 backdrop-blur-md z-[999] flex flex-col items-center justify-center p-4 animate-fade-in"
-          onClick={() => setSelectedImage(null)}
-        >
-          <button 
-            className="absolute top-6 right-6 text-[#8892A4] hover:text-[#00D4FF] bg-[#0F1623]/80 p-2 rounded-full border border-[rgba(0,212,255,0.1)] transition-colors"
-            onClick={() => setSelectedImage(null)}
-          >
-            <X size={24} />
-          </button>
-          
-          <div className="relative max-w-full max-h-[80vh] border border-[rgba(0,212,255,0.2)] shadow-2xl overflow-hidden" onClick={(e) => e.stopPropagation()}>
-            <img 
-              src={selectedImage.url} 
-              alt={selectedImage.caption} 
-              className="max-w-full max-h-[80vh] object-contain"
-            />
-          </div>
-          
-          <p className="text-[#F0F4FF] font-mono-tech text-xs tracking-wider uppercase mt-4 bg-[#0F1623] border border-[rgba(0,212,255,0.1)] px-4 py-2">
-            📂 {selectedImage.caption}
-          </p>
-        </div>
-      )}
     </section>
   );
 }
