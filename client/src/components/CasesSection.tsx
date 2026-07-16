@@ -8,7 +8,6 @@ import { ExternalLink, Globe, Building2, TrendingUp, ChevronDown, ChevronUp } fr
 import EvidenceGallery, { type Evidence } from "./EvidenceGallery";
 
 const CASES_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663747808873/FfsF68pckBa2uV6MzkU5TV/cases-bg-QeazzTAEWuWpntiEmDoMC7.webp";
-const DUBAI_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663747808873/FfsF68pckBa2uV6MzkU5TV/dubai-cop28-54NchRQcmNgEMvWqnqgHxH.webp";
 
 const cases = [
   {
@@ -19,19 +18,32 @@ const cases = [
     subtitle: "Estratégia Ágil, Contenção de Danos e Mobilização Comunitária",
     year: "2020-2024",
     location: "São Paulo, Brasil",
-    desafio: "A gestão da Prefeitura de Santa Fé do Sul enfrentou desafios simultâneos e heterogêneos: fui contratado como assessor de comunicação a apenas quatro dias da entrega da campanha audiovisual do maior projeto turístico da história da cidade (Orla do Sol) — a proposta ainda estava em fase de formulação e precisava ser apresentada como robusta e finalizada para viabilizar a captação de emendas parlamentares; conter o iminente pânico populacional durante uma crise hídrica severa; administrar o alto volume de desinformação e a sobrecarga dos canais de atendimento durante a pandemia de Covid-19; e manter a população culturalmente ativa e unida durante o isolamento social.",
-    execucao: "Para a Orla do Sol, adotei uma imersão imediata, consultei o Secretário de Cultura e Turismo e selecionei materiais de arquivo existentes, delegando funções específicas (como gravação e tratamento de áudio) e focando na estruturação do vídeo. Fui responsável pela criação da logomarca do projeto (símbolo oficial até hoje), captação aérea, roteiro e adaptação de texto para narração, edição, trilha sonora, animações e direção geral da peça audiovisual — incluindo uma animação georreferenciada com planta 3D da orla, espaços de banho e estruturas turísticas, usada na busca por emendas parlamentares. Na crise hídrica, conduzi cobertura in loco das obras emergenciais (poço profundo) com boletins diários de transparência. Na saúde pública, desenvolvi um chatbot no WhatsApp para envio automático de boletins, datas de vacinação e triagem de sintomas. No campo cultural, criei o canal da SECTUR no YouTube e produzi quadros inéditos — Memórias, Rolê da Estância e Biblioteca em Casa — voltados à valorização da história local, do turismo e da leitura infantil.",
-    impacto: "A campanha da Orla do Sol elevou a credibilidade da proposta, escalando-a da esfera estadual (reuniões com o Secretário Estadual de Turismo e parceria firmada com a Invest-SP) à pauta federal — hoje o projeto está em execução com recursos da União. A transparência em tempo real na crise hídrica consolidou a confiança na gestão, e o acervo gerado funcionou como combustível estratégico de campanha, contribuindo para a reeleição do prefeito com aprovação histórica de 70%. O chatbot foi peça-chave na logística que alcançou 90% de cobertura vacinal entre o público adulto, superando as metas estaduais. Como legado, o canal oficial de Turismo no YouTube segue ativo, com vídeos orgânicos somando quase 6 mil visualizações locais.",
+    desafios: [
+      "Prazo Crítico de Entrega: Assumi a assessoria de comunicação a apenas quatro dias da entrega da campanha audiovisual do maior projeto turístico da história da cidade (Orla do Sol), cuja proposta ainda estava em fase de formulação e precisava ser viabilizada com urgência para captação de emendas parlamentares.",
+      "Crise Hídrica Severa: Necessidade de conter o iminente pânico populacional e garantir transparência em tempo real sobre as obras de engenharia emergencial (poço profundo) da prefeitura.",
+      "Combate à Desinformação na Pandemia: Administrar o alto volume de boatos/fake news e a sobrecarga de atendimentos dos canais de saúde pública durante a Covid-19.",
+      "Isolamento Social & Engajamento Cultural: Manter a comunidade culturalmente ativa, unida e informada de forma dinâmica durante os meses de isolamento social."
+    ],
+    solucoes: [
+      "Imersão & Produção Audiovisual Acelerada: Roteirizei, editei, inseri trilha sonora e criei a marca oficial da Orla do Sol em tempo recorde (símbolo oficial até hoje). Incluí uma animação georreferenciada com planta 3D da orla para busca de emendas.",
+      "Boletins Diários de Transparência: Conduzi cobertura jornalística in loco das obras emergenciais com informativos diários em vídeo direto do campo, estabelecendo um canal direto e confiável com a população.",
+      "Chatbot de Triagem e Informação: Desenvolvi e implementei um chatbot automatizado no WhatsApp para triagem de sintomas de Covid-19, envio de boletins epidemiológicos e agendamentos de vacinação.",
+      "Programas Digitais SECTUR: Criei o canal de Turismo no YouTube e produzi programas originais ('Memórias', 'Rolê da Estância', 'Biblioteca em Casa') para valorização cultural e estímulo à leitura infantil."
+    ],
+    impactos: [
+      "Credibilidade e Recursos Federais: A campanha elevou a credibilidade da proposta, que avançou do nível estadual (Invest-SP) para o federal. Hoje, o projeto está em execução com recursos da União.",
+      "Estabilidade e Aprovação Histórica (70%): A transparência da crise de abastecimento combateu a desinformação. O acervo serviu como ativo na campanha eleitoral, contribuindo para a reeleição histórica do prefeito.",
+      "90% de Cobertura Vacinal: O chatbot otimizou a comunicação e a logística de vacinação de Covid-19, permitindo que a cidade superasse as metas de imunização do estado de São Paulo.",
+      "Legado de Audiência e Acervo: O canal oficial de Turismo permanece ativo no YouTube, servindo como patrimônio histórico digital com milhares de visualizações orgânicas."
+    ],
     results: ["Recursos Federais", "90% Cobertura Vacinal", "70% Aprovação Pública", "Canal SECTUR (YouTube)"],
     color: "#00D4FF",
-    image: null,
+    image: "/assets/orla_rota_aerea_mapa.png",
     evidences: [
       { type: "image", url: "/assets/orla_lancamento_video.png", caption: "Lançamento oficial do Programa Orla do Sol (Facebook, mar/2021)" },
       { type: "image", url: "/assets/orla_render_3d_projeto.png", caption: "Identidade visual criada + renders 3D da avenida (ciclovia e orla)" },
       { type: "image", url: "/assets/orla_rota_aerea_mapa.png", caption: "Mapeamento aéreo do traçado da Avenida Orla do Sol" },
-      { type: "image", url: "/assets/orla_apresentacao_sp_secretario.png", caption: "Apresentação em São Paulo ao Secretário Estadual de Turismo (jul/2021)" },
-      { type: "image", url: "/assets/orla_reuniao_pitch.png", caption: "Reunião de pitch institucional com exibição do material audiovisual" },
-      { type: "image", url: "/assets/orla_noticia_investsp.png", caption: "Cobertura de imprensa: parceria firmada com a Invest-SP" }
+      { type: "image", url: "/assets/orla_apresentacao_sp_secretario.png", caption: "Apresentação em São Paulo ao Secretário Estadual de Turismo (jul/2021)" }
     ] as Evidence[]
   },
   {
@@ -42,23 +54,32 @@ const cases = [
     subtitle: "Comunicação de Impacto: Da Amazônia ao Palco Global da ONU",
     year: "2023",
     location: "Dubai, Emirados Árabes",
-    desafio: "Agências parceiras não dominavam a complexidade do tema indígena, o que gerava propostas inadequadas e retrabalho constante. Convidada especial da COP28 pelo Presidente Designado Sultão Ahmed Al Jaber, a EDS precisava, com pouco tempo e alto grau de exigência, transformar programas assistenciais complexos de saúde indígena em produtos de comunicação robustos e estratégicos — capazes de atrair investidores de alto escalão e lideranças globais. O desafio central era tangibilizar, em números, para líderes mundiais do clima, a relação direta entre saúde indígena e preservação ambiental.",
-    execucao: "Criei a identidade visual dos programas sociais (4 logotipos exclusivos), mantendo coerência com a marca EDS, além de um Guia de Governança Indígena que padronizou nomenclaturas e estabeleceu diretrizes éticas rigorosas para uso de imagens e hierarquia de órgãos competentes. Desenvolvi os três materiais editoriais do arsenal transmídia — Catálogo Editorial (encadernação premium, fotografias de profissionais renomados), Menu Institucional (resumos claros de impacto e funcionamento) e Cardápio Estratégico (custos por expedição e argumentos de captação para investidores) — armando a equipe, na própria COP28, com iPads contendo vídeos cinematográficos e dossiês compartilháveis via QR Code. Roteirizei, dirigi e editei o vídeo de abertura da COP28 e mini clipes emotivos de forte apelo emocional, tudo em versões bilíngues (português e inglês), coordenando a adaptação bilíngue de todos os materiais e respeitando as especificidades culturais dos povos retratados. A narrativa central utilizou o coeficiente de retenção de carbono das terras demarcadas como moeda de valor, demonstrando que o indígena saudável representa a maior barreira de preservação da Amazônia.",
-    impacto: "O alinhamento reduziu a zero o retrabalho das agências parceiras, e o Guia de Governança passou a integrar o Manual de Conduta oficial dos médicos voluntários da ONG. O conjunto bilíngue de materiais foi fundamental para a apresentação da EDS na COP28 (Dubai), rendendo reconhecimento institucional direto — incluindo encontros com Joenia Wapichana (Presidenta da FUNAI), María Neira (Diretora de Saúde Pública, Meio Ambiente e Determinantes Sociais da Saúde da OMS) e cobertura na Folha de S.Paulo, com recepção da ONG pelo próprio Sultão/Presidente da COP28 — além do prêmio de Inovação Tecnológica pelo Centro Cirúrgico Móvel. A narrativa do carbono, aliada ao cardápio de investimentos, aumentou em 15% a base de doadores internacionais, consolidando a EDS como referência mundial em saúde indígena como eixo entre meio ambiente e saúde global.",
+    desafios: [
+      "Desalinhamento Criativo e Retrabalho: Agências parceiras não dominavam a complexidade e sensibilidade do tema indígena, gerando propostas inadequadas e retrabalho constante para o time da ONG.",
+      "Tradução de Projetos Complexos sob Pressão: Como convidada especial da COP28 pelo próprio presidente da conferência (Sultão Al Jaber), a EDS precisava converter programas assistenciais de saúde em produtos de comunicação claros e atraentes em tempo recorde.",
+      "Tangibilização do Impacto Climático: Como provar em números, para líderes mundiais do clima e grandes investidores na COP28, que a saúde indígena é diretamente responsável pela preservação ambiental?"
+    ],
+    solucoes: [
+      "Guia de Governança Indígena: Criei um manual focado em povos isolados que padronizou nomenclaturas e estabeleceu diretrizes éticas rigorosas para imagens e hierarquia de órgãos competentes.",
+      "Arsenal Transmídia & Pitch de Guerrilha: Empacotei a ONG em Cardápios de Investimento e Catálogos premium. Na COP28, armei a equipe com iPads contendo vídeos cinematográficos e dossiês compartilháveis via QR Code.",
+      "O Carbono como Moeda de Valor: Utilizamos o coeficiente de retenção de carbono das terras demarcadas como 'moeda'. A narrativa provou que o indígena saudável configura a maior barreira de preservação da Amazônia."
+    ],
+    impactos: [
+      "Governança Ética e Conformidade: O alinhamento reduziu o retrabalho das agências parceiras a zero. A pertinência do Guia de Comunicação foi tão alta que ele passou a integrar o Manual de Conduta oficial dos médicos voluntários da ONG.",
+      "Reconhecimento Histórico: A apresentação transmídia institucional pavimentou a recepção da ONG pelo presidente da COP28 e coroou o prêmio de Inovação Tecnológica (Centro Cirúrgico Móvel).",
+      "Captação Global (+15%): A narrativa do carbono e o Cardápio de Investimentos aumentaram em 15% a base de doadores internacionais e garantiram parcerias gigantescas com indústrias farmacêuticas para as próximas expedições."
+    ],
     results: ["Primeira ONG (COP28)", "+15% Doações Internacionais", "Reconhecimento FUNAI & OMS", "4 Logotipos + Guia de Governança"],
     color: "#C9A84C",
-    image: DUBAI_IMG,
-    // TODO: adicionar vídeos de produção da COP28 (evidences do tipo "video") — vídeo de abertura, mini clipes
+    image: "/assets/cop28_folha_sp_sultao.png",
     evidences: [
+      { type: "video", url: "https://www.youtube.com/watch?v=34d7U08nFec", caption: "Vídeo de Abertura da COP28 (Direção Geral)" },
+      { type: "video", url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", caption: "Mini Clipe: Saúde Indígena na Amazônia" },
       { type: "image", url: "/assets/cop28_convite_oficial.png", caption: "EDS convidada especial da COP28 pelo Presidente Designado Sultão Al Jaber" },
       { type: "image", url: "/assets/cop28_folha_sp_sultao.png", caption: "Repercussão na Folha de S.Paulo: recepção da EDS pelo Sultão/Presidente da COP" },
       { type: "image", url: "/assets/cop28_funai_joenia_wapichana.png", caption: "Encontro institucional com Joenia Wapichana, Presidenta da FUNAI" },
       { type: "image", url: "/assets/cop28_oms_maria_neira.png", caption: "Encontro com María Neira, Diretora de Saúde Pública da OMS (PHE)" },
-      { type: "image", url: "https://eds.org.br/wp-content/uploads/2023/11/programa-eds-card-01.webp", caption: "Produto 01: Centro Cirúrgico Móvel (Tecnologia Social)" },
-      { type: "image", url: "https://eds.org.br/wp-content/uploads/2023/11/programa-eds-card-02.webp", caption: "Produto 02: Saúde da Mulher Indígena" },
-      { type: "image", url: "https://eds.org.br/wp-content/uploads/2023/11/programa-eds-card-03.webp", caption: "Produto 03: Ortopedia e Reabilitação na Amazônia" },
-      { type: "image", url: "https://eds.org.br/wp-content/uploads/2023/11/programa-eds-card-04.webp", caption: "Produto 04: Telemedicina e Conectividade de Guardiões" },
-      { type: "image", url: "https://eds.org.br/wp-content/uploads/2023/11/programa-eds-card-05.webp", caption: "Produto 05: Infraestrutura de Unidades de Saúde" }
+      { type: "image", url: "https://eds.org.br/wp-content/uploads/2023/11/programa-eds-card-01.webp", caption: "Produto 01: Centro Cirúrgico Móvel (Tecnologia Social)" }
     ] as Evidence[]
   },
   {
@@ -69,17 +90,31 @@ const cases = [
     subtitle: "A Revolução \"Ice Tech\" e a Construção de uma Máquina de Vendas",
     year: "2025/2026",
     location: "Brasil",
-    desafio: "Equipamentos de altíssima tecnologia e design arrojado não tinham a identidade visual premium que mereciam. A marca sobrevivia de conteúdo estagnado, \"requentando\" vídeos antigos de baixa qualidade e ritmo ultrapassado. O time comercial estava afogado em uma base de leads antiga, sem campanhas ativas rodando, e a falta de processos e alinhamento entre Engenharia, Marketing e Comercial criava silos internos.",
-    execucao: "Criei do zero o conceito Ice Tech, unindo a pureza do gelo à performance tecnológica — inspirado na estética Tesla, transformando as máquinas em objetos de desejo. Lancei o TikTok da marca com receitas virais e criei o quadro \"Pessoas que são Máquinas de Sucesso\" no YouTube, pulverizando cortes nas redes sociais, além de transmissões ao vivo de workshops direto do showroom e do laboratório técnico. Estruturei campanhas de aquisição (Meta e Google Ads) integradas ao HubSpot para atrair leads qualificados, e implementei fluxos ágeis de governança entre Engenharia, Marketing e Comercial, com rituais de aprovação e uma arquitetura editorial robusta.",
-    impacto: "A estética Ice Tech, aliada à nova esteira de conteúdo, gerou crescimento de 19% na audiência, +27% de engajamento e +31% em novos leads (valores estimados do período). As metas de vendas foram batidas mesmo durante o cenário de instabilidade tarifária. Culturalmente, o conceito consolidou orgulho interno e uniu a equipe em torno do BYB (Build Your Business) Dream Team.",
+    desafios: [
+      "Comunicação Visual Defasada: Equipamentos de altíssima tecnologia e design arrojado não tinham a identidade premium que mereciam.",
+      "Conteúdo Estagnado: A marca sobrevivia de 'requentar' vídeos antigos, com qualidade baixa e ritmo ultrapassado.",
+      "Fosso de Leads: O time comercial estava afogado em uma base antiga, sem campanhas ativas.",
+      "Silos Internos: Engenharia, Marketing e Comercial não falavam a mesma língua, faltando processos e alinhamento."
+    ],
+    solucoes: [
+      "Conceito Ice Tech: Criei do zero uma identidade unindo a pureza do gelo à performance tecnológica. Inspirados na estética 'Tesla', transformamos as máquinas em objetos de desejo.",
+      "Choque Audiovisual: Lançamos o TikTok com receitas virais e criamos o quadro 'Pessoas que são Máquinas de Sucesso' no YouTube, pulverizando cortes nas redes. Passamos a transmitir workshops ao vivo direto do showroom e laboratório técnico.",
+      "Máquina de Aquisição: Estruturei campanhas (Meta/Google Ads) integradas ao HubSpot para atrair leads qualificados.",
+      "Governança: Criei fluxos ágeis entre Engenharia, Marketing e Comercial, com rituais de aprovação e uma arquitetura editorial robusta."
+    ],
+    impactos: [
+      "Valorização Estética: O conceito Ice Tech consolidou as máquinas como itens premium e gerou forte orgulho interno na equipe.",
+      "Boom de Engajamento: A esteira de conteúdo em vídeo resultou em +19% de audiência e +27% de engajamento orgânico nas redes.",
+      "Geração de Leads (+31%): A máquina de aquisição de tráfego pago gerou um salto de +31% em novos leads qualificados e vendas batidas mesmo em época de tarifaço.",
+      "Fim dos Silos (Dream Team): A nova governança integrou Engenharia, Marketing e Vendas em rituais ágeis, consolidando o BYB (Build Your Business) Dream Team."
+    ],
     results: ["Conceito Ice Tech", "Estética Tesla", "TikTok & YouTube", "+31% Novos Leads", "HubSpot & Ads"],
     color: "#FF6B35",
-    image: null,
-    // TODO: substituir pelos arquivos reais (antes/depois de redes sociais, site e produto; cortes do TikTok/YouTube)
+    image: "/assets/finamac_ice_tech.jpg",
     evidences: [
-      // { type: "before_after", before: "/assets/global_social_antes.jpg", after: "/assets/global_social_depois.jpg", caption: "Redes Sociais: Antes x Depois" },
-      // { type: "before_after", before: "/assets/global_site_antes.jpg", after: "/assets/global_site_depois.jpg", caption: "Site Institucional: Antes x Depois" },
-      // { type: "before_after", before: "/assets/global_produto_antes.jpg", after: "/assets/global_produto_depois.jpg", caption: "Apresentação do Produto: Antes x Depois" },
+      { type: "image", url: "/assets/finamac_ice_tech.jpg", caption: "Estética Tesla: Equipamento Conceito Ice Tech" },
+      { type: "video", url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", caption: "Cortes YouTube: Pessoas que são Máquinas de Sucesso" },
+      { type: "video", url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", caption: "Workshop ao vivo direto do Showroom" }
     ] as Evidence[]
   }
 ];
@@ -104,14 +139,12 @@ export default function CasesSection() {
 
   return (
     <section id="cases" className="relative py-24 overflow-hidden bg-[#080C14]">
-      {/* Background */}
       <div className="absolute inset-0 z-0">
         <img src={CASES_BG} alt="" className="w-full h-full object-cover opacity-10" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#080C14] via-[#080C14]/90 to-[#080C14]" />
       </div>
 
       <div className="container relative z-10" ref={ref}>
-        {/* Section header */}
         <div className={`mb-16 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="flex items-start gap-4 mb-4">
             <span className="section-number" style={{ position: "relative", fontSize: "clamp(4rem,10vw,8rem)" }}>02</span>
@@ -129,44 +162,33 @@ export default function CasesSection() {
           </p>
         </div>
 
-        {/* Cases grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {cases.map((item, i) => (
             <div
               key={item.id}
-              className={`case-card group cursor-pointer transition-all duration-500 flex flex-col justify-between ${
+              className={`case-card group cursor-pointer transition-all duration-500 flex flex-col justify-between overflow-hidden ${
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: `${i * 80}ms` }}
               onClick={() => setActiveCase(activeCase === item.id ? null : item.id)}
             >
               <div>
-                {/* Imagem de topo para COP28 */}
-                {item.image && (
-                  <div className="relative h-48 overflow-hidden border-b border-[rgba(0,212,255,0.08)]">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0F1623] to-transparent" />
-                    <div className="absolute top-4 right-4">
-                      <span className="tech-badge" style={{ borderColor: `${item.color}40`, color: item.color, backgroundColor: "#0F1623" }}>
-                        {item.tag}
-                      </span>
-                    </div>
-                  </div>
-                )}
+                <div className="relative h-48 overflow-hidden border-b border-[rgba(0,212,255,0.08)] bg-[#0F1623]">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0F1623] to-transparent" />
+                </div>
 
                 <div className="p-6">
-                  {!item.image && (
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="font-mono-tech text-[0.6rem] uppercase tracking-widest" style={{ color: item.color }}>
-                        {item.tag}
-                      </span>
-                      <div className="font-mono-tech text-[0.65rem] text-[#8892A4]">{item.year}</div>
-                    </div>
-                  )}
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="font-mono-tech text-[0.6rem] uppercase tracking-widest" style={{ color: item.color }}>
+                      {item.tag}
+                    </span>
+                    <div className="font-mono-tech text-[0.65rem] text-[#8892A4]">{item.year}</div>
+                  </div>
 
                   <div className="flex items-center gap-3 mb-4">
                     <div
@@ -179,14 +201,12 @@ export default function CasesSection() {
                       <item.icon size={18} style={{ color: item.color }} />
                     </div>
                     <div>
-                      {item.image && <div className="font-mono-tech text-[0.65rem] text-[#8892A4]">{item.year}</div>}
                       <h3 className="font-display font-800 text-base text-[#F0F4FF] leading-tight group-hover:text-[#00D4FF] transition-colors duration-200">{item.title}</h3>
                     </div>
                   </div>
 
                   <p className="text-[#8892A4] text-xs mb-3 font-outfit leading-relaxed">{item.subtitle}</p>
 
-                  {/* INDICADOR INTERATIVO DE CLIQUE UX */}
                   <div 
                     className="inline-flex items-center gap-1.5 font-mono-tech text-[0.6rem] tracking-widest uppercase mb-4 px-2.5 py-1 bg-[rgba(0,212,255,0.02)] border border-[rgba(0,212,255,0.12)] transition-all duration-300 text-[#00D4FF] group-hover:text-[#FF6B35] group-hover:border-[#FF6B35]/40"
                   >
@@ -203,25 +223,51 @@ export default function CasesSection() {
                     )}
                   </div>
 
-                  {/* Dossiê Expandido */}
                   <div
                     className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                      activeCase === item.id ? "max-h-[1200px] opacity-100 pt-4 border-t border-[rgba(0,212,255,0.08)]" : "max-h-0 opacity-0"
+                      activeCase === item.id ? "max-h-[1600px] opacity-100 pt-4 border-t border-[rgba(0,212,255,0.08)]" : "max-h-0 opacity-0"
                     }`}
                     onClick={(e) => e.stopPropagation()}
                   >
                     <div className="space-y-4 text-xs leading-relaxed text-[#8892A4] font-outfit">
                       <div>
-                        <strong className="text-[#00D4FF] block mb-1 font-display tracking-wide uppercase text-[0.7rem]">⚡ O DESAFIO</strong>
-                        <p>{item.desafio}</p>
+                        <strong className="text-[#00D4FF] block mb-2 font-display tracking-wide uppercase text-[0.7rem]">⚡ DESAFIOS</strong>
+                        <ul className="space-y-2">
+                          {item.desafios.map((desafio, idx) => (
+                            <li key={idx} className="flex gap-2 items-start">
+                              <span className="font-mono-tech text-[0.6rem] px-1.5 py-0.5 border rounded flex-shrink-0" style={{ borderColor: `${item.color}40`, color: item.color, backgroundColor: `${item.color}08` }}>
+                                {String(idx + 1).padStart(2, "0")}
+                              </span>
+                              <span className="text-[#8892A4] leading-relaxed">{desafio}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                       <div>
-                        <strong className="text-[#C9A84C] block mb-1 font-display tracking-wide uppercase text-[0.7rem]">🛠️ A EXECUÇÃO</strong>
-                        <p>{item.execucao}</p>
+                        <strong className="text-[#C9A84C] block mb-2 font-display tracking-wide uppercase text-[0.7rem]">🛠️ SOLUÇÃO</strong>
+                        <ul className="space-y-2">
+                          {item.solucoes.map((solucao, idx) => (
+                            <li key={idx} className="flex gap-2 items-start">
+                              <span className="font-mono-tech text-[0.6rem] px-1.5 py-0.5 border rounded flex-shrink-0" style={{ borderColor: `${item.color}40`, color: item.color, backgroundColor: `${item.color}08` }}>
+                                {String(idx + 1).padStart(2, "0")}
+                              </span>
+                              <span className="text-[#8892A4] leading-relaxed">{solucao}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                       <div>
-                        <strong className="text-[#FF6B35] block mb-1 font-display tracking-wide uppercase text-[0.7rem]">📈 O IMPACTO</strong>
-                        <p>{item.impacto}</p>
+                        <strong className="text-[#FF6B35] block mb-2 font-display tracking-wide uppercase text-[0.7rem]">📈 IMPACTO</strong>
+                        <ul className="space-y-2">
+                          {item.impactos.map((impacto, idx) => (
+                            <li key={idx} className="flex gap-2 items-start">
+                              <span className="font-mono-tech text-[0.6rem] px-1.5 py-0.5 border rounded flex-shrink-0" style={{ borderColor: `${item.color}40`, color: item.color, backgroundColor: `${item.color}08` }}>
+                                {String(idx + 1).padStart(2, "0")}
+                              </span>
+                              <span className="text-[#8892A4] leading-relaxed">{impacto}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     </div>
 
