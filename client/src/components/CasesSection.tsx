@@ -71,11 +71,11 @@ const cases = [
     ],
     results: ["Primeira ONG (COP28)", "+15% Doações Internacionais", "Reconhecimento FUNAI & OMS", "4 Logotipos + Guia de Governança"],
     color: "#C9A84C",
-    image: "/assets/cop28_folha_sp_sultao.png",
+    image: "/assets/eds_cop28_header.jpg",
     evidences: [
       { type: "video", url: "https://www.youtube.com/watch?v=34d7U08nFec", caption: "Vídeo de Abertura da COP28 (Direção Geral)" },
       { type: "video", url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", caption: "Mini Clipe: Saúde Indígena na Amazônia" },
-      { type: "image", url: "/assets/cop28_convite_oficial.png", caption: "EDS convidada especial da COP28 pelo Presidente Designado Sultão Al Jaber" },
+      { type: "image", url: "/assets/eds_cop28_header.jpg", caption: "EDS convidada especial da COP28 pelo Presidente Designado Sultão Al Jaber" },
       { type: "image", url: "/assets/cop28_folha_sp_sultao.png", caption: "Repercussão na Folha de S.Paulo: recepção da EDS pelo Sultão/Presidente da COP" },
       { type: "image", url: "/assets/cop28_funai_joenia_wapichana.png", caption: "Encontro institucional com Joenia Wapichana, Presidenta da FUNAI" },
       { type: "image", url: "/assets/cop28_oms_maria_neira.png", caption: "Encontro com María Neira, Diretora de Saúde Pública da OMS (PHE)" },
