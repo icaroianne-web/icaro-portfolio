@@ -158,9 +158,11 @@ export default function HeroSection() {
               style={{ animationDelay: "1.1s", animationFillMode: "both" }}
             >
               <a
-                href="https://icaroia.carrd.co"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#showreel"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.querySelector("#showreel")?.scrollIntoView({ behavior: "smooth" });
+                }}
                 className="btn-primary"
               >
                 <Play size={16} fill="currentColor" />

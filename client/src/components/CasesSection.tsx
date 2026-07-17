@@ -39,6 +39,7 @@ const cases = [
     results: ["Recursos Federais", "90% Cobertura Vacinal", "70% Aprovação Pública", "Canal SECTUR (YouTube)"],
     color: "#00D4FF",
     image: "/assets/orla_do_sol_header.png",
+    videoDriveLink: "https://drive.google.com/drive/u/0/folders/1b_Q64rA8E6hux6nlBc6_2afuAX_MidB_",
     evidences: [
       { type: "image", url: "/assets/orla_lancamento_video.png", caption: "Lançamento oficial do Programa Orla do Sol (Facebook, mar/2021)" },
       { type: "image", url: "/assets/orla_render_3d_projeto.png", caption: "Identidade visual criada + renders 3D da avenida (ciclovia e orla)" },
@@ -270,6 +271,21 @@ export default function CasesSection() {
                         </ul>
                       </div>
                     </div>
+
+                    {/* Drive Link (if any) */}
+                    {(item as any).videoDriveLink && (
+                      <div className="mt-6 mb-2">
+                        <a 
+                          href={(item as any).videoDriveLink} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-[rgba(0,212,255,0.05)] border border-[rgba(0,212,255,0.2)] text-[#00D4FF] hover:bg-[rgba(0,212,255,0.1)] transition-colors duration-300 font-mono-tech text-xs tracking-widest uppercase w-full sm:w-auto"
+                        >
+                          <ExternalLink size={14} />
+                          Acessar Vídeo Completo no Drive
+                        </a>
+                      </div>
+                    )}
 
                     {/* Módulo de Evidências: abas exibidas conforme conteúdo disponível */}
                     {item.evidences && item.evidences.length > 0 && (
