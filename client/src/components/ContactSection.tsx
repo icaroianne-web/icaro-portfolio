@@ -4,7 +4,7 @@
    ============================================================ */
 
 import { useEffect, useRef, useState } from "react";
-import { MessageCircle, Linkedin, Video, Mail, FolderOpen, Instagram, ExternalLink } from "lucide-react";
+import { MessageCircle, Linkedin, Mail, FolderOpen, Instagram, ExternalLink, Youtube } from "lucide-react";
 
 const AI_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663747808873/FfsF68pckBa2uV6MzkU5TV/ai-texture-GqDK6g7z5bCccMnSUKuQyC.webp";
 
@@ -20,32 +20,32 @@ const socialLinks = [
   {
     icon: Linkedin,
     label: "LinkedIn",
-    handle: "icaroalbuquerque",
-    url: "https://www.linkedin.com/in/icaroalbuquerque/",
+    handle: "icaroia",
+    url: "https://www.linkedin.com/in/icaroia/",
     color: "#0A66C2",
     desc: "Conecte-se profissionalmente",
   },
   {
-    icon: Video,
-    label: "Vimeo",
-    handle: "Portfólio Audiovisual",
-    url: "https://vimeo.com/359831523",
-    color: "#1AB7EA",
-    desc: "Showreel e produções",
-  },
-  {
     icon: Instagram,
     label: "Instagram",
-    handle: "@icaroalbuquerque",
-    url: "https://instagram.com/icaroalbuquerque",
+    handle: "@icaroia",
+    url: "https://instagram.com/icaroia",
     color: "#E1306C",
     desc: "Conteúdo e bastidores",
   },
   {
+    icon: Youtube,
+    label: "YouTube",
+    handle: "@icaroiandj",
+    url: "https://youtube.com/icaroiandj",
+    color: "#FF0000",
+    desc: "Showreel e produções",
+  },
+  {
     icon: Mail,
     label: "E-mail",
-    handle: "Envie uma mensagem",
-    url: "mailto:contato@icaroalbuquerque.com",
+    handle: "icaroianne@outlook.com.br",
+    url: "mailto:icaroianne@outlook.com.br",
     color: "#FF6B35",
     desc: "Para projetos e parcerias",
   },
@@ -135,7 +135,7 @@ export default function ContactSection() {
                   Falar no WhatsApp
                 </a>
                 <a
-                  href="mailto:contato@icaroalbuquerque.com"
+                  href="mailto:icaroianne@outlook.com.br"
                   className="btn-outline"
                 >
                   <Mail size={16} />

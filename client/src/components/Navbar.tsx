@@ -7,11 +7,11 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "Início", href: "#hero" },
-  { label: "Sobre", href: "#sobre" },
-  { label: "Cases", href: "#cases" },
-  { label: "Showreel", href: "#showreel" },
-  { label: "Contato", href: "#contato" },
+  { label: "Início", href: "#hero", external: false },
+  { label: "Sobre", href: "#sobre", external: false },
+  { label: "Cases", href: "#cases", external: false },
+  { label: "Showreel", href: "https://icaroia.carrd.co", external: true },
+  { label: "Contato", href: "#contato", external: false },
 ];
 
 export default function Navbar() {
@@ -24,7 +24,12 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleLinkClick = (href: string) => {
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, external?: boolean) => {
+    if (external) {
+      setMobileOpen(false);
+      return; // Deixe o link abrir normalmente na nova aba (target="_blank")
+    }
+    e.preventDefault();
     setMobileOpen(false);
     const el = document.querySelector(href);
     if (el) {
@@ -45,7 +50,7 @@ export default function Navbar() {
           {/* Logo */}
           <a
             href="#hero"
-            onClick={(e) => { e.preventDefault(); handleLinkClick("#hero"); }}
+            onClick={(e) => handleLinkClick(e as any, "#hero")}
             className="flex items-center gap-3 group"
           >
             <div className="relative">
@@ -70,7 +75,9 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                onClick={(e) => { e.preventDefault(); handleLinkClick(link.href); }}
+                onClick={(e) => handleLinkClick(e as any, link.href, link.external)}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
                 className="nav-link"
               >
                 {link.label}
@@ -112,7 +119,9 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              onClick={(e) => { e.preventDefault(); handleLinkClick(link.href); }}
+              onClick={(e) => handleLinkClick(e as any, link.href, link.external)}
+              target={link.external ? "_blank" : undefined}
+              rel={link.external ? "noopener noreferrer" : undefined}
               className="font-display font-700 text-3xl text-[#F0F4FF] hover:text-[#00D4FF] transition-colors duration-200"
               style={{ animationDelay: `${i * 80}ms` }}
             >

@@ -22,8 +22,8 @@ export default function Home() {
       <HeroSection />
       <MarqueeSection />
       <StatsSection />
-      <AboutSection />
       <CasesSection />
+      <AboutSection />
       <ShowreelSection />
       <ContactSection />
       <Footer />
