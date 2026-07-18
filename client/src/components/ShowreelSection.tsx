@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Play, Volume2 } from "lucide-react";
+import { Play, Volume2, ChevronDown, ChevronUp } from "lucide-react";
 
 const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663747808873/FfsF68pckBa2uV6MzkU5TV/hero-bg-E7HYZ4kGT8iWScT3p76AXn.webp";
 
@@ -31,6 +31,7 @@ export default function ShowreelSection() {
   const { ref, inView } = useInView();
   const [playMain, setPlayMain] = useState(false);
   const [playingGalleryId, setPlayingGalleryId] = useState<number | null>(null);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 
   return (
     <section id="showreel" className="relative py-24 bg-[#080C14] overflow-hidden border-t border-[rgba(0,212,255,0.05)]">
@@ -43,8 +44,8 @@ export default function ShowreelSection() {
       <div className="container relative z-10" ref={ref}>
         {/* Header */}
         <div className={`mb-12 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <div className="flex items-center gap-4 mb-4">
-            <span className="section-number" style={{ position: "relative", fontSize: "clamp(3rem,6vw,5rem)" }}>02</span>
+          <div className="flex items-start gap-4 mb-4">
+            <span className="section-number" style={{ position: "relative", fontSize: "clamp(3rem,6vw,5rem)" }}>03</span>
             <div>
               <div className="tech-badge mb-2">Showreel</div>
               <h2 className="font-display font-800 text-[clamp(2rem,4vw,3rem)] text-[#F0F4FF] leading-tight">
@@ -92,8 +93,32 @@ export default function ShowreelSection() {
 
         {/* Video Gallery */}
         <div className={`mt-16 transition-all duration-700 delay-400 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <div className="tech-badge mb-8">Vídeos de Destaque</div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex flex-col items-center mb-8">
+            <div className="tech-badge mb-4">Galeria de Vídeos</div>
+            <div 
+              className="inline-flex items-center gap-1.5 font-mono-tech text-[0.65rem] tracking-widest uppercase px-4 py-2 bg-[rgba(0,212,255,0.02)] border border-[rgba(0,212,255,0.15)] transition-all duration-300 text-[#00D4FF] hover:text-[#FF6B35] hover:border-[#FF6B35]/40 cursor-pointer"
+              onClick={() => setIsGalleryOpen(!isGalleryOpen)}
+            >
+              {isGalleryOpen ? (
+                <>
+                  <ChevronUp size={14} />
+                  <span>[-] Ocultar Galeria de Vídeos</span>
+                </>
+              ) : (
+                <>
+                  <ChevronDown size={14} />
+                  <span>[+] Abrir Galeria Completa</span>
+                </>
+              )}
+            </div>
+          </div>
+
+          <div
+            className={`overflow-hidden transition-all duration-700 ease-in-out ${
+              isGalleryOpen ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
+            }`}
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
             {galleryVideos.map((video, idx) => {
               const isPlaying = playingGalleryId === video.id;
               const isCyan = idx % 2 === 0;
@@ -138,6 +163,7 @@ export default function ShowreelSection() {
                 </div>
               );
             })}
+            </div>
           </div>
         </div>
       </div>

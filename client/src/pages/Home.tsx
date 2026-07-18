@@ -12,6 +12,7 @@ import StatsSection from "@/components/StatsSection";
 import MarqueeSection from "@/components/MarqueeSection";
 import CasesSection from "@/components/CasesSection";
 import ShowreelSection from "@/components/ShowreelSection";
+import ServicesSection from "@/components/ServicesSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
@@ -25,6 +26,7 @@ export default function Home() {
       <CasesSection />
       <AboutSection />
       <ShowreelSection />
+      <ServicesSection />
       <ContactSection />
       <Footer />
     </div>
