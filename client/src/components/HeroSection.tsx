@@ -169,6 +169,16 @@ export default function HeroSection() {
                 Ver Showreel
               </a>
               <a
+                href="#services"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="btn-outline"
+              >
+                Consultoria
+              </a>
+              <a
                 href="#cases"
                 onClick={(e) => {
                   e.preventDefault();
