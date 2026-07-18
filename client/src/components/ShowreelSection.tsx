@@ -8,10 +8,10 @@ const MAIN_VIDEO_URL = "https://player.vimeo.com/video/359831523";
 
 const galleryVideos = [
   { id: 1, title: "Biblioteca em Casa", cover: "/covers/biblioteca.jpg", url: "https://www.youtube.com/embed/l582S8qeeKI" },
-  { id: 2, title: "Rolê da Estância", cover: "/covers/role_da_estancia.jpg", url: "https://www.youtube.com/embed/Uiag0c5YMzY" },
-  { id: 3, title: "Memórias", cover: "/covers/memorias.jpg", url: "https://www.youtube.com/embed/CQ7KdJUsh6E" },
-  { id: 4, title: "Dudu - FLORESTA EM MOVIMENTO. - eds", cover: "/covers/floresta_em_movimento.jpg", url: "https://www.youtube.com/embed/M-sFYi97Cr0" },
-  { id: 5, title: "Videocase Cultural", cover: "https://img.youtube.com/vi/iM87dnXKmug/maxresdefault.jpg", url: "https://www.youtube.com/embed/iM87dnXKmug" },
+  { id: 2, title: "Rolê da Estância", cover: "/covers/role_da_estancia.jpg", url: "https://www.youtube.com/embed/M-sFYi97Cr0" },
+  { id: 3, title: "Dudu - FLORESTA EM MOVIMENTO. - eds", cover: "/covers/floresta_em_movimento.jpg", url: "https://www.youtube.com/embed/CQ7KdJUsh6E" },
+  { id: 4, title: "Memórias", cover: "/covers/memorias.jpg", url: "https://www.youtube.com/embed/iM87dnXKmug" },
+  { id: 5, title: "FINAMAC - Máquinas de Sucesso", cover: "https://img.youtube.com/vi/Uiag0c5YMzY/maxresdefault.jpg", url: "https://www.youtube.com/embed/Uiag0c5YMzY" },
 ];
 
 function useInView(threshold = 0.1) {
