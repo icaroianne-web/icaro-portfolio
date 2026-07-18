@@ -1,0 +1,40 @@
+COMO USAR ESSE PACOTE NO ANTIGRAVITY
+=====================================
+
+O QUE TEM AQUI DENTRO:
+- pasta "components" → 1 arquivo de código (ScrollSequence.tsx)
+- pasta "public-sequence" → 96 fotos da sua rotação (frame_001.jpg até frame_096.jpg)
+- este arquivo de instruções
+
+O QUE FAZER (3 passos):
+
+1) Abra o Antigravity com o seu projeto do site (github-icaro-portfolio) aberto.
+
+2) Arraste as duas pastas para dentro do projeto:
+   - "components" → jogue o conteúdo dela dentro da pasta de componentes do projeto
+     (a pasta que já tem os outros arquivos .tsx do site)
+   - "public-sequence" → jogue o conteúdo dela dentro da pasta "public/sequence"
+     do projeto (se a pasta "sequence" não existir dentro de "public", peça pro
+     Antigravity criar ela)
+
+3) Copie e cole exatamente esse texto abaixo pro Antigravity:
+
+-----------------------------------------------------------------
+Adicionei um componente chamado ScrollSequence.tsx na pasta de
+componentes e 96 imagens na pasta public/sequence. Esse componente
+cria um efeito 3D controlado pelo scroll da página, usando as
+imagens como se fossem frames de um vídeo.
+
+Por favor:
+1. Importe o componente ScrollSequence na página inicial (home) do site.
+2. Coloque ele como a primeira seção da home, ocupando a tela de abertura.
+3. Rode o projeto localmente e confirme que não há nenhum erro.
+4. Depois, suba as alterações pro GitHub e confirme o deploy na Vercel.
+-----------------------------------------------------------------
+
+PRONTO. O Antigravity vai fazer o resto sozinho (conectar o
+componente, testar, subir pro ar).
+
+SE ALGO DER ERRADO:
+Só copie a mensagem de erro que aparecer no Antigravity e me
+manda aqui que eu te digo exatamente o que responder pra ele.
