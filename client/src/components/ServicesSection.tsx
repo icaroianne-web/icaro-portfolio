@@ -213,26 +213,8 @@ export default function ServicesSection() {
                       <h5 className="font-mono-tech text-xs uppercase tracking-widest mb-3 flex items-center gap-2" style={{ color: svc.color }}>
                         <Network size={14} /> Bússola de Prioridade (Método UTIO)
                       </h5>
-                      <p className="text-[#8892A4] text-xs mb-4 leading-relaxed">
-                        A Bússola organiza suas decisões em quatro direções para você nunca mais confundir incêndio com oportunidade:
-                      </p>
-                      <div className="space-y-3">
-                        <div className="flex gap-3 text-xs">
-                          <strong className="text-[#F0F4FF] w-20 flex-shrink-0">Urgente</strong>
-                          <span className="text-[#8892A4]">Resolver agora — sem isso, algo piora.</span>
-                        </div>
-                        <div className="flex gap-3 text-xs">
-                          <strong className="text-[#F0F4FF] w-20 flex-shrink-0">Timing</strong>
-                          <span className="text-[#8892A4]">Janela de oportunidade, perder o momento é perder a vantagem.</span>
-                        </div>
-                        <div className="flex gap-3 text-xs">
-                          <strong className="text-[#F0F4FF] w-20 flex-shrink-0">Indispensável</strong>
-                          <span className="text-[#8892A4]">A base que sustenta tudo. Sem ela, nada funciona.</span>
-                        </div>
-                        <div className="flex gap-3 text-xs">
-                          <strong className="text-[#F0F4FF] w-20 flex-shrink-0">Opcional</strong>
-                          <span className="text-[#8892A4]">Bom ter, sem pressa. Nenhuma das acima.</span>
-                        </div>
+                      <div className="mt-4 flex justify-center">
+                        <img src="/assets/bussola_prioridade_utio.svg" alt="Bússola de Prioridade UTIO" className="w-full max-w-sm drop-shadow-[0_0_15px_rgba(0,212,255,0.2)]" />
                       </div>
                     </div>
                   )}

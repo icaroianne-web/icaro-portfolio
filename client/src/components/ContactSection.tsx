@@ -36,8 +36,8 @@ const socialLinks = [
   {
     icon: Youtube,
     label: "YouTube",
-    handle: "@icaroiandj",
-    url: "https://youtube.com/icaroiandj",
+    handle: "@IcaroIan",
+    url: "https://www.youtube.com/@IcaroIan",
     color: "#FF0000",
     desc: "Showreel e produções",
   },
@@ -99,7 +99,7 @@ export default function ContactSection() {
           </div>
           <div className="line-accent max-w-xs ml-[calc(clamp(4rem,10vw,8rem)+1rem)]" />
           <p className="text-[#8892A4] mt-4 ml-[calc(clamp(4rem,10vw,8rem)+1rem)] max-w-lg text-lg">
-            Estou disponível para projetos de comunicação, produção audiovisual e estratégia digital.
+            Entre em contato, vamos achar a melhor solução para sua comunicação.
           </p>
         </div>
 
@@ -116,7 +116,7 @@ export default function ContactSection() {
 
             <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div>
-                <div className="tech-badge mb-4">Disponível para projetos</div>
+                <div className="tech-badge mb-4">Sua Próxima Estratégia</div>
                 <h3 className="font-display font-800 text-2xl lg:text-3xl text-[#F0F4FF] mb-4">
                   Transforme sua comunicação com narrativas que impactam.
                 </h3>
