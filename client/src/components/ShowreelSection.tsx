@@ -7,10 +7,11 @@ const MAIN_VIDEO_COVER = "https://i.vimeocdn.com/video/813834300-1c49990ccfd743b
 const MAIN_VIDEO_URL = "https://player.vimeo.com/video/359831523";
 
 const galleryVideos = [
-  { id: 1, title: "Videocase Institucional", cover: "https://img.youtube.com/vi/Uiag0c5YMzY/maxresdefault.jpg", url: "https://www.youtube.com/embed/Uiag0c5YMzY" },
-  { id: 2, title: "Produção Comercial", cover: "https://img.youtube.com/vi/CQ7KdJUsh6E/maxresdefault.jpg", url: "https://www.youtube.com/embed/CQ7KdJUsh6E" },
-  { id: 3, title: "Documentário Social", cover: "https://img.youtube.com/vi/M-sFYi97Cr0/maxresdefault.jpg", url: "https://www.youtube.com/embed/M-sFYi97Cr0" },
-  { id: 4, title: "Videocase Cultural", cover: "https://img.youtube.com/vi/iM87dnXKmug/maxresdefault.jpg", url: "https://www.youtube.com/embed/iM87dnXKmug" },
+  { id: 1, title: "Biblioteca em Casa", cover: "/covers/biblioteca.jpg", url: "https://www.youtube.com/embed/l582S8qeeKI" },
+  { id: 2, title: "Rolê da Estância", cover: "/covers/role_da_estancia.jpg", url: "https://www.youtube.com/embed/Uiag0c5YMzY" },
+  { id: 3, title: "Memórias", cover: "/covers/memorias.jpg", url: "https://www.youtube.com/embed/CQ7KdJUsh6E" },
+  { id: 4, title: "Dudu - FLORESTA EM MOVIMENTO. - eds", cover: "/covers/floresta_em_movimento.jpg", url: "https://www.youtube.com/embed/M-sFYi97Cr0" },
+  { id: 5, title: "Videocase Cultural", cover: "https://img.youtube.com/vi/iM87dnXKmug/maxresdefault.jpg", url: "https://www.youtube.com/embed/iM87dnXKmug" },
 ];
 
 function useInView(threshold = 0.1) {
@@ -115,10 +116,10 @@ export default function ShowreelSection() {
 
           <div
             className={`overflow-hidden transition-all duration-700 ease-in-out ${
-              isGalleryOpen ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
+              isGalleryOpen ? "max-h-[5000px] opacity-100" : "max-h-0 opacity-0"
             }`}
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
+            <div className="grid grid-cols-1 gap-8 pt-4">
             {galleryVideos.map((video, idx) => {
               const isPlaying = playingGalleryId === video.id;
               const isCyan = idx % 2 === 0;
