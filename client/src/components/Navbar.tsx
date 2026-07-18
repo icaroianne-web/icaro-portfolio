@@ -10,6 +10,7 @@ const navLinks = [
   { label: "Início", href: "#hero", external: false },
   { label: "Sobre", href: "#sobre", external: false },
   { label: "Cases", href: "#cases", external: false },
+  { label: "Consultoria", href: "#services", external: false },
   { label: "Showreel", href: "#showreel", external: false },
   { label: "Contato", href: "#contato", external: false },
 ];

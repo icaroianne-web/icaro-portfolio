@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Network, Activity, BrainCircuit, Clapperboard, ChevronDown, ChevronUp, CheckCircle2 } from "lucide-react";
+import LeadFormModal from "./LeadFormModal";
 
 const SERVICES_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663747808873/FfsF68pckBa2uV6MzkU5TV/hero-bg-E7HYZ4kGT8iWScT3p76AXn.webp";
 
@@ -99,6 +100,8 @@ function useInView(threshold = 0.1) {
 export default function ServicesSection() {
   const { ref, inView } = useInView();
   const [activeService, setActiveService] = useState<number | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProductTitle, setSelectedProductTitle] = useState("");
 
   return (
     <section id="services" className="relative py-24 bg-[#080C14] overflow-hidden border-t border-[rgba(0,212,255,0.05)]">
@@ -234,21 +237,28 @@ export default function ServicesSection() {
                     </div>
                   )}
 
-                  <a 
-                    href="https://wa.me/5511940684068" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
+                  <button 
+                    onClick={() => {
+                      setSelectedProductTitle(svc.title);
+                      setIsModalOpen(true);
+                    }}
                     className="w-full flex items-center justify-center gap-2 py-3 bg-[rgba(255,255,255,0.03)] border transition-colors hover:bg-[rgba(255,255,255,0.08)] font-mono-tech text-xs tracking-widest uppercase"
                     style={{ borderColor: `${svc.color}40`, color: svc.color }}
                   >
-                    Agendar Consultoria
-                  </a>
+                    Solicitar Orçamento
+                  </button>
                 </div>
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      <LeadFormModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        selectedProduct={selectedProductTitle} 
+      />
     </section>
   );
 }
