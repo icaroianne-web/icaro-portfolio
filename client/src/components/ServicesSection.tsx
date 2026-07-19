@@ -13,6 +13,7 @@ const services = [
     icon: Network,
     color: "#00D4FF",
     fromClass: "from-[#00D4FF]",
+    image: "/assets/service_plano_diretor.jpg",
     features: [
       "Raio-X de Comunicação",
       "Bússola de Prioridade (método UTIO)",
@@ -32,6 +33,7 @@ const services = [
     icon: Activity,
     color: "#C9A84C",
     fromClass: "from-[#C9A84C]",
+    image: "/assets/service_marca_viva.jpg",
     features: [
       "Branding e Rebranding",
       "Identidade Visual e Manual de Marca",
@@ -51,6 +53,7 @@ const services = [
     icon: BrainCircuit,
     color: "#00D4FF",
     fromClass: "from-[#00D4FF]",
+    image: "/assets/service_inteligencia_artificial.jpg",
     features: [
       "Curadoria de Ferramentas de IA",
       "Automação de Fluxos de Trabalho",
@@ -70,6 +73,7 @@ const services = [
     icon: Clapperboard,
     color: "#FF6B35",
     fromClass: "from-[#FF6B35]",
+    image: "/assets/service_absolute_cinema.jpg",
     features: [
       "Filmes Institucionais & Documentários",
       "Storytelling de Marca & Cases de Sucesso",
@@ -146,25 +150,31 @@ export default function ServicesSection() {
                 style={{ background: `linear-gradient(135deg, ${svc.color}, transparent)` }}
               />
 
-              <div className="relative w-full h-full bg-[#0F1623] rounded-[10px] overflow-hidden flex flex-col p-8 z-10">
-                <div className="flex items-start gap-4 mb-6">
+              <div className="relative w-full h-full bg-[#0F1623] rounded-[10px] overflow-hidden flex flex-col z-10">
+                
+                {/* Capa do Serviço (Header Image) */}
+                <div className="relative h-48 w-full overflow-hidden shrink-0 border-b border-[rgba(255,255,255,0.05)]">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0F1623] to-transparent z-10" />
+                  <img src={svc.image} alt={svc.title} className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" />
                   <div 
-                    className="w-14 h-14 rounded-full flex items-center justify-center border transition-transform duration-300 group-hover:scale-110 flex-shrink-0"
-                    style={{ borderColor: `${svc.color}40`, backgroundColor: `${svc.color}10`, color: svc.color }}
+                    className="absolute bottom-4 left-6 z-20 w-12 h-12 rounded-xl flex items-center justify-center border bg-[#0F1623]/80 backdrop-blur-md shadow-lg"
+                    style={{ borderColor: `${svc.color}40`, color: svc.color }}
                   >
-                    <svc.icon size={24} />
+                    <svc.icon size={22} />
                   </div>
-                  <div>
-                    <h3 className="font-display font-800 text-xl text-[#F0F4FF] leading-tight mb-2 group-hover:text-white transition-colors duration-200">
+                </div>
+
+                <div className="flex-1 p-6 flex flex-col">
+                  <div className="mb-4">
+                    <h3 className="font-display font-800 text-xl text-[#F0F4FF] leading-tight mb-1 group-hover:text-white transition-colors duration-200">
                       {svc.title}
                     </h3>
                     <p className="text-xs font-mono-tech tracking-widest uppercase" style={{ color: svc.color }}>
                       {svc.category}
                     </p>
                   </div>
-                </div>
 
-                <p className="text-[#8892A4] text-sm leading-relaxed mb-6 font-outfit">
+                  <p className="text-[#8892A4] text-sm leading-relaxed mb-6 font-outfit">
                   {svc.description}
                 </p>
 

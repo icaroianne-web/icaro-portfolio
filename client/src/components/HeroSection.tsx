@@ -139,8 +139,8 @@ export default function HeroSection() {
               style={{ animationDelay: "0.7s", animationFillMode: "both" }}
             >
               <div className="line-accent w-16 mb-4" />
-              <p className="text-[#8892A4] font-outfit text-lg leading-relaxed max-w-2xl">
-                Estrategista de Comunicação Corporativa, criador de narrativas audiovisuais com campanhas que alcançaram desde <span className="text-[#F0F4FF] font-medium">Ministérios brasileiros</span> até a <span className="text-[#C9A84C] font-medium">Conferência Mundial do Clima (COP28), em Dubai</span>.
+              <p className="text-[#00D4FF] drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] font-outfit text-lg leading-relaxed max-w-2xl font-medium">
+                Estrategista de Comunicação Corporativa, criador de narrativas audiovisuais com campanhas que alcançaram desde <span className="text-white font-semibold">Ministérios brasileiros</span> até a <span className="text-[#C9A84C] font-semibold">Conferência Mundial do Clima (COP28), em Dubai</span>.
               </p>
             </div>
 
@@ -165,23 +165,12 @@ export default function HeroSection() {
               style={{ animationDelay: "1.1s", animationFillMode: "both" }}
             >
               <a
-                href="#showreel"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.querySelector("#showreel")?.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="btn-primary"
-              >
-                <Play size={16} fill="currentColor" />
-                Ver Showreel
-              </a>
-              <a
                 href="#services"
                 onClick={(e) => {
                   e.preventDefault();
                   document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="btn-outline"
+                className="btn-primary"
               >
                 Consultoria
               </a>
@@ -194,6 +183,17 @@ export default function HeroSection() {
                 className="btn-outline"
               >
                 Cases de Sucesso
+              </a>
+              <a
+                href="#showreel"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.querySelector("#showreel")?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="btn-outline"
+              >
+                <Play size={16} fill="currentColor" />
+                Showreel
               </a>
             </div>
           </div>
