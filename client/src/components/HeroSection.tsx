@@ -1,13 +1,12 @@
 /* ============================================================
    DESIGN: "Deep Space Broadcast" — Hero Section
-   Full-viewport cinematic hero with parallax and decode animation
+   Full-viewport cinematic hero with scroll-controlled video (Emergent Style)
    ============================================================ */
 
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Play, Sparkles } from "lucide-react";
-
-const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663747808873/FfsF68pckBa2uV6MzkU5TV/hero-bg-E7HYZ4kGT8iWScT3p76AXn.webp";
-const ICARO_OFFICE_PHOTO = "/assets/ICARO_OFFICE.png";
+import { useScroll, useTransform, motion } from "framer-motion";
+import ScrollSequence from "./ScrollSequence";
 
 function DecodeText({ text, delay = 0 }: { text: string; delay?: number }) {
   const [displayed, setDisplayed] = useState("");
@@ -48,14 +47,17 @@ function DecodeText({ text, delay = 0 }: { text: string; delay?: number }) {
 }
 
 export default function HeroSection() {
-  const parallaxRef = useRef<HTMLDivElement>(null);
-  const [scrollY, setScrollY] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  // O container do hero tem 400vh para permitir rolagem extensa
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
 
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  // O texto original desaparece gradualmente para dar espaço ao vídeo puro
+  const opacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.4], [1, 0.95]);
 
   const scrollToNext = () => {
     const el = document.querySelector("#sobre");
@@ -63,43 +65,38 @@ export default function HeroSection() {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background layers */}
-      <div
-        ref={parallaxRef}
-        className="absolute inset-0 z-0"
-        style={{ transform: `translateY(${scrollY * 0.2}px)` }}
-      >
-        <img
-          src={HERO_BG}
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover scale-110 opacity-40 mix-blend-screen"
-          loading="eager"
+    <section ref={containerRef} id="hero" className="relative h-[400vh] bg-[#080C14]">
+      {/* Container "sticky" que fica preso na tela enquanto o usuário rola os 400vh */}
+      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
+        
+        {/* Camada 1: O Vídeo Dominante Full-Screen (Emergent Workflow) */}
+        <div className="absolute inset-0 z-0 w-full h-full bg-black">
+          <ScrollSequence scrollYProgress={scrollYProgress} className="w-full h-full object-cover opacity-80 mix-blend-lighten" />
+          
+          {/* Overlays sutis para mesclar o vídeo com o layout escuro e manter legibilidade do texto inicial */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#080C14] via-[#080C14]/60 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#080C14] via-transparent to-[#080C14]/40 pointer-events-none" />
+        </div>
+
+        {/* Camada 2: Grid overlay sutil corporativo */}
+        <div
+          className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(0,212,255,1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(0,212,255,1) 1px, transparent 1px)
+            `,
+            backgroundSize: "50px 50px",
+          }}
         />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_40%,rgba(0,212,255,0.25),transparent_35%),radial-gradient(circle_at_95%_60%,rgba(255,107,53,0.2),transparent_30%)]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#080C14] via-[#080C14]/85 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#080C14] via-[#080C14]/10 to-[#080C14]/40" />
-        <div className="absolute inset-0 backdrop-blur-[0.5px]" />
-      </div>
 
-      {/* Grid overlay */}
-      <div
-        className="absolute inset-0 z-0 opacity-[0.04]"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(0,212,255,1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0,212,255,1) 1px, transparent 1px)
-          `,
-          backgroundSize: "50px 50px",
-        }}
-      />
-
-      {/* Content */}
-      <div className="container relative z-10 pt-24 pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center min-h-[80vh]">
-          {/* Left: Text content */}
-          <div className="lg:col-span-7 space-y-6">
-            {/* Tech badge atualizado com Comunicação e Marketing */}
+        {/* Camada 3: Conteúdo original (UI) animado com o scroll */}
+        <motion.div 
+          style={{ opacity, scale }}
+          className="container relative z-10 pt-24 pb-16 w-full"
+        >
+          <div className="max-w-3xl space-y-6">
+            {/* Tech badge */}
             <div
               className="tech-badge animate-fade-in-up"
               style={{ animationDelay: "0.2s", animationFillMode: "both" }}
@@ -126,7 +123,7 @@ export default function HeroSection() {
               </h1>
             </div>
 
-            {/* Tagline com os novos textos corporativos e destaques visuais */}
+            {/* Tagline */}
             <div
               className="animate-fade-in-up"
               style={{ animationDelay: "0.7s", animationFillMode: "both" }}
@@ -190,46 +187,19 @@ export default function HeroSection() {
               </a>
             </div>
           </div>
+        </motion.div>
 
-          {/* Right: Photo Container */}
-          <div
-            className="lg:col-span-5 flex justify-center lg:justify-end animate-fade-in"
-            style={{ animationDelay: "0.5s", animationFillMode: "both" }}
-          >
-            <div className="relative w-full max-w-[340px] sm:max-w-[390px] lg:w-[410px] lg:max-w-[410px] mt-8 lg:mt-0">
-              <div className="absolute -inset-10 bg-[radial-gradient(circle_at_50%_50%,rgba(0,212,255,0.22),transparent_50%)] blur-2xl" />
-              
-              {/* Linhas de contorno */}
-              <div className="absolute -inset-3 border border-[rgba(0,212,255,0.25)] animate-border-pulse z-0" />
-              <div className="absolute -inset-6 border border-[rgba(0,212,255,0.08)] hidden sm:block z-0" />
+        {/* Scroll indicator adaptado para indicar o efeito Fake 3D */}
+        <motion.button
+          style={{ opacity }}
+          onClick={scrollToNext}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-[#8892A4] hover:text-[#00D4FF] transition-colors duration-200 group"
+        >
+          <span className="font-mono-tech text-[0.65rem] uppercase tracking-widest text-[#00D4FF]">Scroll para explorar</span>
+          <ChevronDown size={18} className="animate-bounce" color="#00D4FF" />
+        </motion.button>
 
-              {/* Cantoneiras HUD */}
-              <div className="absolute -top-3 -left-3 w-6 h-6 border-t-2 border-l-2 border-[#00D4FF] z-20" />
-              <div className="absolute -top-3 -right-3 w-6 h-6 border-t-2 border-r-2 border-[#00D4FF] z-20" />
-              <div className="absolute -bottom-3 -left-3 w-6 h-6 border-b-2 border-l-2 border-[#FF6B35] z-20" />
-              <div className="absolute -bottom-3 -right-3 w-6 h-6 border-b-2 border-r-2 border-[#FF6B35] z-20" />
-
-              {/* Box da Imagem */}
-              <div className="relative overflow-hidden w-full aspect-[0.76] lg:h-[540px] bg-transparent z-10">
-                <img
-                  src={ICARO_OFFICE_PHOTO}
-                  alt="Ícaro Albuquerque"
-                  className="w-full h-full object-cover object-center"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-
-      {/* Scroll indicator */}
-      <button
-        onClick={scrollToNext}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-[#8892A4] hover:text-[#00D4FF] transition-colors duration-200 group"
-      >
-        <span className="font-mono-tech text-[0.65rem] uppercase tracking-widest">Scroll</span>
-        <ChevronDown size={18} className="animate-bounce" />
-      </button>
     </section>
   );
 }
