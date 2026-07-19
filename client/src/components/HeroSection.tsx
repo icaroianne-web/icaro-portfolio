@@ -5,7 +5,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Play, Sparkles } from "lucide-react";
-import { useScroll, useTransform, motion } from "framer-motion";
+import { useScroll, useTransform, motion, useSpring } from "framer-motion";
 import ScrollSequence from "./ScrollSequence";
 
 function DecodeText({ text, delay = 0 }: { text: string; delay?: number }) {
@@ -55,12 +55,19 @@ export default function HeroSection() {
     offset: ["start start", "end end"]
   });
 
+  // Aplica uma física de mola suave para evitar saltos (RIGG)
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 70,
+    damping: 20,
+    restDelta: 0.001
+  });
+
   // O texto aparece gradualmente conforme o vídeo roda para o final
-  const opacity = useTransform(scrollYProgress, [0.4, 0.9], [0, 1]);
-  const scale = useTransform(scrollYProgress, [0.4, 0.9], [0.95, 1]);
+  const opacity = useTransform(smoothProgress, [0.4, 0.9], [0, 1]);
+  const scale = useTransform(smoothProgress, [0.4, 0.9], [0.95, 1]);
 
   // O indicador de scroll deve sumir logo no começo
-  const scrollOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+  const scrollOpacity = useTransform(smoothProgress, [0, 0.2], [1, 0]);
 
   const scrollToNext = () => {
     const el = document.querySelector("#sobre");
@@ -74,11 +81,11 @@ export default function HeroSection() {
         
         {/* Camada 1: O Vídeo Dominante Full-Screen (Emergent Workflow) */}
         <div className="absolute inset-0 z-0 w-full h-full bg-black">
-          <ScrollSequence scrollYProgress={scrollYProgress} className="w-full h-full object-cover opacity-90" />
+          <ScrollSequence scrollYProgress={smoothProgress} className="w-full h-full object-cover opacity-100" />
           
-          {/* Overlays sutis para mesclar o vídeo com o layout escuro e manter legibilidade do texto inicial */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#080C14] via-[#080C14]/60 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#080C14] via-transparent to-[#080C14]/40 pointer-events-none" />
+          {/* Overlays mais suaves para não apagar o vídeo */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#080C14] via-[#080C14]/30 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#080C14] via-transparent to-[#080C14]/20 pointer-events-none" />
         </div>
 
         {/* Camada 2: Grid overlay sutil corporativo */}
