@@ -1,11 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { useTransform, useMotionValueEvent, MotionValue } from "framer-motion";
-
-// ==== CONFIGURAÇÃO ====
-// Coloque os 96 frames em: public/sequence/frame_001.jpg ... frame_096.jpg
-const FRAME_COUNT = 96;
-const getFramePath = (index: number) =>
-  `/sequence/frame_${String(index).padStart(3, "0")}.jpg`;
+import { useEffect, useRef } from "react";
+import { MotionValue } from "framer-motion";
 
 interface ScrollSequenceProps {
   scrollYProgress: MotionValue<number>;
@@ -13,75 +7,47 @@ interface ScrollSequenceProps {
 }
 
 export default function ScrollSequence({ scrollYProgress, className = "" }: ScrollSequenceProps) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const imagesRef = useRef<HTMLImageElement[]>([]);
-  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-  const frameIndex = useTransform(scrollYProgress, [0, 1], [0, FRAME_COUNT - 1]);
-
-  // Pré-carrega todas as imagens uma vez
+  // Sincroniza a posição do scroll com a linha do tempo (timeline) do vídeo
   useEffect(() => {
-    let loadedCount = 0;
-    const images: HTMLImageElement[] = [];
+    const video = videoRef.current;
+    if (!video) return;
 
-    for (let i = 1; i <= FRAME_COUNT; i++) {
-      const img = new Image();
-      img.src = getFramePath(i);
-      img.onload = () => {
-        loadedCount++;
-        if (loadedCount === FRAME_COUNT) setImagesLoaded(true);
-      };
-      images.push(img);
-    }
+    let animationFrameId: number;
+    
+    const handleLoadedMetadata = () => {
+      video.pause(); // Garante que o vídeo não toque sozinho
+    };
+    
+    video.addEventListener("loadedmetadata", handleLoadedMetadata);
 
-    imagesRef.current = images;
-  }, []);
-
-  const drawFrame = (index: number) => {
-    const canvas = canvasRef.current;
-    const img = imagesRef.current[Math.round(index)];
-    if (!canvas || !img || !img.complete) return;
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-  };
-
-  // Redesenha o canvas a cada atualização do valor de scroll
-  useMotionValueEvent(frameIndex, "change", (latest) => {
-    drawFrame(latest);
-  });
-
-  // Ajusta o tamanho do canvas ao carregar e ao redimensionar a janela
-  useEffect(() => {
-    if (!imagesLoaded) return;
-
-    const resize = () => {
-      const canvas = canvasRef.current;
-      const firstImg = imagesRef.current[0];
-      if (!canvas || !firstImg) return;
-
-      const scale = Math.min(
-        canvas.parentElement!.clientWidth / firstImg.naturalWidth,
-        canvas.parentElement!.clientHeight / firstImg.naturalHeight
-      );
-
-      // Ou simplesmente cobrir (object-cover equivalent in canvas)
-      // Mas para manter a proporção da caixa, o CSS de w-full h-full resolve
-      // Apenas igualamos aos tamanhos originais no canvas interno
-      canvas.width = firstImg.naturalWidth;
-      canvas.height = firstImg.naturalHeight;
-      drawFrame(frameIndex.get());
+    const updateVideoTime = () => {
+      if (video.readyState >= 1 && video.duration) {
+        // Pega o valor do scroll (de 0.0 a 1.0) e multiplica pela duração total do vídeo
+        const targetTime = scrollYProgress.get() * video.duration;
+        video.currentTime = targetTime;
+      }
+      animationFrameId = requestAnimationFrame(updateVideoTime);
     };
 
-    resize();
-    window.addEventListener("resize", resize);
-    return () => window.removeEventListener("resize", resize);
-  }, [imagesLoaded]);
+    // Inicia o loop de renderização (mais suave que eventos normais do React)
+    updateVideoTime();
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      video.removeEventListener("loadedmetadata", handleLoadedMetadata);
+    };
+  }, [scrollYProgress]);
 
   return (
-    <canvas ref={canvasRef} className={`w-full h-full object-cover ${className}`} />
+    <video
+      ref={videoRef}
+      src="/video_site1.mp4"
+      className={`w-full h-full object-cover ${className}`}
+      playsInline
+      muted
+      preload="auto"
+    />
   );
 }
