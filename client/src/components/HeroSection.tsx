@@ -55,9 +55,12 @@ export default function HeroSection() {
     offset: ["start start", "end end"]
   });
 
-  // O texto original desaparece gradualmente para dar espaço ao vídeo puro
-  const opacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.4], [1, 0.95]);
+  // O texto aparece gradualmente conforme o vídeo roda para o final
+  const opacity = useTransform(scrollYProgress, [0.4, 0.9], [0, 1]);
+  const scale = useTransform(scrollYProgress, [0.4, 0.9], [0.95, 1]);
+
+  // O indicador de scroll deve sumir logo no começo
+  const scrollOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
   const scrollToNext = () => {
     const el = document.querySelector("#sobre");
@@ -71,7 +74,7 @@ export default function HeroSection() {
         
         {/* Camada 1: O Vídeo Dominante Full-Screen (Emergent Workflow) */}
         <div className="absolute inset-0 z-0 w-full h-full bg-black">
-          <ScrollSequence scrollYProgress={scrollYProgress} className="w-full h-full object-cover opacity-80 mix-blend-lighten" />
+          <ScrollSequence scrollYProgress={scrollYProgress} className="w-full h-full object-cover opacity-90" />
           
           {/* Overlays sutis para mesclar o vídeo com o layout escuro e manter legibilidade do texto inicial */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#080C14] via-[#080C14]/60 to-transparent pointer-events-none" />
@@ -191,7 +194,7 @@ export default function HeroSection() {
 
         {/* Scroll indicator adaptado para indicar o efeito Fake 3D */}
         <motion.button
-          style={{ opacity }}
+          style={{ opacity: scrollOpacity }}
           onClick={scrollToNext}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-[#8892A4] hover:text-[#00D4FF] transition-colors duration-200 group"
         >

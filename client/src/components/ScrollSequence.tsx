@@ -47,6 +47,7 @@ export default function ScrollSequence({ scrollYProgress, className = "" }: Scro
       className={`w-full h-full object-cover ${className}`}
       playsInline
       muted
+      autoPlay
       preload="auto"
     />
   );
