@@ -242,6 +242,7 @@ export default function ServicesSection() {
                 </div>
               </div>
             </div>
+            </div>
           ))}
         </div>
       </div>
