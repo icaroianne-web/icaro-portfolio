@@ -38,7 +38,7 @@ const trajectory = [
     highlight: false
   },
   {
-    year: "2021/2022",
+    year: "2020/2021",
     event: "Gestão Pública & Crise",
     desc: "Prefeitura de Santa Fé do Sul: Produção audiovisual ágil (Programa Rolê da Estância) e gerenciamento estratégico de comunicação durante as crises da Covid-19 e hídrica.",
     highlight: false

@@ -16,7 +16,7 @@ const cases = [
     icon: Building2,
     title: "Prefeitura de Santa Fé do Sul",
     subtitle: "Estratégia Ágil, Contenção de Danos e Mobilização Comunitária",
-    year: "2020-2024",
+    year: "2020-2021",
     location: "São Paulo, Brasil",
     desafios: [
       "Prazo Crítico de Entrega: Assumi a assessoria de comunicação a apenas quatro dias da entrega da campanha audiovisual do maior projeto turístico da história da cidade (Orla do Sol), cuja proposta ainda estava em fase de formulação e precisava ser viabilizada com urgência para captação de emendas parlamentares.",
