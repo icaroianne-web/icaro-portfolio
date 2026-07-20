@@ -192,7 +192,6 @@ export default function HeroSection() {
                 }}
                 className="btn-outline"
               >
-                <Play size={16} fill="currentColor" />
                 Showreel
               </a>
             </div>
