@@ -85,37 +85,35 @@ const cases = [
   },
   {
     id: 3,
-    tag: "Rebranding & Growth",
+    tag: "Governança & Rebranding",
     icon: TrendingUp,
     title: "Finamac Global",
-    subtitle: "A Revolução \"Ice Tech\" e a Construção de uma Máquina de Vendas",
+    subtitle: "A Revolução \"Ice Tech\", Governança de Comunicação e Máquina de Vendas",
     year: "2025/2026",
     location: "Brasil",
     desafios: [
+      "Silos Internos: Engenharia, Marketing e Comercial não falavam a mesma língua, faltando processos e alinhamento de comunicação.",
       "Comunicação Visual Defasada: Equipamentos de altíssima tecnologia e design arrojado não tinham a identidade premium que mereciam.",
       "Conteúdo Estagnado: A marca sobrevivia de 'requentar' vídeos antigos, com qualidade baixa e ritmo ultrapassado.",
-      "Fosso de Leads: O time comercial estava afogado em uma base antiga, sem campanhas ativas.",
-      "Silos Internos: Engenharia, Marketing e Comercial não falavam a mesma língua, faltando processos e alinhamento."
+      "Fosso de Leads: O time comercial estava afogado em uma base antiga, sem campanhas ativas para alimentar as vendas."
     ],
     solucoes: [
+      "Governança de Comunicação: Estruturei fluxos ágeis entre Engenharia, Marketing e Comercial. Implementei rituais de aprovação e uma arquitetura editorial robusta para unificar a voz da empresa.",
       "Conceito Ice Tech: Criei do zero uma identidade unindo a pureza do gelo à performance tecnológica. Inspirados na estética 'Tesla', transformamos as máquinas em objetos de desejo.",
-      "Choque Audiovisual: Lançamos o TikTok com receitas virais e criamos o quadro 'Pessoas que são Máquinas de Sucesso' no YouTube, pulverizando cortes nas redes. Passamos a transmitir workshops ao vivo direto do showroom e laboratório técnico.",
-      "Máquina de Aquisição: Estruturei campanhas (Meta/Google Ads) integradas ao HubSpot para atrair leads qualificados.",
-      "Governança: Criei fluxos ágeis entre Engenharia, Marketing e Comercial, com rituais de aprovação e uma arquitetura editorial robusta."
+      "Choque Audiovisual: Lançamos o TikTok com receitas virais e criamos o quadro 'Pessoas que são Máquinas de Sucesso' no YouTube, transmitindo também workshops ao vivo.",
+      "Máquina de Aquisição: Como resultado da nova base de conteúdo e processos, estruturei campanhas de tráfego (Meta/Google Ads) integradas ao HubSpot para atrair leads."
     ],
     impactos: [
+      "Fim dos Silos e Governança: A nova comunicação integrou Engenharia, Marketing e Vendas, consolidando o verdadeiro 'Dream Team' da empresa.",
       "Valorização Estética: O conceito Ice Tech consolidou as máquinas como itens premium e gerou forte orgulho interno na equipe.",
-      "Boom de Engajamento: A esteira de conteúdo em vídeo resultou em +19% de audiência e +27% de engajamento orgânico nas redes.",
-      "Geração de Leads (+31%): A máquina de aquisição de tráfego pago gerou um salto de +31% em novos leads qualificados e vendas batidas mesmo em época de tarifaço.",
-      "Fim dos Silos (Dream Team): A nova governança integrou Engenharia, Marketing e Vendas em rituais ágeis, consolidando o BYB (Build Your Business) Dream Team."
+      "Boom de Engajamento: A esteira de vídeos gerou +19% de audiência e +27% de engajamento orgânico nas redes.",
+      "Geração de Leads (+31%): Apoiada por todo esse ecossistema, a aquisição de tráfego pago saltou em +31% de novos leads qualificados e impulsionou as vendas."
     ],
-    results: ["Conceito Ice Tech", "Estética Tesla", "TikTok & YouTube", "+31% Novos Leads", "HubSpot & Ads"],
+    results: ["Governança Implementada", "Conceito Ice Tech", "Estética Tesla", "+31% Novos Leads", "HubSpot & Ads"],
     color: "#FF6B35",
     image: "/assets/finamac_header.jpg",
     evidences: [
-      { type: "image", url: "/assets/finamac_header.jpg", caption: "Lançamento 2026: Equipamento Flash (Sorvete Americano)" },
-      { type: "video", url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", caption: "Cortes YouTube: Pessoas que são Máquinas de Sucesso" },
-      { type: "video", url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", caption: "Workshop ao vivo direto do Showroom" }
+      { type: "image", url: "/assets/finamac_header.jpg", caption: "Lançamento 2026: Equipamento Flash (Sorvete Americano)" }
     ] as Evidence[]
   }
 ];

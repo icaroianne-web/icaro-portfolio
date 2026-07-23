@@ -8,8 +8,8 @@ const services = [
   {
     id: 1,
     title: "Plano Diretor de Comunicação",
-    subtitle: "Diagnóstico, prioridade e direção para quem precisa comunicar com clareza.",
-    description: "Todo negócio tem urgências, oportunidades e coisas que vive adiando. O problema não é falta de conteúdo — é falta de direção sobre o que fazer primeiro. O Plano Diretor de Comunicação começa com um raio-X do seu negócio e termina com um mapa claro: o que comunicar, quando, e por onde.",
+    subtitle: "Diagnóstico, governança de comunicação e direção para quem precisa comunicar com clareza.",
+    description: "Todo negócio tem prioridades urgentes e não urgentes, além de coisas que vive adiando. O problema não é falta de conteúdo — é falta de direção e governança de comunicação sobre o que fazer primeiro. O Plano Diretor começa com um raio-X de comunicação do seu negócio e termina com um mapa claro: o que comunicar, quando, e por onde.",
     icon: Network,
     color: "#00D4FF",
     fromClass: "from-[#00D4FF]",
@@ -28,8 +28,8 @@ const services = [
   {
     id: 2,
     title: "Marca Viva",
-    subtitle: "Construção de identidades que transmitem confiança e evoluem.",
-    description: "Não adianta ter um logo bonito se o site, as redes e a apresentação falam línguas diferentes. Marca Viva é o processo de construir — ou reconstruir — uma identidade coerente, do posicionamento à experiência digital.",
+    subtitle: "Rebranding e construção de identidades corporativas que transmitem confiança.",
+    description: "Não adianta ter um logo bonito se a marca está perdida ou datada. Marca Viva é o produto de reposicionamento de marca perfeito para ressuscitar uma marca, reconstruindo a identidade coerente do seu negócio — do rebranding visual à comunicação digital.",
     icon: Activity,
     color: "#C9A84C",
     fromClass: "from-[#C9A84C]",
@@ -68,8 +68,8 @@ const services = [
   {
     id: 4,
     title: "Absolute Cinema™",
-    subtitle: "Histórias autênticas que criam marcas memoráveis.",
-    description: "Toda empresa tem uma história melhor do que ela imagina. O trabalho aqui é encontrar qual é essa história e contar do jeito certo. Não é sobre gravar um vídeo institucional — é sobre emoção, autenticidade e conexão B2B.",
+    subtitle: "Contar a história da sua empresa através de storytelling corporativo autêntico.",
+    description: "Toda empresa tem uma história melhor do que imagina. O trabalho aqui é encontrar a sua essência e contar a história da sua empresa do jeito certo, transformando sua trajetória numa narrativa inesquecível. Como contador de histórias, não entrego só um vídeo institucional — entrego storytelling B2B, emoção e conexão real.",
     icon: Clapperboard,
     color: "#FF6B35",
     fromClass: "from-[#FF6B35]",
