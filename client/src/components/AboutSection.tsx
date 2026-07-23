@@ -4,18 +4,19 @@
    ============================================================ */
 
 import { useEffect, useRef, useState } from "react";
-import { Brain, Video, Globe, Mic, Zap, Award } from "lucide-react";
+import { Zap, Network, Crown, BrainCircuit, PlaySquare, Briefcase } from "lucide-react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
 const ABOUT_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663747808873/FfsF68pckBa2uV6MzkU5TV/about-accent-j3iZtYBgwsEowK8DPSX35e.webp";
 const AI_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663747808873/FfsF68pckBa2uV6MzkU5TV/ai-texture-GqDK6g7z5bCccMnSUKuQyC.webp";
 
 const skills = [
-  { icon: Video, label: "Produção Audiovisual", desc: "Direção, edição e pós-produção de vídeos institucionais, reels e documentários." },
-  { icon: Brain, label: "IA para Comunicação", desc: "Uso avançado de ferramentas de IA para criação de conteúdo, automação e estratégia digital." },
-  { icon: Globe, label: "Comunicação Institucional", desc: "Estratégia e execução de comunicação para órgãos públicos, ONGs e empresas de grande porte." },
-  { icon: Mic, label: "Apresentação & Locução", desc: "Apresentação em eventos, entrevistas e produção de conteúdo para múltiplas plataformas." },
-  { icon: Zap, label: "Redes Sociais", desc: "Gestão estratégica de redes sociais com foco em engajamento, alcance e conversão." },
-  { icon: Award, label: "Cases Premiados", desc: "Projetos reconhecidos em âmbito nacional e internacional, incluindo a COP28 em Dubai." },
+  { icon: Crown, label: "Estratégia Corporativa", desc: "Posicionamento B2B, governança e gestão de crises para grandes organizações e mercado público." },
+  { icon: Network, label: "Branding & Rebranding", desc: "Arquitetura de marca, identidade visual e direção criativa para elevar a autoridade do seu negócio." },
+  { icon: BrainCircuit, label: "IA para Negócios", desc: "Automação de workflows e uso de IA Generativa para dar escala à produção e reduzir custos." },
+  { icon: Briefcase, label: "Liderança Criativa", desc: "Gestão de times multidisciplinares e orquestração de agências parceiras em projetos de alto impacto." },
+  { icon: Zap, label: "Conteúdo Premium", desc: "Arquitetura editorial e produção de campanhas transmídia focadas em engajamento e conversão." },
+  { icon: PlaySquare, label: "Storytelling Audiovisual", desc: "Do roteiro à pós-produção: criação de documentários, vídeos institucionais e coberturas internacionais." },
 ];
 
 const trajectory = [
@@ -67,8 +68,60 @@ function useInView(threshold = 0.15) {
   return { ref, inView };
 }
 
+function TimelineItem({ item, i, smoothProgress }: any) {
+  const startPoint = i * (1 / trajectory.length);
+  const scale = useTransform(smoothProgress, [startPoint - 0.1, startPoint], [1, 1.3]);
+  const color = useTransform(smoothProgress, [startPoint - 0.1, startPoint], ["rgba(0,212,255,0.2)", "#00D4FF"]);
+  const shadow = useTransform(smoothProgress, [startPoint - 0.1, startPoint], ["none", "0 0 10px rgba(0,212,255,0.8)"]);
+  const bgColor = useTransform(smoothProgress, [startPoint - 0.1, startPoint], ["#080C14", "#00D4FF"]);
+
+  return (
+    <motion.div 
+      className="relative group"
+      initial={{ opacity: 0, x: -20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: "-10%" }}
+      transition={{ duration: 0.5, delay: i * 0.1 }}
+    >
+      <motion.div 
+        className="absolute -left-[2.125rem] top-1.5 w-3 h-3 rounded-full border-2 z-20"
+        style={{
+          borderColor: color,
+          backgroundColor: bgColor,
+          boxShadow: shadow,
+          scale: scale
+        }}
+      />
+      <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4 w-full">
+        <span className="font-mono-tech text-xs text-[#00D4FF] flex-shrink-0 mt-1 opacity-80 group-hover:opacity-100 transition-opacity sm:w-20">{item.year}</span>
+        <div className="flex-1 bg-[#0F1623]/40 border border-[rgba(255,255,255,0.02)] p-5 rounded-lg group-hover:bg-[#0F1623]/80 group-hover:border-[rgba(0,212,255,0.1)] transition-all duration-300 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-[rgba(0,212,255,0.03)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <h4 className={`font-display font-700 text-lg mb-2 relative z-10 ${item.highlight ? "text-[#C9A84C]" : "text-[#F0F4FF]"}`}>
+            {item.event}
+          </h4>
+          <p className="text-[#8892A4] text-sm leading-relaxed relative z-10">{item.desc}</p>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function AboutSection() {
   const { ref, inView } = useInView();
+  
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start 80%", "end 50%"]
+  });
+  
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
+  const lineHeight = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
 
   return (
     <section id="sobre" className="relative py-24 overflow-hidden">
@@ -103,19 +156,19 @@ export default function AboutSection() {
           {/* Bio text */}
           <div className={`lg:col-span-5 space-y-6 transition-all duration-700 ${inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`} style={{ transitionDelay: '200ms' }}>
             <p className="text-[#8892A4] text-lg leading-relaxed">
-              Sou <span className="text-[#F0F4FF] font-medium">Ícaro Albuquerque</span>, Coordenador de Comunicação e Produtor Multimídia com trajetória que une criatividade, estratégia e tecnologia.
+              Sou <span className="text-[#F0F4FF] font-medium">Ícaro Albuquerque</span>, Líder de Comunicação, Branding & Direção Criativa. Meu trabalho conecta visão estratégica de negócios à tecnologia de ponta para entregar comunicação de alto impacto.
             </p>
             <p className="text-[#8892A4] leading-relaxed">
-              Minha experiência abrange desde a produção de vídeos institucionais para <span className="text-[#C9A84C]">Ministérios do Governo Federal</span> até a cobertura da <span className="text-[#C9A84C]">COP28 em Dubai</span> — um percurso que reflete meu compromisso com comunicação de alto impacto.
+              Acredito que marcas fortes se constroem através do equilíbrio entre criatividade ousada e execução impecável. Minha experiência abrange a gestão de comunicação para <span className="text-[#C9A84C]">Ministérios do Governo Federal</span> e captação de recursos na <span className="text-[#C9A84C]">COP28 em Dubai</span>.
             </p>
             <p className="text-[#8892A4] leading-relaxed">
-              Domino ferramentas de <span className="text-[#00D4FF]">Inteligência Artificial</span> aplicadas à comunicação e redes sociais, integrando tecnologia de ponta à narrativa humana para criar conteúdo que engaja, informa e transforma.
+              Sou pioneiro na integração de <span className="text-[#00D4FF]">Inteligência Artificial</span> para melhoria de processos, liderando equipes criativas e arquitetando narrativas corporativas que geram autoridade e resultados financeiros reais, sem abrir mão do padrão estético.
             </p>
 
             {/* AI tools */}
             <div className="pt-4">
               <div className="tech-badge mb-4">
-                <Brain size={10} />
+                <BrainCircuit size={10} />
                 Ferramentas de IA no Workflow
               </div>
               <div className="flex flex-wrap gap-2">
@@ -157,26 +210,19 @@ export default function AboutSection() {
         {/* Trajectory timeline */}
         <div className={`transition-all duration-700 delay-400 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="tech-badge mb-8">Trajetória</div>
-          <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-[#00D4FF] via-[rgba(0,212,255,0.3)] to-transparent" />
+          <div ref={timelineRef} className="relative pb-8">
+            {/* Base faded line */}
+            <div className="absolute left-0 top-0 bottom-0 w-px bg-[rgba(0,212,255,0.1)]" />
+            
+            {/* Animated neon line */}
+            <motion.div 
+              className="absolute left-0 top-0 w-px bg-gradient-to-b from-transparent via-[#00D4FF] to-[#00D4FF] shadow-[0_0_10px_#00D4FF] z-10" 
+              style={{ height: lineHeight }} 
+            />
 
-            <div className="space-y-8 pl-8">
+            <div className="space-y-12 pl-8 pt-2">
               {trajectory.map((item, i) => (
-                <div key={item.year} className="relative group" style={{ transitionDelay: `${i * 100}ms` }}>
-                  {/* Dot */}
-                  <div className={`absolute -left-[2.125rem] top-1 w-3 h-3 border-2 ${item.highlight ? "border-[#00D4FF] bg-[#00D4FF]" : "border-[rgba(0,212,255,0.4)] bg-[#080C14]"} transition-all duration-300 group-hover:border-[#00D4FF] group-hover:bg-[#00D4FF]`} />
-
-                  <div className="flex items-start gap-4">
-                    <span className="font-mono-tech text-xs text-[#00D4FF] flex-shrink-0 mt-1">{item.year}</span>
-                    <div>
-                      <h4 className={`font-display font-700 text-base ${item.highlight ? "text-[#C9A84C]" : "text-[#F0F4FF]"}`}>
-                        {item.event}
-                      </h4>
-                      <p className="text-[#8892A4] text-sm mt-1">{item.desc}</p>
-                    </div>
-                  </div>
-                </div>
+                <TimelineItem key={item.year} item={item} i={i} smoothProgress={smoothProgress} />
               ))}
             </div>
           </div>

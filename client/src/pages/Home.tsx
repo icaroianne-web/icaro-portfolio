@@ -25,8 +25,8 @@ export default function Home() {
       <StatsSection />
       <CasesSection />
       <AboutSection />
-      <ShowreelSection />
       <ServicesSection />
+      <ShowreelSection />
       <ContactSection />
       <Footer />
     </div>
