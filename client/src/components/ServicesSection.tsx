@@ -7,19 +7,19 @@ const SERVICES_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663747808873/Ff
 const services = [
   {
     id: 1,
-    title: "Plano Diretor de Comunicação",
-    subtitle: "Diagnóstico, governança de comunicação e direção para quem precisa comunicar com clareza.",
-    description: "Todo negócio tem prioridades urgentes e não urgentes, além de coisas que vive adiando. O problema não é falta de conteúdo — é falta de direção e governança de comunicação sobre o que fazer primeiro. O Plano Diretor começa com um raio-X de comunicação do seu negócio e termina com um mapa claro: o que comunicar, quando, e por onde.",
+    title: "MASTER PLAN™",
+    subtitle: "Planejamento de Comunicação, Marketing e Conteúdo.",
+    description: "Todo negócio que cresce tem uma coisa em comum: sabe exatamente o que quer dizer, para quem, quando e como. O MASTER PLAN é o plano de comunicação completo — do diagnóstico à execução — construído para quem cansou de improvisar e quer resultados previsíveis.",
     icon: Network,
     color: "#00D4FF",
     fromClass: "from-[#00D4FF]",
     image: "/assets/service_plano_diretor.jpg",
     features: [
       "Raio-X de Comunicação",
-      "Bússola de Prioridade (método UTIO)",
+      "Bússola de Prioridades (UTIO)",
       "Arquitetura Editorial",
       "Calendário Editorial",
-      "Matrizes de E-mail e Landing Pages",
+      "Framework de E-mail Marketing",
       "Consultoria Estratégica"
     ],
     detailsType: "utio",
@@ -27,9 +27,9 @@ const services = [
   },
   {
     id: 2,
-    title: "Marca Viva",
-    subtitle: "Rebranding e construção de identidades corporativas que transmitem confiança.",
-    description: "Não adianta ter um logo bonito se a marca está perdida ou datada. Marca Viva é o produto de reposicionamento de marca perfeito para ressuscitar uma marca, reconstruindo a identidade coerente do seu negócio — do rebranding visual à comunicação digital.",
+    title: "ID CONCEPT™",
+    subtitle: "Branding, Reposicionamento e Comunicação Visual.",
+    description: "Existe uma diferença entre uma marca que tem um logo bonito e uma marca com uma identidade que entra na cabeça das pessoas e não sai. O ID CONCEPT nasce de um conceito. Antes de qualquer cor ou tipografia, existe uma ideia central que define quem você é no mercado — e como isso vai aparecer em absolutamente tudo.",
     icon: Activity,
     color: "#C9A84C",
     fromClass: "from-[#C9A84C]",
@@ -37,8 +37,8 @@ const services = [
     features: [
       "Branding e Rebranding",
       "Identidade Visual e Manual de Marca",
-      "Direção de Arte",
-      "Desenvolvimento de Sites Responsivos",
+      "Direção de Arte e Estética Proprietária",
+      "Posicionamento e Tom de Voz",
       "UX Writing e Copy",
       "SEO On-page"
     ],
@@ -47,20 +47,20 @@ const services = [
   },
   {
     id: 3,
-    title: "Inteligência Artificial (iAI)",
-    subtitle: "Descubra como a IA pode escalar a produtividade da sua equipe.",
-    description: "Me diga o que você precisa que eu te direi qual Inteligência Artificial você precisa comprar ou aprender a utilizar. Criamos fluxos de trabalho, integramos automações e fazemos treinamentos práticos para equipes de comunicação.",
+    title: "IAE™",
+    subtitle: "Inteligência Artificial Estratégica.",
+    description: "A maioria das empresas ainda trata a IA como curiosidade. O IAE implanta inteligência artificial na operação real do seu negócio: nos processos que consomem tempo, na comunicação que deveria ser automática, nos fluxos que travam sua equipe toda semana. Você sai com sistemas funcionando — não com uma apresentação de slides.",
     icon: BrainCircuit,
     color: "#00D4FF",
     fromClass: "from-[#00D4FF]",
     image: "/assets/service_inteligencia_artificial.jpg",
     features: [
-      "Curadoria de Ferramentas de IA",
-      "Automação de Fluxos de Trabalho",
-      "Integração de Sistemas",
-      "Treinamento para Equipes",
-      "Aumento de Produtividade",
-      "Consultoria em Inovação"
+      "Diagnóstico de IA",
+      "Mapeamento de Processos",
+      "Automações e Fluxos de IA",
+      "Agentes GPT Personalizados",
+      "Prompt Engineering",
+      "Capacitação de Equipes"
     ],
     detailsType: "list",
     category: "Inovação & Tech"

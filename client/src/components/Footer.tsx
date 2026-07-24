@@ -25,7 +25,7 @@ export default function Footer() {
 
           {/* Center: tagline */}
           <div className="font-mono-tech text-[0.65rem] text-[#8892A4] text-center">
-            Comunicação · Produção Multimídia · IA
+            MASTER PLAN™ · ID CONCEPT™ · IAE™ · ABSOLUTE CINEMA™
           </div>
 
           {/* Quick links */}

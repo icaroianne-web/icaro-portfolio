@@ -149,7 +149,7 @@ export default function HeroSection() {
               className="animate-fade-in-up flex flex-wrap gap-2"
               style={{ animationDelay: "0.9s", animationFillMode: "both" }}
             >
-              {["Produção Audiovisual", "Estratégia Digital", "IA para Redes Sociais", "Comunicação Institucional", "Showreel & Reels"].map((tag) => (
+              {["MASTER PLAN™", "ID CONCEPT™", "IAE™", "ABSOLUTE CINEMA™", "COP28 · Dubai"].map((tag) => (
                 <span
                   key={tag}
                   className="px-3 py-1 text-xs font-mono-tech text-[#8892A4] border border-[rgba(0,212,255,0.12)] bg-[rgba(0,212,255,0.04)]"
