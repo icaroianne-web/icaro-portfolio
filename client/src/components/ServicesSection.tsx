@@ -47,9 +47,9 @@ const services = [
   },
   {
     id: 3,
-    title: "IAE™",
+    title: "I.A.E!™",
     subtitle: "Inteligência Artificial Estratégica.",
-    description: "A maioria das empresas ainda trata a IA como curiosidade. O IAE implanta inteligência artificial na operação real do seu negócio: nos processos que consomem tempo, na comunicação que deveria ser automática, nos fluxos que travam sua equipe toda semana. Você sai com sistemas funcionando — não com uma apresentação de slides.",
+    description: "A maioria das empresas ainda trata a IA como curiosidade. O I.A.E! implanta inteligência artificial na operação real do seu negócio: nos processos que consomem tempo, na comunicação que deveria ser automática, nos fluxos que travam sua equipe toda semana. Você sai com sistemas funcionando — não com uma apresentação de slides.",
     icon: BrainCircuit,
     color: "#00D4FF",
     fromClass: "from-[#00D4FF]",
@@ -169,8 +169,8 @@ export default function ServicesSection() {
                     <h3 className="font-display font-800 text-xl text-[#F0F4FF] leading-tight mb-1 group-hover:text-white transition-colors duration-200">
                       {svc.title}
                     </h3>
-                    <p className="text-xs font-mono-tech tracking-widest uppercase" style={{ color: svc.color }}>
-                      {svc.category}
+                    <p className="text-xs font-mono-tech tracking-widest uppercase font-semibold mt-1" style={{ color: svc.color }}>
+                      {svc.subtitle}
                     </p>
                   </div>
 
