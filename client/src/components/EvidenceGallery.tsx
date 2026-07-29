@@ -158,7 +158,7 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
   const currentLightboxItem = lightboxIndex !== null ? currentItems[lightboxIndex] : null;
 
   return (
-    <div className="mt-6 pt-4 border-t border-[rgba(0,212,255,0.05)]">
+    <div className="mt-6 pt-4 border-t border-[rgba(0,212,255,0.05)]" onClick={(e) => e.stopPropagation()}>
       {/* Abas — só as que têm conteúdo */}
       {availableTypes.length > 1 && (
         <div className="flex flex-wrap gap-2 mb-4">
@@ -168,12 +168,14 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
             const active = activeTab === t;
             return (
               <button
+                type="button"
                 key={t}
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   setActiveTab(t);
                   setLightboxIndex(null);
                 }}
-                className="inline-flex items-center gap-1.5 font-mono-tech text-[0.6rem] tracking-widest uppercase px-2.5 py-1 border transition-all duration-200"
+                className="inline-flex items-center gap-1.5 font-mono-tech text-[0.6rem] tracking-widest uppercase px-2.5 py-1 border transition-all duration-200 cursor-pointer"
                 style={
                   active
                     ? { color, borderColor: `${color}60`, backgroundColor: `${color}0D` }
@@ -199,13 +201,15 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
         <div className="relative group/carousel">
           {/* Scroll Arrows */}
           <button
-            onClick={() => scroll("left")}
+            type="button"
+            onClick={(e) => { e.stopPropagation(); scroll("left"); }}
             className="absolute left-1 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/80 border border-[rgba(0,212,255,0.15)] flex items-center justify-center text-[#8892A4] hover:text-[#00D4FF] opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300"
           >
             <ChevronLeft size={16} />
           </button>
           <button
-            onClick={() => scroll("right")}
+            type="button"
+            onClick={(e) => { e.stopPropagation(); scroll("right"); }}
             className="absolute right-1 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/80 border border-[rgba(0,212,255,0.15)] flex items-center justify-center text-[#8892A4] hover:text-[#00D4FF] opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300"
           >
             <ChevronRight size={16} />
@@ -219,7 +223,7 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
               <div
                 key={idx}
                 className="relative flex-none w-[240px] aspect-video bg-[#0F1623] border border-[rgba(0,212,255,0.1)] group/img cursor-zoom-in snap-start overflow-hidden rounded"
-                onClick={() => setLightboxIndex(idx)}
+                onClick={(e) => { e.stopPropagation(); setLightboxIndex(idx); }}
               >
                 <img
                   src={mat.url}
@@ -244,13 +248,15 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
         <div className="relative group/carousel">
           {/* Scroll Arrows */}
           <button
-            onClick={() => scroll("left")}
+            type="button"
+            onClick={(e) => { e.stopPropagation(); scroll("left"); }}
             className="absolute left-1 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/80 border border-[rgba(0,212,255,0.15)] flex items-center justify-center text-[#8892A4] hover:text-[#00D4FF] opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300"
           >
             <ChevronLeft size={16} />
           </button>
           <button
-            onClick={() => scroll("right")}
+            type="button"
+            onClick={(e) => { e.stopPropagation(); scroll("right"); }}
             className="absolute right-1 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/80 border border-[rgba(0,212,255,0.15)] flex items-center justify-center text-[#8892A4] hover:text-[#00D4FF] opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300"
           >
             <ChevronRight size={16} />
@@ -264,7 +270,7 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
               <div
                 key={idx}
                 className="relative flex-none w-[200px] aspect-[9/16] bg-[#0F1623] border border-[rgba(0,212,255,0.1)] group/img cursor-pointer snap-start overflow-hidden rounded"
-                onClick={() => setLightboxIndex(idx)}
+                onClick={(e) => { e.stopPropagation(); setLightboxIndex(idx); }}
               >
                 <img
                   src={ba.after}
@@ -372,12 +378,13 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
       {lightboxIndex !== null && currentLightboxItem && (
         <div
           className="fixed inset-0 bg-black/95 backdrop-blur-md z-[999] flex flex-col items-center justify-center p-4 animate-fade-in"
-          onClick={() => setLightboxIndex(null)}
+          onClick={(e) => { e.stopPropagation(); setLightboxIndex(null); }}
         >
           {/* Close Button */}
           <button
-            className="absolute top-6 right-6 text-[#8892A4] hover:text-[#00D4FF] bg-[#0F1623]/80 p-2 rounded-full border border-[rgba(0,212,255,0.1)] transition-colors z-50"
-            onClick={() => setLightboxIndex(null)}
+            type="button"
+            className="absolute top-6 right-6 text-[#8892A4] hover:text-[#00D4FF] bg-[#0F1623]/80 p-2 rounded-full border border-[rgba(0,212,255,0.1)] transition-colors z-50 cursor-pointer"
+            onClick={(e) => { e.stopPropagation(); setLightboxIndex(null); }}
           >
             <X size={24} />
           </button>

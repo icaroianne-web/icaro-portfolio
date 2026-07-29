@@ -265,7 +265,7 @@ export default function CasesSection() {
 
                   <div
                     className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                      activeCase === item.id ? "max-h-[1600px] opacity-100 pt-4 border-t border-[rgba(0,212,255,0.08)]" : "max-h-0 opacity-0"
+                      activeCase === item.id ? "max-h-[6000px] opacity-100 pt-4 border-t border-[rgba(0,212,255,0.08)]" : "max-h-0 opacity-0"
                     }`}
                     onClick={(e) => e.stopPropagation()}
                   >
