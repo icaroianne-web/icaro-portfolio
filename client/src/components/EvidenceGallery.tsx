@@ -32,7 +32,8 @@ export type PressEvidence = {
 
 export type TropicalizacaoEvidence = {
   type: "tropicalizacao";
-  url: string;
+  before: string;
+  after: string;
   caption: string;
 };
 
@@ -60,7 +61,7 @@ function toEmbedUrl(url: string, provider?: "youtube" | "vimeo" | "file") {
   return ytId ? `https://www.youtube.com/embed/${ytId}` : url;
 }
 
-function BeforeAfterSlider({ item, color }: { item: BeforeAfterEvidence; color: string }) {
+function BeforeAfterSlider({ item, color, hideWatermark }: { item: BeforeAfterEvidence | TropicalizacaoEvidence; color: string; hideWatermark?: boolean }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [pos, setPos] = useState(50); // % da posição do divisor no eixo Y
 
@@ -91,17 +92,21 @@ function BeforeAfterSlider({ item, color }: { item: BeforeAfterEvidence; color: 
       {/* Depois (base) */}
       <img src={item.after} alt="Depois" className="absolute inset-0 w-full h-full object-cover" draggable={false} />
       {/* Watermark Depois */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <span className="text-[12vh] sm:text-[14vh] font-display font-black text-white/25 uppercase tracking-tighter drop-shadow-2xl -rotate-90 translate-x-12 sm:translate-x-16">Depois</span>
-      </div>
+      {!hideWatermark && (
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <span className="text-[12vh] sm:text-[14vh] font-display font-black text-white/25 uppercase tracking-tighter drop-shadow-2xl -rotate-90 translate-x-12 sm:translate-x-16">Depois</span>
+        </div>
+      )}
 
       {/* Antes (recortado pelo clip-path de cima para baixo) */}
       <div className="absolute inset-0 overflow-hidden" style={{ clipPath: `inset(0 0 ${100 - pos}% 0)` }}>
         <img src={item.before} alt="Antes" className="absolute inset-0 w-full h-full object-cover" draggable={false} />
         {/* Watermark Antes (dentro do clip-path, logo cortado perfeitamente) */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <span className="text-[12vh] sm:text-[14vh] font-display font-black text-white/25 uppercase tracking-tighter drop-shadow-2xl -rotate-90 -translate-x-12 sm:-translate-x-16">Antes</span>
-        </div>
+        {!hideWatermark && (
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <span className="text-[12vh] sm:text-[14vh] font-display font-black text-white/25 uppercase tracking-tighter drop-shadow-2xl -rotate-90 -translate-x-12 sm:-translate-x-16">Antes</span>
+          </div>
+        )}
       </div>
 
       {/* Divisor Horizontal */}
@@ -189,8 +194,8 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
         </strong>
       )}
 
-      {/* Conteúdo: IMAGE / TROPICALIZACAO */}
-      {(activeTab === "image" || activeTab === "tropicalizacao") && (
+      {/* Conteúdo: IMAGE */}
+      {activeTab === "image" && (
         <div className="relative group/carousel">
           {/* Scroll Arrows */}
           <button
@@ -210,7 +215,7 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
             ref={scrollContainerRef}
             className="flex gap-3 overflow-x-auto pb-3 scrollbar-thin snap-x overflow-y-hidden scroll-smooth"
           >
-            {(currentItems as (ImageEvidence | TropicalizacaoEvidence)[]).map((mat, idx) => (
+            {(currentItems as ImageEvidence[]).map((mat, idx) => (
               <div
                 key={idx}
                 className="relative flex-none w-[240px] aspect-video bg-[#0F1623] border border-[rgba(0,212,255,0.1)] group/img cursor-zoom-in snap-start overflow-hidden rounded"
@@ -234,8 +239,8 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
         </div>
       )}
 
-      {/* Conteúdo: BEFORE / AFTER */}
-      {activeTab === "before_after" && (
+      {/* Conteúdo: BEFORE / AFTER / TROPICALIZACAO */}
+      {(activeTab === "before_after" || activeTab === "tropicalizacao") && (
         <div className="relative group/carousel">
           {/* Scroll Arrows */}
           <button
@@ -255,7 +260,7 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
             ref={scrollContainerRef}
             className="flex gap-3 overflow-x-auto pb-3 scrollbar-thin snap-x overflow-y-hidden scroll-smooth"
           >
-            {(currentItems as BeforeAfterEvidence[]).map((ba, idx) => (
+            {(currentItems as (BeforeAfterEvidence | TropicalizacaoEvidence)[]).map((ba, idx) => (
               <div
                 key={idx}
                 className="relative flex-none w-[200px] aspect-[9/16] bg-[#0F1623] border border-[rgba(0,212,255,0.1)] group/img cursor-pointer snap-start overflow-hidden rounded"
@@ -380,7 +385,7 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
           {/* Media Container */}
           <div
             className={`relative w-full max-w-5xl flex items-center justify-center rounded overflow-hidden shadow-2xl ${
-              currentLightboxItem.type === "before_after" ? "" : "aspect-video border border-[rgba(0,212,255,0.2)] bg-black"
+              currentLightboxItem.type === "before_after" || currentLightboxItem.type === "tropicalizacao" ? "" : "aspect-video border border-[rgba(0,212,255,0.2)] bg-black"
             }`}
             onClick={(e) => e.stopPropagation()}
           >
@@ -392,7 +397,7 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
               <ChevronLeft size={24} />
             </button>
 
-            {currentLightboxItem.type === "image" || currentLightboxItem.type === "tropicalizacao" ? (
+            {currentLightboxItem.type === "image" ? (
               <img
                 src={currentLightboxItem.url}
                 alt={currentLightboxItem.caption}
@@ -412,9 +417,9 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
                   />
                 )}
               </div>
-            ) : currentLightboxItem.type === "before_after" ? (
+            ) : currentLightboxItem.type === "before_after" || currentLightboxItem.type === "tropicalizacao" ? (
               <div className="w-full h-full flex items-center justify-center p-4">
-                <BeforeAfterSlider item={currentLightboxItem} color={color} />
+                <BeforeAfterSlider item={currentLightboxItem} color={color} hideWatermark={currentLightboxItem.type === "tropicalizacao"} />
               </div>
             ) : null}
 

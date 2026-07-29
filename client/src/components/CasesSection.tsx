@@ -134,22 +134,20 @@ const cases = [
       },
       {
         type: "tropicalizacao",
-        url: "/assets/finamac_rebranding/carrossel_eng1.png",
-        caption: "Mercado EUA: Post Original em Inglês"
-      },
-      {
-        type: "tropicalizacao",
-        url: "/assets/finamac_rebranding/carrossel_pt1.png",
+        before: "/assets/finamac_rebranding/carrossel_eng1.png",
+        after: "/assets/finamac_rebranding/carrossel_pt1.png",
         caption: "Tropicalização: Adaptação BR (Capa)"
       },
       {
         type: "tropicalizacao",
-        url: "/assets/finamac_rebranding/carrossel_pt2.png",
+        before: "/assets/finamac_rebranding/carrossel_eng1.png",
+        after: "/assets/finamac_rebranding/carrossel_pt2.png",
         caption: "Tropicalização: Adaptação BR (Dados locais)"
       },
       {
         type: "tropicalizacao",
-        url: "/assets/finamac_rebranding/carrossel_pt3.png",
+        before: "/assets/finamac_rebranding/carrossel_eng1.png",
+        after: "/assets/finamac_rebranding/carrossel_pt3.png",
         caption: "Tropicalização: Adaptação BR (Fechamento)"
       },
       { 
