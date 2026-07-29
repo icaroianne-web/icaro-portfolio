@@ -83,10 +83,20 @@ function BeforeAfterSlider({ item, color }: { item: BeforeAfterEvidence; color: 
     >
       {/* Depois (base) */}
       <img src={item.after} alt="Depois" className="absolute inset-0 w-full h-full object-cover" draggable={false} />
+      {/* Watermark Depois */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <span className="text-[20vw] sm:text-[150px] font-display font-black text-white/15 uppercase tracking-tighter drop-shadow-xl translate-y-24">Depois</span>
+      </div>
+
       {/* Antes (recortado pelo clip-path de cima para baixo) */}
       <div className="absolute inset-0 overflow-hidden" style={{ clipPath: `inset(0 0 ${100 - pos}% 0)` }}>
         <img src={item.before} alt="Antes" className="absolute inset-0 w-full h-full object-cover" draggable={false} />
+        {/* Watermark Antes (dentro do clip-path, logo cortado perfeitamente) */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <span className="text-[20vw] sm:text-[150px] font-display font-black text-white/15 uppercase tracking-tighter drop-shadow-xl -translate-y-24">Antes</span>
+        </div>
       </div>
+
       {/* Divisor Horizontal */}
       <div className="absolute left-0 right-0 h-[2px]" style={{ top: `${pos}%`, backgroundColor: color }}>
         <div
@@ -96,9 +106,6 @@ function BeforeAfterSlider({ item, color }: { item: BeforeAfterEvidence; color: 
           <SlidersHorizontal size={14} style={{ color, transform: 'rotate(90deg)' }} />
         </div>
       </div>
-      {/* Labels */}
-      <span className="absolute top-3 left-1/2 -translate-x-1/2 font-mono-tech text-[0.6rem] uppercase tracking-widest px-3 py-1 bg-black/60 text-[#F0F4FF] rounded backdrop-blur-sm">Antes</span>
-      <span className="absolute bottom-3 left-1/2 -translate-x-1/2 font-mono-tech text-[0.6rem] uppercase tracking-widest px-3 py-1 bg-black/60 text-[#F0F4FF] rounded backdrop-blur-sm">Depois</span>
     </div>
   );
 }
