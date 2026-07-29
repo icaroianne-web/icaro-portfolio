@@ -55,53 +55,50 @@ function toEmbedUrl(url: string, provider?: "youtube" | "vimeo" | "file") {
 
 function BeforeAfterSlider({ item, color }: { item: BeforeAfterEvidence; color: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [pos, setPos] = useState(50); // % da posição do divisor
+  const [pos, setPos] = useState(50); // % da posição do divisor no eixo Y
 
-  const updateFromClientX = useCallback((clientX: number) => {
+  const updateFromClientY = useCallback((clientY: number) => {
     const el = containerRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
-    const pct = ((clientX - rect.left) / rect.width) * 100;
+    const pct = ((clientY - rect.top) / rect.height) * 100;
     setPos(Math.min(100, Math.max(0, pct)));
   }, []);
 
   const onPointerDown = (e: React.PointerEvent) => {
     (e.target as Element).setPointerCapture(e.pointerId);
-    updateFromClientX(e.clientX);
+    updateFromClientY(e.clientY);
   };
   const onPointerMove = (e: React.PointerEvent) => {
     if (e.buttons !== 1) return;
-    updateFromClientX(e.clientX);
+    updateFromClientY(e.clientY);
   };
 
   return (
-    <div className="space-y-2">
-      <div
-        ref={containerRef}
-        className="relative w-full aspect-video overflow-hidden select-none cursor-ew-resize border border-[rgba(0,212,255,0.1)]"
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-      >
-        {/* Depois (base) */}
-        <img src={item.after} alt="Depois" className="absolute inset-0 w-full h-full object-cover" draggable={false} />
-        {/* Antes (recortado pelo clip-path) */}
-        <div className="absolute inset-0 overflow-hidden" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
-          <img src={item.before} alt="Antes" className="absolute inset-0 w-full h-full object-cover" draggable={false} />
-        </div>
-        {/* Divisor */}
-        <div className="absolute top-0 bottom-0 w-[2px]" style={{ left: `${pos}%`, backgroundColor: color }}>
-          <div
-            className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-7 h-7 rounded-full flex items-center justify-center border-2"
-            style={{ borderColor: color, backgroundColor: "#0F1623" }}
-          >
-            <SlidersHorizontal size={12} style={{ color }} />
-          </div>
-        </div>
-        {/* Labels */}
-        <span className="absolute top-2 left-2 font-mono-tech text-[0.6rem] uppercase tracking-widest px-2 py-0.5 bg-black/60 text-[#F0F4FF]">Antes</span>
-        <span className="absolute top-2 right-2 font-mono-tech text-[0.6rem] uppercase tracking-widest px-2 py-0.5 bg-black/60 text-[#F0F4FF]">Depois</span>
+    <div
+      ref={containerRef}
+      className="relative h-[80vh] max-h-[800px] aspect-[9/16] overflow-hidden select-none cursor-ns-resize border border-[rgba(0,212,255,0.2)] bg-[#0F1623] mx-auto rounded shadow-2xl"
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+    >
+      {/* Depois (base) */}
+      <img src={item.after} alt="Depois" className="absolute inset-0 w-full h-full object-cover" draggable={false} />
+      {/* Antes (recortado pelo clip-path de cima para baixo) */}
+      <div className="absolute inset-0 overflow-hidden" style={{ clipPath: `inset(0 0 ${100 - pos}% 0)` }}>
+        <img src={item.before} alt="Antes" className="absolute inset-0 w-full h-full object-cover" draggable={false} />
       </div>
-      <p className="text-[0.65rem] text-[#8892A4] font-outfit">{item.caption}</p>
+      {/* Divisor Horizontal */}
+      <div className="absolute left-0 right-0 h-[2px]" style={{ top: `${pos}%`, backgroundColor: color }}>
+        <div
+          className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center border-2"
+          style={{ borderColor: color, backgroundColor: "#0F1623" }}
+        >
+          <SlidersHorizontal size={14} style={{ color, transform: 'rotate(90deg)' }} />
+        </div>
+      </div>
+      {/* Labels */}
+      <span className="absolute top-3 left-1/2 -translate-x-1/2 font-mono-tech text-[0.6rem] uppercase tracking-widest px-3 py-1 bg-black/60 text-[#F0F4FF] rounded backdrop-blur-sm">Antes</span>
+      <span className="absolute bottom-3 left-1/2 -translate-x-1/2 font-mono-tech text-[0.6rem] uppercase tracking-widest px-3 py-1 bg-black/60 text-[#F0F4FF] rounded backdrop-blur-sm">Depois</span>
     </div>
   );
 }
@@ -225,10 +222,57 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
 
       {/* Conteúdo: BEFORE / AFTER */}
       {activeTab === "before_after" && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {(currentItems as BeforeAfterEvidence[]).map((item, idx) => (
-            <BeforeAfterSlider key={idx} item={item} color={color} />
-          ))}
+        <div className="relative group/carousel">
+          {/* Scroll Arrows */}
+          <button
+            onClick={() => scroll("left")}
+            className="absolute left-1 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/80 border border-[rgba(0,212,255,0.15)] flex items-center justify-center text-[#8892A4] hover:text-[#00D4FF] opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300"
+          >
+            <ChevronLeft size={16} />
+          </button>
+          <button
+            onClick={() => scroll("right")}
+            className="absolute right-1 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/80 border border-[rgba(0,212,255,0.15)] flex items-center justify-center text-[#8892A4] hover:text-[#00D4FF] opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300"
+          >
+            <ChevronRight size={16} />
+          </button>
+
+          <div
+            ref={scrollContainerRef}
+            className="flex gap-3 overflow-x-auto pb-3 scrollbar-thin snap-x overflow-y-hidden scroll-smooth"
+          >
+            {(currentItems as BeforeAfterEvidence[]).map((ba, idx) => (
+              <div
+                key={idx}
+                className="relative flex-none w-[200px] aspect-[9/16] bg-[#0F1623] border border-[rgba(0,212,255,0.1)] group/img cursor-pointer snap-start overflow-hidden rounded"
+                onClick={() => setLightboxIndex(idx)}
+              >
+                <img
+                  src={ba.after}
+                  alt={ba.caption}
+                  className="absolute inset-0 w-full h-full object-cover opacity-85 group-hover/img:opacity-100 transition-opacity duration-300"
+                  crossOrigin="anonymous"
+                />
+                <div className="absolute inset-0 overflow-hidden" style={{ clipPath: 'polygon(0 0, 100% 0, 0 100%)' }}>
+                  <img
+                    src={ba.before}
+                    alt={ba.caption}
+                    className="absolute inset-0 w-full h-full object-cover opacity-85 group-hover/img:opacity-100 transition-opacity duration-300"
+                    crossOrigin="anonymous"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+                  <div className="flex flex-col items-center gap-2">
+                    <Eye size={20} className="text-[#00D4FF]" />
+                    <span className="font-mono-tech text-[0.65rem] text-[#F0F4FF] tracking-widest bg-black/80 px-2.5 py-1 rounded border border-[rgba(0,212,255,0.2)]">Interagir</span>
+                  </div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 bg-black/75 px-2 py-1.5 text-[0.55rem] text-[#F0F4FF] font-mono-tech truncate border-t border-[rgba(0,212,255,0.05)] z-10">
+                  {ba.caption}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       )}
 
@@ -321,7 +365,9 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
 
           {/* Media Container */}
           <div
-            className="relative w-full max-w-5xl aspect-video flex items-center justify-center rounded overflow-hidden border border-[rgba(0,212,255,0.2)] shadow-2xl bg-black"
+            className={`relative w-full max-w-5xl flex items-center justify-center rounded overflow-hidden shadow-2xl ${
+              currentLightboxItem.type === "before_after" ? "" : "aspect-video border border-[rgba(0,212,255,0.2)] bg-black"
+            }`}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Direct Side Navigation for Desktop */}
@@ -351,6 +397,10 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
                     allowFullScreen
                   />
                 )}
+              </div>
+            ) : currentLightboxItem.type === "before_after" ? (
+              <div className="w-full h-full flex items-center justify-center p-4">
+                <BeforeAfterSlider item={currentLightboxItem} color={color} />
               </div>
             ) : null}
 
