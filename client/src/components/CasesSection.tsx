@@ -206,14 +206,16 @@ export default function CasesSection() {
           {cases.map((item, i) => (
             <div
               key={item.id}
-              className={`case-card group cursor-pointer transition-all duration-500 flex flex-col justify-between overflow-hidden ${
+              className={`case-card group transition-all duration-500 flex flex-col justify-between overflow-hidden ${
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: `${i * 80}ms` }}
-              onClick={() => setActiveCase(activeCase === item.id ? null : item.id)}
             >
               <div>
-                <div className="relative h-48 overflow-hidden border-b border-[rgba(0,212,255,0.08)] bg-[#0F1623]">
+                <div 
+                  className="relative h-48 overflow-hidden border-b border-[rgba(0,212,255,0.08)] bg-[#0F1623] cursor-pointer"
+                  onClick={() => setActiveCase(activeCase === item.id ? null : item.id)}
+                >
                   <img
                     src={item.image}
                     alt={item.title}
@@ -223,32 +225,41 @@ export default function CasesSection() {
                 </div>
 
                 <div className="p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="font-mono-tech text-[0.6rem] uppercase tracking-widest" style={{ color: item.color }}>
-                      {item.tag}
-                    </span>
-                    <div className="font-mono-tech text-[0.65rem] text-[#8892A4]">{item.year}</div>
-                  </div>
-
-                  <div className="flex items-center gap-3 mb-4">
-                    <div
-                      className="w-10 h-10 flex items-center justify-center border transition-colors duration-300"
-                      style={{
-                        borderColor: `${item.color}30`,
-                        backgroundColor: `${item.color}08`,
-                      }}
-                    >
-                      <item.icon size={18} style={{ color: item.color }} />
+                  <div 
+                    className="cursor-pointer"
+                    onClick={() => setActiveCase(activeCase === item.id ? null : item.id)}
+                  >
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="font-mono-tech text-[0.6rem] uppercase tracking-widest" style={{ color: item.color }}>
+                        {item.tag}
+                      </span>
+                      <div className="font-mono-tech text-[0.65rem] text-[#8892A4]">{item.year}</div>
                     </div>
-                    <div>
-                      <h3 className="font-display font-800 text-base text-[#F0F4FF] leading-tight group-hover:text-[#00D4FF] transition-colors duration-200">{item.title}</h3>
-                    </div>
-                  </div>
 
-                  <p className="text-[#8892A4] text-xs mb-3 font-outfit leading-relaxed">{item.subtitle}</p>
+                    <div className="flex items-center gap-3 mb-4">
+                      <div
+                        className="w-10 h-10 flex items-center justify-center border transition-colors duration-300"
+                        style={{
+                          borderColor: `${item.color}30`,
+                          backgroundColor: `${item.color}08`,
+                        }}
+                      >
+                        <item.icon size={18} style={{ color: item.color }} />
+                      </div>
+                      <div>
+                        <h3 className="font-display font-800 text-base text-[#F0F4FF] leading-tight group-hover:text-[#00D4FF] transition-colors duration-200">{item.title}</h3>
+                      </div>
+                    </div>
+
+                    <p className="text-[#8892A4] text-xs mb-3 font-outfit leading-relaxed">{item.subtitle}</p>
+                  </div>
 
                   <div 
-                    className="inline-flex items-center gap-1.5 font-mono-tech text-[0.6rem] tracking-widest uppercase mb-4 px-2.5 py-1 bg-[rgba(0,212,255,0.02)] border border-[rgba(0,212,255,0.12)] transition-all duration-300 text-[#00D4FF] group-hover:text-[#FF6B35] group-hover:border-[#FF6B35]/40"
+                    className="inline-flex items-center gap-1.5 font-mono-tech text-[0.6rem] tracking-widest uppercase mb-4 px-2.5 py-1 bg-[rgba(0,212,255,0.02)] border border-[rgba(0,212,255,0.12)] transition-all duration-300 text-[#00D4FF] group-hover:text-[#FF6B35] group-hover:border-[#FF6B35]/40 cursor-pointer"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveCase(activeCase === item.id ? null : item.id);
+                    }}
                   >
                     {activeCase === item.id ? (
                       <>
