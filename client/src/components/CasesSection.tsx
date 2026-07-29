@@ -133,22 +133,22 @@ const cases = [
         caption: "Rebranding: Artes para Divulgação de Cursos (Açaí)"
       },
       {
-        type: "image",
+        type: "tropicalizacao",
         url: "/assets/finamac_rebranding/carrossel_eng1.png",
         caption: "Mercado EUA: Post Original em Inglês"
       },
       {
-        type: "image",
+        type: "tropicalizacao",
         url: "/assets/finamac_rebranding/carrossel_pt1.png",
         caption: "Tropicalização: Adaptação BR (Capa)"
       },
       {
-        type: "image",
+        type: "tropicalizacao",
         url: "/assets/finamac_rebranding/carrossel_pt2.png",
         caption: "Tropicalização: Adaptação BR (Dados locais)"
       },
       {
-        type: "image",
+        type: "tropicalizacao",
         url: "/assets/finamac_rebranding/carrossel_pt3.png",
         caption: "Tropicalização: Adaptação BR (Fechamento)"
       },

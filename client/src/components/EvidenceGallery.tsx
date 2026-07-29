@@ -6,7 +6,7 @@
    ============================================================ */
 
 import { useState, useRef, useCallback } from "react";
-import { Image as ImageIcon, PlayCircle, SlidersHorizontal, Newspaper, Eye, X, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
+import { Image as ImageIcon, PlayCircle, SlidersHorizontal, Newspaper, Eye, X, ExternalLink, ChevronLeft, ChevronRight, Globe } from "lucide-react";
 
 export type ImageEvidence = { type: "image"; url: string; caption: string };
 export type VideoEvidence = {
@@ -30,17 +30,24 @@ export type PressEvidence = {
   date?: string;
 };
 
-export type Evidence = ImageEvidence | VideoEvidence | BeforeAfterEvidence | PressEvidence;
+export type TropicalizacaoEvidence = {
+  type: "tropicalizacao";
+  url: string;
+  caption: string;
+};
 
-const TAB_META: Record<Evidence["type"], { label: string; icon: typeof ImageIcon }> = {
+export type Evidence = ImageEvidence | VideoEvidence | BeforeAfterEvidence | PressEvidence | TropicalizacaoEvidence;
+
+const TAB_META: Record<Evidence["type"], { label: string; icon: React.ElementType }> = {
   image: { label: "Materiais Visuais", icon: ImageIcon },
   video: { label: "Vídeos", icon: PlayCircle },
   before_after: { label: "Antes / Depois", icon: SlidersHorizontal },
   press: { label: "Imprensa", icon: Newspaper },
+  tropicalizacao: { label: "Tropicalização", icon: Globe },
 };
 
 // Ordem de exibição das abas quando presentes
-const TAB_ORDER: Evidence["type"][] = ["before_after", "image", "video", "press"];
+const TAB_ORDER: Evidence["type"][] = ["before_after", "tropicalizacao", "image", "video", "press"];
 
 function toEmbedUrl(url: string, provider?: "youtube" | "vimeo" | "file") {
   if (provider === "vimeo") {
@@ -85,7 +92,7 @@ function BeforeAfterSlider({ item, color }: { item: BeforeAfterEvidence; color: 
       <img src={item.after} alt="Depois" className="absolute inset-0 w-full h-full object-cover" draggable={false} />
       {/* Watermark Depois */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <span className="text-[20vw] sm:text-[150px] font-display font-black text-white/15 uppercase tracking-tighter drop-shadow-xl translate-y-24">Depois</span>
+        <span className="text-[12vh] sm:text-[14vh] font-display font-black text-white/25 uppercase tracking-tighter drop-shadow-2xl -rotate-90 translate-x-12 sm:translate-x-16">Depois</span>
       </div>
 
       {/* Antes (recortado pelo clip-path de cima para baixo) */}
@@ -93,7 +100,7 @@ function BeforeAfterSlider({ item, color }: { item: BeforeAfterEvidence; color: 
         <img src={item.before} alt="Antes" className="absolute inset-0 w-full h-full object-cover" draggable={false} />
         {/* Watermark Antes (dentro do clip-path, logo cortado perfeitamente) */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <span className="text-[20vw] sm:text-[150px] font-display font-black text-white/15 uppercase tracking-tighter drop-shadow-xl -translate-y-24">Antes</span>
+          <span className="text-[12vh] sm:text-[14vh] font-display font-black text-white/25 uppercase tracking-tighter drop-shadow-2xl -rotate-90 -translate-x-12 sm:-translate-x-16">Antes</span>
         </div>
       </div>
 
@@ -182,8 +189,8 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
         </strong>
       )}
 
-      {/* Conteúdo: IMAGE */}
-      {activeTab === "image" && (
+      {/* Conteúdo: IMAGE / TROPICALIZACAO */}
+      {(activeTab === "image" || activeTab === "tropicalizacao") && (
         <div className="relative group/carousel">
           {/* Scroll Arrows */}
           <button
@@ -203,7 +210,7 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
             ref={scrollContainerRef}
             className="flex gap-3 overflow-x-auto pb-3 scrollbar-thin snap-x overflow-y-hidden scroll-smooth"
           >
-            {(currentItems as ImageEvidence[]).map((mat, idx) => (
+            {(currentItems as (ImageEvidence | TropicalizacaoEvidence)[]).map((mat, idx) => (
               <div
                 key={idx}
                 className="relative flex-none w-[240px] aspect-video bg-[#0F1623] border border-[rgba(0,212,255,0.1)] group/img cursor-zoom-in snap-start overflow-hidden rounded"
@@ -385,7 +392,7 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
               <ChevronLeft size={24} />
             </button>
 
-            {currentLightboxItem.type === "image" ? (
+            {currentLightboxItem.type === "image" || currentLightboxItem.type === "tropicalizacao" ? (
               <img
                 src={currentLightboxItem.url}
                 alt={currentLightboxItem.caption}
