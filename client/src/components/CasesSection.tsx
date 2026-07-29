@@ -101,6 +101,7 @@ const cases = [
       "Governança de Comunicação: Estruturei fluxos ágeis entre Engenharia, Marketing e Comercial. Implementei rituais de aprovação e uma arquitetura editorial robusta para unificar a voz da empresa.",
       "Conceito Ice Tech: Criei do zero uma identidade unindo a pureza do gelo à performance tecnológica. Inspirados na estética 'Tesla', transformamos as máquinas em objetos de desejo.",
       "Choque Audiovisual: Lançamos o TikTok com receitas virais e criamos o quadro 'Pessoas que são Máquinas de Sucesso' no YouTube, transmitindo também workshops ao vivo.",
+      "Tropicalização de Conteúdo: Adaptação estratégica de campanhas criadas para o mercado dos EUA à realidade do Brasil, ajustando cultura, imagens e copy para maximizar o engajamento local.",
       "Máquina de Aquisição: Como resultado da nova base de conteúdo e processos, estruturei campanhas de tráfego (Meta/Google Ads) integradas ao HubSpot para atrair leads."
     ],
     impactos: [
@@ -113,7 +114,49 @@ const cases = [
     color: "#FF6B35",
     image: "/assets/finamac_header.jpg",
     evidences: [
-      { type: "image", url: "/assets/finamac_header.jpg", caption: "Lançamento 2026: Equipamento Flash (Sorvete Americano)" }
+      {
+        type: "before_after",
+        before: "/assets/finamac_rebranding/curso_gelato_antes.png",
+        after: "/assets/finamac_rebranding/curso_gelato_depois.png",
+        caption: "Rebranding: Identidade Visual dos Cursos de Gelato"
+      },
+      {
+        type: "before_after",
+        before: "/assets/finamac_rebranding/feed_antes.png",
+        after: "/assets/finamac_rebranding/feed_depois.png",
+        caption: "Rebranding: Padronização e Estética do Feed"
+      },
+      {
+        type: "before_after",
+        before: "/assets/finamac_rebranding/curso_acai_antes.png",
+        after: "/assets/finamac_rebranding/curso_acai_depois.png",
+        caption: "Rebranding: Artes para Divulgação de Cursos (Açaí)"
+      },
+      {
+        type: "image",
+        url: "/assets/finamac_rebranding/carrossel_eng1.png",
+        caption: "Mercado EUA: Post Original em Inglês"
+      },
+      {
+        type: "image",
+        url: "/assets/finamac_rebranding/carrossel_pt1.png",
+        caption: "Tropicalização: Adaptação BR (Capa)"
+      },
+      {
+        type: "image",
+        url: "/assets/finamac_rebranding/carrossel_pt2.png",
+        caption: "Tropicalização: Adaptação BR (Dados locais)"
+      },
+      {
+        type: "image",
+        url: "/assets/finamac_rebranding/carrossel_pt3.png",
+        caption: "Tropicalização: Adaptação BR (Fechamento)"
+      },
+      { 
+        type: "image", 
+        url: "/assets/finamac_header.jpg", 
+        caption: "Lançamento 2026: Equipamento Flash (Sorvete Americano)" 
+      }
     ] as Evidence[]
   }
 ];
