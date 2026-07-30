@@ -138,19 +138,19 @@ const cases = [
         type: "before_after",
         before: "/assets/finamac_rebranding/carrossel_eng1.png",
         after: "/assets/finamac_rebranding/carrossel_pt1.png",
-        caption: "Tropicalização: EUA (Original) x BR (Capa Adaptada)"
+        caption: "Tropicalização: EUA (Slide 1) x BR (Capa Adaptada)"
       },
       {
         type: "before_after",
-        before: "/assets/finamac_rebranding/carrossel_eng1.png",
+        before: "/assets/finamac_rebranding/carrossel_eng2.png",
         after: "/assets/finamac_rebranding/carrossel_pt2.png",
-        caption: "Tropicalização: EUA (Original) x BR (Dados Regionais)"
+        caption: "Tropicalização: EUA (Slide 2) x BR (Dados Regionais)"
       },
       {
         type: "before_after",
-        before: "/assets/finamac_rebranding/carrossel_eng1.png",
+        before: "/assets/finamac_rebranding/carrossel_eng3.png",
         after: "/assets/finamac_rebranding/carrossel_pt3.png",
-        caption: "Tropicalização: EUA (Original) x BR (Fechamento)"
+        caption: "Tropicalização: EUA (Slide 3) x BR (Fechamento)"
       },
       { 
         type: "image", 
