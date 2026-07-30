@@ -30,25 +30,17 @@ export type PressEvidence = {
   date?: string;
 };
 
-export type TropicalizacaoEvidence = {
-  type: "tropicalizacao";
-  before: string;
-  after: string;
-  caption: string;
-};
-
-export type Evidence = ImageEvidence | VideoEvidence | BeforeAfterEvidence | PressEvidence | TropicalizacaoEvidence;
+export type Evidence = ImageEvidence | VideoEvidence | BeforeAfterEvidence | PressEvidence;
 
 const TAB_META: Record<Evidence["type"], { label: string; icon: React.ElementType }> = {
   image: { label: "Materiais Visuais", icon: ImageIcon },
   video: { label: "Vídeos", icon: PlayCircle },
   before_after: { label: "Antes / Depois", icon: SlidersHorizontal },
   press: { label: "Imprensa", icon: Newspaper },
-  tropicalizacao: { label: "Tropicalização", icon: Globe },
 };
 
 // Ordem de exibição das abas quando presentes
-const TAB_ORDER: Evidence["type"][] = ["before_after", "tropicalizacao", "image", "video", "press"];
+const TAB_ORDER: Evidence["type"][] = ["before_after", "image", "video", "press"];
 
 function toEmbedUrl(url: string, provider?: "youtube" | "vimeo" | "file") {
   if (provider === "vimeo") {
@@ -61,7 +53,7 @@ function toEmbedUrl(url: string, provider?: "youtube" | "vimeo" | "file") {
   return ytId ? `https://www.youtube.com/embed/${ytId}` : url;
 }
 
-function BeforeAfterSlider({ item, color, hideWatermark }: { item: BeforeAfterEvidence | TropicalizacaoEvidence; color: string; hideWatermark?: boolean }) {
+function BeforeAfterSlider({ item, color }: { item: BeforeAfterEvidence; color: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [pos, setPos] = useState(50); // % da posição do divisor no eixo Y
 
@@ -92,21 +84,17 @@ function BeforeAfterSlider({ item, color, hideWatermark }: { item: BeforeAfterEv
       {/* Depois (base) */}
       <img src={item.after} alt="Depois" className="absolute inset-0 w-full h-full object-cover" draggable={false} />
       {/* Watermark Depois */}
-      {!hideWatermark && (
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <span className="text-[12vh] sm:text-[14vh] font-display font-black text-white/25 uppercase tracking-tighter drop-shadow-2xl -rotate-90 translate-x-12 sm:translate-x-16">Depois</span>
-        </div>
-      )}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <span className="text-[12vh] sm:text-[14vh] font-display font-black text-white/25 uppercase tracking-tighter drop-shadow-2xl -rotate-90 translate-x-12 sm:translate-x-16">Depois</span>
+      </div>
 
       {/* Antes (recortado pelo clip-path de cima para baixo) */}
       <div className="absolute inset-0 overflow-hidden" style={{ clipPath: `inset(0 0 ${100 - pos}% 0)` }}>
         <img src={item.before} alt="Antes" className="absolute inset-0 w-full h-full object-cover" draggable={false} />
         {/* Watermark Antes (dentro do clip-path, logo cortado perfeitamente) */}
-        {!hideWatermark && (
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <span className="text-[12vh] sm:text-[14vh] font-display font-black text-white/25 uppercase tracking-tighter drop-shadow-2xl -rotate-90 -translate-x-12 sm:-translate-x-16">Antes</span>
-          </div>
-        )}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <span className="text-[12vh] sm:text-[14vh] font-display font-black text-white/25 uppercase tracking-tighter drop-shadow-2xl -rotate-90 -translate-x-12 sm:-translate-x-16">Antes</span>
+        </div>
       </div>
 
       {/* Divisor Horizontal */}
@@ -243,8 +231,8 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
         </div>
       )}
 
-      {/* Conteúdo: BEFORE / AFTER / TROPICALIZACAO */}
-      {(activeTab === "before_after" || activeTab === "tropicalizacao") && (
+      {/* Conteúdo: BEFORE / AFTER */}
+      {activeTab === "before_after" && (
         <div className="relative group/carousel">
           {/* Scroll Arrows */}
           <button
@@ -266,7 +254,7 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
             ref={scrollContainerRef}
             className="flex gap-3 overflow-x-auto pb-3 scrollbar-thin snap-x overflow-y-hidden scroll-smooth"
           >
-            {(currentItems as (BeforeAfterEvidence | TropicalizacaoEvidence)[]).map((ba, idx) => (
+            {(currentItems as BeforeAfterEvidence[]).map((ba, idx) => (
               <div
                 key={idx}
                 className="relative flex-none w-[200px] aspect-[9/16] bg-[#0F1623] border border-[rgba(0,212,255,0.1)] group/img cursor-pointer snap-start overflow-hidden rounded"
@@ -392,7 +380,7 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
           {/* Media Container */}
           <div
             className={`relative w-full max-w-5xl flex items-center justify-center rounded overflow-hidden shadow-2xl ${
-              currentLightboxItem.type === "before_after" || currentLightboxItem.type === "tropicalizacao" ? "" : "aspect-video border border-[rgba(0,212,255,0.2)] bg-black"
+              currentLightboxItem.type === "before_after" ? "" : "aspect-video border border-[rgba(0,212,255,0.2)] bg-black"
             }`}
             onClick={(e) => e.stopPropagation()}
           >
@@ -424,9 +412,9 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
                   />
                 )}
               </div>
-            ) : currentLightboxItem.type === "before_after" || currentLightboxItem.type === "tropicalizacao" ? (
+            ) : currentLightboxItem.type === "before_after" ? (
               <div className="w-full h-full flex items-center justify-center p-4">
-                <BeforeAfterSlider item={currentLightboxItem} color={color} hideWatermark={currentLightboxItem.type === "tropicalizacao"} />
+                <BeforeAfterSlider item={currentLightboxItem} color={color} />
               </div>
             ) : null}
 

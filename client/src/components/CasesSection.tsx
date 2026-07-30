@@ -94,23 +94,25 @@ const cases = [
     desafios: [
       "Silos Internos: Engenharia, Marketing e Comercial não falavam a mesma língua, faltando processos e alinhamento de comunicação.",
       "Comunicação Visual Defasada: Equipamentos de altíssima tecnologia e design arrojado não tinham a identidade premium que mereciam.",
+      "Desafio Multirrefeito Global: A empresa precisava se comunicar com seus 3 maiores públicos globais (América Latina, EUA e Ásia) sem poluir as redes com posts trilíngues extensos e sem a complexidade logística de gerenciar múltiplos perfis regionais.",
       "Conteúdo Estagnado: A marca sobrevivia de 'requentar' vídeos antigos, com qualidade baixa e ritmo ultrapassado.",
       "Fosso de Leads: O time comercial estava afogado em uma base antiga, sem campanhas ativas para alimentar as vendas."
     ],
     solucoes: [
       "Governança de Comunicação: Estruturei fluxos ágeis entre Engenharia, Marketing e Comercial. Implementei rituais de aprovação e uma arquitetura editorial robusta para unificar a voz da empresa.",
       "Conceito Ice Tech: Criei do zero uma identidade unindo a pureza do gelo à performance tecnológica. Inspirados na estética 'Tesla', transformamos as máquinas em objetos de desejo.",
+      "Planejamento de Tropicalização de Conteúdo: Unimos as frentes comerciais para obter dados de pesquisa e produzir conteúdo regionalizado robusto — não apenas traduzindo cópias, mas adaptando cultura, regionalismo e sazonalidade.",
       "Choque Audiovisual: Lançamos o TikTok com receitas virais e criamos o quadro 'Pessoas que são Máquinas de Sucesso' no YouTube, transmitindo também workshops ao vivo.",
-      "Tropicalização de Conteúdo: Adaptação estratégica de campanhas criadas para o mercado dos EUA à realidade do Brasil, ajustando cultura, imagens e copy para maximizar o engajamento local.",
       "Máquina de Aquisição: Como resultado da nova base de conteúdo e processos, estruturei campanhas de tráfego (Meta/Google Ads) integradas ao HubSpot para atrair leads."
     ],
     impactos: [
       "Fim dos Silos e Governança: A nova comunicação integrou Engenharia, Marketing e Vendas, consolidando o verdadeiro 'Dream Team' da empresa.",
       "Valorização Estética: O conceito Ice Tech consolidou as máquinas como itens premium e gerou forte orgulho interno na equipe.",
+      "Conexão Cultural sem Fragmentação: A estratégia de Tropicalização aumentou a relevância e conversão local nos 3 mercados globais mantendo uma operação enxuta e unificada nas redes.",
       "Boom de Engajamento: A esteira de vídeos gerou +19% de audiência e +27% de engajamento orgânico nas redes.",
       "Geração de Leads (+31%): Apoiada por todo esse ecossistema, a aquisição de tráfego pago saltou em +31% de novos leads qualificados e impulsionou as vendas."
     ],
-    results: ["Governança Implementada", "Conceito Ice Tech", "Estética Tesla", "+31% Novos Leads", "HubSpot & Ads"],
+    results: ["Governança Implementada", "Conceito Ice Tech", "Estética Tesla", "Tropicalização Global", "+31% Novos Leads", "HubSpot & Ads"],
     color: "#FF6B35",
     image: "/assets/finamac_header.jpg",
     evidences: [
@@ -133,22 +135,22 @@ const cases = [
         caption: "Rebranding: Artes para Divulgação de Cursos (Açaí)"
       },
       {
-        type: "tropicalizacao",
+        type: "before_after",
         before: "/assets/finamac_rebranding/carrossel_eng1.png",
         after: "/assets/finamac_rebranding/carrossel_pt1.png",
-        caption: "Tropicalização: Adaptação BR (Capa)"
+        caption: "Tropicalização: EUA (Original) x BR (Capa Adaptada)"
       },
       {
-        type: "tropicalizacao",
+        type: "before_after",
         before: "/assets/finamac_rebranding/carrossel_eng1.png",
         after: "/assets/finamac_rebranding/carrossel_pt2.png",
-        caption: "Tropicalização: Adaptação BR (Dados locais)"
+        caption: "Tropicalização: EUA (Original) x BR (Dados Regionais)"
       },
       {
-        type: "tropicalizacao",
+        type: "before_after",
         before: "/assets/finamac_rebranding/carrossel_eng1.png",
         after: "/assets/finamac_rebranding/carrossel_pt3.png",
-        caption: "Tropicalização: Adaptação BR (Fechamento)"
+        caption: "Tropicalização: EUA (Original) x BR (Fechamento)"
       },
       { 
         type: "image", 
