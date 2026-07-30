@@ -321,6 +321,7 @@
     background: linear-gradient(135deg, rgba(0, 212, 255, 0.03) 0%, transparent 60%);
     opacity: 0;
     transition: opacity 0.35s ease;
+    pointer-events: none;
   }
 
   .case-card:hover::before {

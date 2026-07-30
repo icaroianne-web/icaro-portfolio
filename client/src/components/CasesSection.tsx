@@ -208,16 +208,14 @@ export default function CasesSection() {
           {cases.map((item, i) => (
             <div
               key={item.id}
-              className={`case-card group transition-all duration-500 flex flex-col justify-between overflow-hidden ${
+              className={`case-card group cursor-pointer transition-all duration-500 flex flex-col justify-between overflow-hidden ${
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: `${i * 80}ms` }}
+              onClick={() => setActiveCase(activeCase === item.id ? null : item.id)}
             >
               <div>
-                <div 
-                  className="relative h-48 overflow-hidden border-b border-[rgba(0,212,255,0.08)] bg-[#0F1623] cursor-pointer"
-                  onClick={() => setActiveCase(activeCase === item.id ? null : item.id)}
-                >
+                <div className="relative h-48 overflow-hidden border-b border-[rgba(0,212,255,0.08)] bg-[#0F1623]">
                   <img
                     src={item.image}
                     alt={item.title}
@@ -227,10 +225,7 @@ export default function CasesSection() {
                 </div>
 
                 <div className="p-6">
-                  <div 
-                    className="cursor-pointer"
-                    onClick={() => setActiveCase(activeCase === item.id ? null : item.id)}
-                  >
+                  <div>
                     <div className="flex items-center justify-between mb-4">
                       <span className="font-mono-tech text-[0.6rem] uppercase tracking-widest" style={{ color: item.color }}>
                         {item.tag}
@@ -257,11 +252,7 @@ export default function CasesSection() {
                   </div>
 
                   <div 
-                    className="inline-flex items-center gap-1.5 font-mono-tech text-[0.6rem] tracking-widest uppercase mb-4 px-2.5 py-1 bg-[rgba(0,212,255,0.02)] border border-[rgba(0,212,255,0.12)] transition-all duration-300 text-[#00D4FF] group-hover:text-[#FF6B35] group-hover:border-[#FF6B35]/40 cursor-pointer"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setActiveCase(activeCase === item.id ? null : item.id);
-                    }}
+                    className="inline-flex items-center gap-1.5 font-mono-tech text-[0.6rem] tracking-widest uppercase mb-4 px-2.5 py-1 bg-[rgba(0,212,255,0.02)] border border-[rgba(0,212,255,0.12)] transition-all duration-300 text-[#00D4FF] group-hover:text-[#FF6B35] group-hover:border-[#FF6B35]/40"
                   >
                     {activeCase === item.id ? (
                       <>
