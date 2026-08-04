@@ -21,21 +21,9 @@ const skills = [
 
 const trajectory = [
   {
-    year: "2025/2026",
-    event: "Liderança & Rebranding Global",
-    desc: "Finamac Brasil: Gestão de portfólio e-commerce (Shopify), criação da estética \"Ice Tech\" e fomento à cultura orientada a dados (Data-driven).",
-    highlight: true
-  },
-  {
-    year: "2023/2025",
-    event: "Inovação Tech & Impacto Social",
-    desc: "Conveniência Adulta: Sócio-Gerente responsável pela integração de IA Conversacional (UX) e liderança de campanhas transmídia focadas em diversidade e saúde.",
-    highlight: false
-  },
-  {
-    year: "2022/2023",
-    event: "Projeção Internacional",
-    desc: "Expedicionários da Saúde (EDS): Coordenação institucional na COP28 Dubai, produção audiovisual premium e criação do Guia de Comunicação para Povos Indígenas.",
+    year: "2015/2020",
+    event: "A Base Multimídia",
+    desc: "Kroton / Ag. Multinegócios: Início focado em videografismo, motion graphics e posicionamento de marca para conversão digital, consolidando base técnica audiovisual.",
     highlight: false
   },
   {
@@ -45,10 +33,22 @@ const trajectory = [
     highlight: false
   },
   {
-    year: "2015/2020",
-    event: "A Base Multimídia",
-    desc: "Kroton / Ag. Multinegócios: Início focado em videografismo, motion graphics e posicionamento de marca para conversão digital, consolidando base técnica audiovisual.",
+    year: "2022/2023",
+    event: "Projeção Internacional",
+    desc: "Expedicionários da Saúde (EDS): Coordenação institucional na COP28 Dubai, produção audiovisual premium e criação do Guia de Comunicação para Povos Indígenas.",
     highlight: false
+  },
+  {
+    year: "2023/2025",
+    event: "Inovação Tech & Impacto Social",
+    desc: "Conveniência Adulta: Sócio-Gerente responsável pela integração de IA Conversacional (UX) e liderança de campanhas transmídia focadas em diversidade e saúde.",
+    highlight: false
+  },
+  {
+    year: "2025/2026",
+    event: "Liderança & Rebranding Global",
+    desc: "Finamac Brasil: Gestão de portfólio e-commerce (Shopify), criação da estética \"Ice Tech\" e fomento à cultura orientada a dados (Data-driven).",
+    highlight: true
   }
 ];
 
