@@ -4,19 +4,11 @@
    ============================================================ */
 
 import { useEffect, useRef, useState } from "react";
-import { MessageCircle, Linkedin, Mail, FolderOpen, Instagram, ExternalLink, Youtube } from "lucide-react";
+import { MessageCircle, Linkedin, Mail, ExternalLink } from "lucide-react";
 
 const AI_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663747808873/FfsF68pckBa2uV6MzkU5TV/ai-texture-GqDK6g7z5bCccMnSUKuQyC.webp";
 
 const socialLinks = [
-  {
-    icon: MessageCircle,
-    label: "WhatsApp",
-    handle: "+55 11 94068-4068",
-    url: "https://wa.me/5511940684068",
-    color: "#25D366",
-    desc: "Fale diretamente comigo",
-  },
   {
     icon: Linkedin,
     label: "LinkedIn",
@@ -26,20 +18,12 @@ const socialLinks = [
     desc: "Conecte-se profissionalmente",
   },
   {
-    icon: Instagram,
-    label: "Instagram",
-    handle: "@icaroia",
-    url: "https://instagram.com/icaroia",
-    color: "#E1306C",
-    desc: "Conteúdo e bastidores",
-  },
-  {
-    icon: Youtube,
-    label: "YouTube",
-    handle: "@IcaroIan",
-    url: "https://www.youtube.com/@IcaroIan",
-    color: "#FF0000",
-    desc: "Showreel e produções",
+    icon: MessageCircle,
+    label: "WhatsApp",
+    handle: "+55 11 94068-4068",
+    url: "https://wa.me/5511940684068",
+    color: "#25D366",
+    desc: "Fale diretamente comigo",
   },
   {
     icon: Mail,
@@ -48,14 +32,6 @@ const socialLinks = [
     url: "mailto:icaroianne@outlook.com.br",
     color: "#FF6B35",
     desc: "Para projetos e parcerias",
-  },
-  {
-    icon: FolderOpen,
-    label: "Portfólio",
-    handle: "OneDrive — Materiais",
-    url: "https://1drv.ms/f/c/88b902e4fc55726d/Em1yVfzkArkggIhqAAAAAAABfDhfVc5sa4ndKr5Rz9w1HQ?e=u4YjGX",
-    color: "#C9A84C",
-    desc: "Acesse materiais completos",
   },
 ];
 

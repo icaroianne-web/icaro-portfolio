@@ -32,9 +32,8 @@ export default function Footer() {
           <div className="flex items-center gap-4">
             {[
               { label: "LinkedIn", url: "https://www.linkedin.com/in/icaroia/" },
-              { label: "Instagram", url: "https://instagram.com/icaroia" },
-              { label: "YouTube", url: "https://youtube.com/icaroiandj" },
               { label: "WhatsApp", url: "https://wa.me/5511940684068" },
+              { label: "E-mail", url: "mailto:icaroianne@outlook.com.br" },
             ].map((link) => (
               <a
                 key={link.label}
