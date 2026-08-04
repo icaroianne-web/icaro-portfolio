@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Network, Activity, BrainCircuit, Clapperboard, ChevronDown, ChevronUp, CheckCircle2 } from "lucide-react";
 import LeadFormModal from "./LeadFormModal";
+import UtioMethodHorizontal from "./UtioMethodHorizontal";
 
 const SERVICES_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663747808873/FfsF68pckBa2uV6MzkU5TV/hero-bg-E7HYZ4kGT8iWScT3p76AXn.webp";
 
@@ -219,14 +220,7 @@ export default function ServicesSection() {
                   </ul>
 
                   {svc.detailsType === "utio" && (
-                    <div className="bg-[#080C14] p-4 border rounded-md mb-6" style={{ borderColor: `${svc.color}30` }}>
-                      <h5 className="font-mono-tech text-xs uppercase tracking-widest mb-3 flex items-center gap-2" style={{ color: svc.color }}>
-                        <Network size={14} /> Bússola de Prioridade (Método UTIO)
-                      </h5>
-                      <div className="mt-4 flex justify-center">
-                        <img src="/assets/bussola_prioridade_utio.svg" alt="Bússola de Prioridade UTIO" className="w-full max-w-sm drop-shadow-[0_0_15px_rgba(0,212,255,0.2)]" />
-                      </div>
-                    </div>
+                    <UtioMethodHorizontal />
                   )}
 
                   <button 

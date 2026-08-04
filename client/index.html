@@ -3,12 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>Ícaro Albuquerque — Estrategista de Comunicação & Direção Criativa</title>
-    <meta name="description" content="Estrategista de Comunicação e Direção Criativa. Especialista em plano de governança, rebranding de marca e storytelling corporativo. Resultados reais em Ministérios e na COP28 em Dubai." />
-    <meta property="og:image" content="/og-image.png" />
+
+    <!-- ============================================================
+         SEO PRIMÁRIO
+         ============================================================ -->
+    <title>Ícaro Albuquerque — Estratégia de Comunicação, Branding & Direção Criativa</title>
+    <meta name="description" content="Ícaro Albuquerque: Estrategista de Comunicação, Branding & Produção Audiovisual. MASTER PLAN™, ID CONCEPT™ e Absolute Cinema™ para PMEs e médias empresas. Da COP28 em Dubai a Ministérios do Governo Federal." />
+    <meta name="author" content="Ícaro Albuquerque" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="keywords" content="estrategista de comunicação, branding, rebranding, plano diretor de comunicação, storytelling corporativo, audiovisual, produção de vídeo, IA para marketing, consultoria de comunicação, COP28, dubai, São Paulo" />
+    <link rel="canonical" href="https://icaroalbuquerque.com" />
+
+    <!-- ============================================================
+         OPEN GRAPH (Facebook, LinkedIn, WhatsApp)
+         ============================================================ -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Ícaro Albuquerque" />
+    <meta property="og:url" content="https://icaroalbuquerque.com" />
+    <meta property="og:title" content="Ícaro Albuquerque — Estratégia, Branding & Direção Criativa" />
+    <meta property="og:description" content="Transformo narrativas em ativos comerciais. Estratégia, branding e IA para empresas que querem ser lembradas com precisão. Da COP28 em Dubai a Ministérios do Governo Federal." />
+    <meta property="og:image" content="https://icaroalbuquerque.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Ícaro Albuquerque — Estrategista de Comunicação & Branding" />
+
+    <!-- ============================================================
+         TWITTER / X CARD
+         ============================================================ -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="/og-image.png" />
-    <!-- Google Search & Device Favicons -->
+    <meta name="twitter:site" content="@icaroia" />
+    <meta name="twitter:creator" content="@icaroia" />
+    <meta name="twitter:title" content="Ícaro Albuquerque — Estratégia, Branding & Direção Criativa" />
+    <meta name="twitter:description" content="Transformo narrativas em ativos comerciais. Da COP28 em Dubai a Ministérios do Governo Federal." />
+    <meta name="twitter:image" content="https://icaroalbuquerque.com/og-image.png" />
+
+    <!-- ============================================================
+         PWA / APP META
+         ============================================================ -->
+    <meta name="theme-color" content="#080C14" />
+    <meta name="application-name" content="Ícaro Albuquerque" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Ícaro Albuquerque" />
+
+    <!-- ============================================================
+         FAVICONS & MANIFEST
+         ============================================================ -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
@@ -20,14 +61,21 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="manifest" href="/site.webmanifest" />
     
+    <!-- ============================================================
+         FONTS — preconnect + preload fonte display crítica
+         ============================================================ -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <!-- Google tag (gtag.js) -->
+
+    <!-- ============================================================
+         GOOGLE ANALYTICS 4
+         ============================================================ -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0N1FCD345D"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -35,24 +83,77 @@
       gtag('js', new Date());
       gtag('config', 'G-0N1FCD345D');
     </script>
-    
+
+    <!-- ============================================================
+         SCHEMA.ORG — Person (Knowledge Panel Google)
+         ============================================================ -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
+      "@id": "https://icaroalbuquerque.com/#person",
       "name": "Ícaro Albuquerque",
+      "givenName": "Ícaro",
+      "familyName": "Albuquerque",
       "jobTitle": "Estrategista de Comunicação, Branding & Direção Criativa",
+      "description": "Estrategista de comunicação especializado em Plano Diretor, Identidade de Marca e Produção Audiovisual Cinematográfica para PMEs e médias empresas. Coordenação institucional na COP28 Dubai e projetos com Ministérios do Governo Federal.",
       "url": "https://icaroalbuquerque.com",
-      "sameAs": [
-        "https://www.linkedin.com/in/icaroia/"
-      ],
+      "image": "https://icaroalbuquerque.com/ICARO_OFFICE.png",
+      "email": "icaroianne@outlook.com.br",
+      "telephone": "+55-11-94068-4068",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "São Paulo",
+        "addressRegion": "SP",
+        "addressCountry": "BR"
+      },
+      "sameAs": ["https://www.linkedin.com/in/icaroia/"],
       "knowsAbout": [
-        "Rebranding",
-        "Comunicação Institucional",
-        "Storytelling Corporativo",
-        "Direção Criativa",
-        "Governança de Comunicação"
+        "Estratégia de Comunicação", "Branding e Rebranding", "Identidade Visual",
+        "Plano Diretor de Comunicação", "Storytelling Corporativo",
+        "Produção Audiovisual", "Inteligência Artificial para Marketing",
+        "Direção Criativa", "Comunicação Institucional", "COP28 Dubai",
+        "Gestão de Crises de Comunicação"
       ]
+    }
+    </script>
+
+    <!-- ============================================================
+         SCHEMA.ORG — ProfessionalService
+         ============================================================ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Ícaro Albuquerque — Comunicação Estratégica & Branding",
+      "description": "Consultoria em MASTER PLAN™, ID CONCEPT™, I.A.E!™ e Absolute Cinema™.",
+      "url": "https://icaroalbuquerque.com",
+      "telephone": "+55-11-94068-4068",
+      "email": "icaroianne@outlook.com.br",
+      "areaServed": { "@type": "Country", "name": "Brasil" },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Serviços de Comunicação Estratégica",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "MASTER PLAN™", "description": "Plano Diretor de Comunicação com o Método UTIO." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ID CONCEPT™", "description": "Branding e Identidade Visual premium." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "I.A.E!™", "description": "Inteligência Artificial para escala de produção." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Absolute Cinema™", "description": "Produção audiovisual cinematográfica de alto impacto." } }
+        ]
+      }
+    }
+    </script>
+
+    <!-- ============================================================
+         SCHEMA.ORG — WebSite
+         ============================================================ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Ícaro Albuquerque",
+      "url": "https://icaroalbuquerque.com",
+      "inLanguage": "pt-BR"
     }
     </script>
   </body>

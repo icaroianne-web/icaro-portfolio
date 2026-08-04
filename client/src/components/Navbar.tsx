@@ -5,19 +5,22 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { useLocation, Link } from "wouter";
 
 const navLinks = [
-  { label: "Início", href: "#hero", external: false },
-  { label: "Sobre", href: "#sobre", external: false },
-  { label: "Cases", href: "#cases", external: false },
-  { label: "Consultoria", href: "#services", external: false },
-  { label: "Showreel", href: "#showreel", external: false },
-  { label: "Contato", href: "#contato", external: false },
+  { label: "Início", href: "/", isRoute: true },
+  { label: "Sobre", href: "#sobre", isRoute: false },
+  { label: "Cases", href: "#cases", isRoute: false },
+  { label: "Consultoria", href: "#services", isRoute: false },
+  { label: "Blog", href: "/blog", isRoute: true },
+  { label: "Showreel", href: "#showreel", isRoute: false },
+  { label: "Contato", href: "#contato", isRoute: false },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [location, setLocation] = useLocation();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
@@ -25,13 +28,24 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, external?: boolean) => {
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, isRoute?: boolean, external?: boolean) => {
     if (external) {
       setMobileOpen(false);
-      return; // Deixe o link abrir normalmente na nova aba (target="_blank")
+      return;
+    }
+    setMobileOpen(false);
+    if (isRoute || href.startsWith("/")) {
+      e.preventDefault();
+      setLocation(href);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+    if (location !== "/") {
+      e.preventDefault();
+      setLocation("/" + href);
+      return;
     }
     e.preventDefault();
-    setMobileOpen(false);
     const el = document.querySelector(href);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
@@ -76,7 +90,7 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                onClick={(e) => handleLinkClick(e as any, link.href, link.external)}
+                onClick={(e) => handleLinkClick(e as any, link.href, link.isRoute, link.external)}
                 target={link.external ? "_blank" : undefined}
                 rel={link.external ? "noopener noreferrer" : undefined}
                 className="nav-link"
@@ -120,7 +134,7 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              onClick={(e) => handleLinkClick(e as any, link.href, link.external)}
+              onClick={(e) => handleLinkClick(e as any, link.href, link.isRoute, link.external)}
               target={link.external ? "_blank" : undefined}
               rel={link.external ? "noopener noreferrer" : undefined}
               className="font-display font-700 text-3xl text-[#F0F4FF] hover:text-[#00D4FF] transition-colors duration-200"
