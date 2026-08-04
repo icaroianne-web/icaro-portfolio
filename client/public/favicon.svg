@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Dark Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F1623"/>
+      <stop offset="100%" stop-color="#070B13"/>
+    </linearGradient>
+
+    <!-- Cyan Accent Gradient -->
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00D4FF"/>
+      <stop offset="100%" stop-color="#00A3FF"/>
+    </linearGradient>
+
+    <!-- Orange Accent Gradient -->
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF6B35"/>
+      <stop offset="100%" stop-color="#FF8E53"/>
+    </linearGradient>
+
+    <!-- Glowing Border Gradient -->
+    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00D4FF" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#FF6B35" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#00D4FF" stop-opacity="0.2"/>
+    </linearGradient>
+
+    <!-- Filter Glow -->
+    <filter id="glowEffect" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- LinkedIn-style Rounded Square Box -->
+  <rect x="16" y="16" width="480" height="480" rx="96" fill="url(#bgGrad)" stroke="url(#borderGrad)" stroke-width="8"/>
+  
+  <!-- Subtle Tech Grid Border -->
+  <rect x="32" y="32" width="448" height="448" rx="80" fill="none" stroke="#00D4FF" stroke-opacity="0.12" stroke-width="2"/>
+
+  <!-- Tech Accent Square on I -->
+  <rect x="156" y="105" width="28" height="28" rx="6" fill="#00D4FF" filter="url(#glowEffect)"/>
+
+  <!-- Tech Accent Dot on A -->
+  <circle cx="340" cy="115" r="14" fill="url(#orangeGrad)" filter="url(#glowEffect)"/>
+
+  <!-- Monogram IA -->
+  <g font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Syne', 'Outfit', sans-serif" font-weight="900" font-size="220" text-anchor="middle" dominant-baseline="central">
+    <!-- Letter I (Cyan) -->
+    <text x="170" y="276" fill="url(#cyanGrad)">I</text>
+    <!-- Letter A (White) -->
+    <text x="310" y="276" fill="#F0F4FF">A</text>
+  </g>
+</svg>
