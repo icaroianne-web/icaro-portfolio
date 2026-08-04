@@ -1,12 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
-  <!-- Solid 100% Full-Bleed Vibrant Turquoise/Cyan Box (like Lenovo's Red Box) -->
+  <!-- Solid 100% Full-Bleed Vibrant Turquoise/Cyan Box -->
   <rect x="0" y="0" width="512" height="512" fill="#00D4FF"/>
 
-  <!-- High-Contrast Bold Monogram IA in Deep Navy (#080C14) matching site background -->
+  <!-- High-Contrast Bold Monogram IA in Deep Navy (#080C14) -->
   <g font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Syne', 'Outfit', 'Arial Black', sans-serif" font-weight="900" font-size="340" text-anchor="middle" dominant-baseline="central">
     <!-- Letter I (Deep Navy) -->
     <text x="160" y="270" fill="#080C14" letter-spacing="-15">I</text>
-    <!-- Letter A (Deep Navy / Dark Obsidian) -->
+    <!-- Letter A (Deep Navy) -->
     <text x="340" y="270" fill="#080C14" letter-spacing="-15">A</text>
   </g>
+
+  <!-- Bright Orange Accent Dot at Top-Right Corner (#FF6B35) -->
+  <circle cx="432" cy="80" r="48" fill="#FF6B35" stroke="#00D4FF" stroke-width="6"/>
 </svg>
