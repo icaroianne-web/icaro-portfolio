@@ -112,7 +112,7 @@ export default function HeroSection() {
               style={{ animationDelay: "0.2s", animationFillMode: "both" }}
             >
               <Sparkles size={10} />
-              COORDENADOR DE COMUNICAÇÃO E MARKETING - PRODUÇÃO MULTIMÍDIA
+              ESTRATÉGIA • BRANDING • INTELIGÊNCIA ARTIFICIAL
             </div>
 
             {/* Main title */}
@@ -140,7 +140,7 @@ export default function HeroSection() {
             >
               <div className="line-accent w-16 mb-4" />
               <p className="text-[#00D4FF] drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] font-outfit text-lg leading-relaxed max-w-2xl font-medium">
-                Estrategista de Comunicação Corporativa, criador de narrativas audiovisuais com campanhas que alcançaram desde <span className="text-white font-semibold">Ministérios brasileiros</span> até a <span className="text-[#C9A84C] font-semibold">Conferência Mundial do Clima (COP28), em Dubai</span>.
+                Transformo narrativas em ativos comerciais. Estratégia, branding e IA para quem quer ser <span className="text-white font-semibold">lembrado com precisão</span> — de <span className="text-[#C9A84C] font-semibold">Ministérios do Governo Federal</span> à <span className="text-[#C9A84C] font-semibold">Conferência Mundial do Clima (COP28), em Dubai</span>.
               </p>
             </div>
 
@@ -172,7 +172,7 @@ export default function HeroSection() {
                 }}
                 className="btn-primary"
               >
-                Consultoria
+                Consultoria Estratégica
               </a>
               <a
                 href="#cases"

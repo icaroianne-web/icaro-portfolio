@@ -8,19 +8,19 @@ const services = [
   {
     id: 1,
     title: "MASTER PLAN™",
-    subtitle: "Planejamento de Comunicação, Marketing e Conteúdo.",
-    description: "Todo negócio que cresce tem uma coisa em comum: sabe exatamente o que quer dizer, para quem, quando e como. O MASTER PLAN é o plano de comunicação completo — do diagnóstico à execução — construído para quem cansou de improvisar e quer resultados previsíveis.",
+    subtitle: "A estratégia que os outros consultores deveriam ter te vendido primeiro.",
+    description: "Crescimento sem plano é sorte — não é método. O MASTER PLAN é o sistema completo de comunicação do seu negócio: do diagnóstico ao calendário, do posicionamento à crise. Construído com o Método UTIO — Urgente, Timing, Imprescindível, Opcional — para que você invista energia apenas onde gera resultado de verdade.",
     icon: Network,
     color: "#00D4FF",
     fromClass: "from-[#00D4FF]",
     image: "/assets/service_plano_diretor.jpg",
     features: [
       "Raio-X de Comunicação",
-      "Bússola de Prioridades (UTIO)",
-      "Arquitetura Editorial",
-      "Calendário Editorial",
+      "Método UTIO: Bússola de Prioridades",
+      "Arquitetura e Calendário Editorial",
+      "Governança e Gestão de Crises",
       "Framework de E-mail Marketing",
-      "Consultoria Estratégica"
+      "Consultoria Estratégica Contínua"
     ],
     detailsType: "utio",
     category: "Comunicação"
@@ -28,19 +28,19 @@ const services = [
   {
     id: 2,
     title: "ID CONCEPT™",
-    subtitle: "Branding, Reposicionamento e Comunicação Visual.",
-    description: "Existe uma diferença entre uma marca que tem um logo bonito e uma marca com uma identidade que entra na cabeça das pessoas e não sai. O ID CONCEPT nasce de um conceito. Antes de qualquer cor ou tipografia, existe uma ideia central que define quem você é no mercado — e como isso vai aparecer em absolutamente tudo.",
+    subtitle: "Definimos quem você é antes que o mercado decida por você.",
+    description: "Não começo pelo logo. Começo pelo conceito — a ideia central que define sua posição no mercado e onde você quer ser visto daqui a 10 anos. Daí nasce tudo: a estética, a linguagem, o site conceitual premium e até a denominação que você ainda não tinha para si mesmo. Uma identidade que não é apenas bonita — é um argumento comercial.",
     icon: Activity,
     color: "#C9A84C",
     fromClass: "from-[#C9A84C]",
     image: "/assets/service_marca_viva.jpg",
     features: [
-      "Branding e Rebranding",
+      "Conceito de Marca e Naming Estratégico",
       "Identidade Visual e Manual de Marca",
-      "Direção de Arte e Estética Proprietária",
-      "Posicionamento e Tom de Voz",
-      "UX Writing e Copy",
-      "SEO On-page"
+      "Site Conceitual Premium & Funcional",
+      "Direção de Arte e KV (Key Visual)",
+      "Posicionamento, Tom de Voz e Copy",
+      "Direcionamento de Pauta e Presença Pública"
     ],
     detailsType: "list",
     category: "Branding"
@@ -48,19 +48,19 @@ const services = [
   {
     id: 3,
     title: "I.A.E!™",
-    subtitle: "Inteligência Artificial Estratégica.",
-    description: "A maioria das empresas ainda trata a IA como curiosidade. O I.A.E! implanta inteligência artificial na operação real do seu negócio: nos processos que consomem tempo, na comunicação que deveria ser automática, nos fluxos que travam sua equipe toda semana. Você sai com sistemas funcionando — não com uma apresentação de slides.",
+    subtitle: "Sua equipe produzindo em dobro. Seu custo produzindo pela metade.",
+    description: "A maioria das empresas usa IA para experimentar. Eu uso para escalar. O I.A.E! implanta inteligência artificial no fluxo real da sua operação — com realismo, qualidade e identidade de marca intactos. Saída de conteúdo premium em fração do tempo, equipe treinada e autônoma, e processos que continuam funcionando quando você não está. Produção inteligente também é produção consciente.",
     icon: BrainCircuit,
     color: "#00D4FF",
     fromClass: "from-[#00D4FF]",
     image: "/assets/service_inteligencia_artificial.jpg",
     features: [
-      "Diagnóstico de IA",
-      "Mapeamento de Processos",
-      "Automações e Fluxos de IA",
-      "Agentes GPT Personalizados",
-      "Prompt Engineering",
-      "Capacitação de Equipes"
+      "Diagnóstico e Mapeamento de Gargalos",
+      "Implementação de Stack de IA Sob Medida",
+      "Produção de Conteúdo Premium com IA",
+      "Fluxos Escaláveis para a Equipe",
+      "Treinamento In-loco ou Remoto",
+      "Autonomia: Você sai funcionando, não dependente"
     ],
     detailsType: "list",
     category: "Inovação & Tech"
@@ -68,8 +68,8 @@ const services = [
   {
     id: 4,
     title: "Absolute Cinema™",
-    subtitle: "Contar a história da sua empresa através de storytelling corporativo autêntico.",
-    description: "Toda empresa tem uma história melhor do que imagina. O trabalho aqui é encontrar a sua essência e contar a história da sua empresa do jeito certo, transformando sua trajetória numa narrativa inesquecível. Como contador de histórias, não entrego só um vídeo institucional — entrego storytelling B2B, emoção e conexão real.",
+    subtitle: "Conteúdo que não precisa de contexto para impactar.",
+    description: "Toda empresa tem uma história melhor do que imagina. O trabalho aqui é encontrar a sua essência e contá-la do jeito certo — transformando trajetória em narrativa inesquecível. Não entrego um vídeo institucional. Entrego o argumento audiovisual que abre portas, gera autoridade e fica na memória de quem importa.",
     icon: Clapperboard,
     color: "#FF6B35",
     fromClass: "from-[#FF6B35]",
@@ -80,7 +80,7 @@ const services = [
       "Séries para YouTube e Reels",
       "Roteirização e Direção Criativa",
       "Media Training para Executivos",
-      "Desenvolvimento de Quadros"
+      "Cobertura de Eventos Internacionais"
     ],
     detailsType: "list",
     category: "Audiovisual"
@@ -129,7 +129,7 @@ export default function ServicesSection() {
           </div>
           <div className="line-accent max-w-xs ml-[calc(clamp(4rem,10vw,8rem)+1rem)]" />
           <p className="text-[#8892A4] mt-4 ml-[calc(clamp(4rem,10vw,8rem)+1rem)] max-w-lg">
-            Diagnóstico, branding, inteligência artificial e produção audiovisual: serviços estruturados para elevar o patamar do seu negócio.
+            Cada projeto começa por uma pergunta: onde você quer chegar? O resto é método.
           </p>
         </div>
 
@@ -237,7 +237,7 @@ export default function ServicesSection() {
                     className="w-full flex items-center justify-center gap-2 py-3 bg-[rgba(255,255,255,0.03)] border transition-colors hover:bg-[rgba(255,255,255,0.08)] font-mono-tech text-xs tracking-widest uppercase"
                     style={{ borderColor: `${svc.color}40`, color: svc.color }}
                   >
-                    Solicitar Orçamento
+                    Agendar Conversa Estratégica
                   </button>
                 </div>
               </div>
