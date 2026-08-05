@@ -1,5 +1,11 @@
+/* ============================================================
+   DESIGN: "Deep Space Broadcast" — Services Section (Museum Storytelling Gallery)
+   Exibição dos 4 produtos com imagens completas de storytelling (MASP)
+   Ordem: 1. MASTER PLAN™ -> 2. ID CONCEPT™ -> 3. I.A.E!™ -> 4. Absolute Cinema™
+   ============================================================ */
+
 import { useEffect, useRef, useState } from "react";
-import { Network, Activity, BrainCircuit, Clapperboard, ChevronDown, ChevronUp, CheckCircle2 } from "lucide-react";
+import { Network, Activity, BrainCircuit, Clapperboard, ChevronDown, ChevronUp, CheckCircle2, Sparkles } from "lucide-react";
 import LeadFormModal from "./LeadFormModal";
 import UtioMethodHorizontal from "./UtioMethodHorizontal";
 
@@ -14,7 +20,8 @@ const services = [
     icon: Network,
     color: "#00D4FF",
     fromClass: "from-[#00D4FF]",
-    image: "/assets/service_plano_diretor.jpg",
+    image: "/assets/service_master_plan_masp.png",
+    storyTitle: "01. Fachada & Sede Estratégica (MASP)",
     features: [
       "Raio-X de Comunicação",
       "Método UTIO: Bússola de Prioridades",
@@ -24,7 +31,7 @@ const services = [
       "Consultoria Estratégica Contínua"
     ],
     detailsType: "utio",
-    category: "Comunicação"
+    category: "Comunicação & Estratégia"
   },
   {
     id: 2,
@@ -34,7 +41,8 @@ const services = [
     icon: Activity,
     color: "#C9A84C",
     fromClass: "from-[#C9A84C]",
-    image: "/assets/service_marca_viva.jpg",
+    image: "/assets/service_id_concept_masp.png",
+    storyTitle: "02. Lançamento de Marca nos Cavaletes de Vidro",
     features: [
       "Conceito de Marca e Naming Estratégico",
       "Identidade Visual e Manual de Marca",
@@ -44,7 +52,7 @@ const services = [
       "Direcionamento de Pauta e Presença Pública"
     ],
     detailsType: "list",
-    category: "Branding"
+    category: "Branding & Presença"
   },
   {
     id: 3,
@@ -54,7 +62,8 @@ const services = [
     icon: BrainCircuit,
     color: "#00D4FF",
     fromClass: "from-[#00D4FF]",
-    image: "/assets/service_inteligencia_artificial.jpg",
+    image: "/assets/service_iae_masp.png",
+    storyTitle: "03. Laboratório de Restauração & Tecnologia Digital",
     features: [
       "Diagnóstico e Mapeamento de Gargalos",
       "Implementação de Stack de IA Sob Medida",
@@ -74,7 +83,8 @@ const services = [
     icon: Clapperboard,
     color: "#FF6B35",
     fromClass: "from-[#FF6B35]",
-    image: "/assets/service_absolute_cinema.jpg",
+    image: "/assets/service_cinema_masp.png",
+    storyTitle: "04. Estúdio de Gravação & Cadeira do Diretor",
     features: [
       "Filmes Institucionais & Documentários",
       "Storytelling de Marca & Cases de Sucesso",
@@ -84,7 +94,7 @@ const services = [
       "Cobertura de Eventos Internacionais"
     ],
     detailsType: "list",
-    category: "Audiovisual"
+    category: "Audiovisual & Cinema"
   }
 ];
 
@@ -110,6 +120,7 @@ export default function ServicesSection() {
 
   return (
     <section id="services" className="relative py-24 bg-[#080C14] overflow-hidden border-t border-[rgba(0,212,255,0.05)]">
+      {/* Background Ambient Texture */}
       <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
         <img src={SERVICES_BG} alt="" className="w-full h-full object-cover mix-blend-screen" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#080C14] via-transparent to-[#080C14]" />
@@ -121,7 +132,10 @@ export default function ServicesSection() {
           <div className="flex items-start gap-4 mb-4">
             <span className="section-number" style={{ position: "relative", fontSize: "clamp(4rem,10vw,8rem)" }}>04</span>
             <div>
-              <div className="tech-badge mb-2">Consultoria</div>
+              <div className="tech-badge mb-2">
+                <Sparkles size={12} />
+                <span>GALERIA DE PRODUTOS</span>
+              </div>
               <h2 className="font-display font-800 text-[clamp(2rem,5vw,3.5rem)] text-[#F0F4FF] leading-tight">
                 Soluções <br />
                 <span className="gradient-text-cyan">Estratégicas</span>
@@ -129,115 +143,152 @@ export default function ServicesSection() {
             </div>
           </div>
           <div className="line-accent max-w-xs ml-[calc(clamp(4rem,10vw,8rem)+1rem)]" />
-          <p className="text-[#8892A4] mt-4 ml-[calc(clamp(4rem,10vw,8rem)+1rem)] max-w-lg">
-            Cada projeto começa por uma pergunta: onde você quer chegar? O resto é método.
+          <p className="text-[#8892A4] mt-4 ml-[calc(clamp(4rem,10vw,8rem)+1rem)] max-w-xl text-base leading-relaxed">
+            Uma narrativa visual em 4 etapas atemporais. Clique em cada obra para explorar entregáveis e agendar um diagnóstico exclusivo.
           </p>
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-          {services.map((svc, i) => (
-            <div 
-              key={svc.id}
-              className={`relative p-[1px] rounded-xl bg-gradient-to-br ${svc.fromClass} to-transparent shadow-[0_0_15px_rgba(0,0,0,0.5)] transition-all duration-700 cursor-pointer group hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] ${
-                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-              style={{ transitionDelay: `${i * 100}ms` }}
-              onClick={() => setActiveService(activeService === svc.id ? null : svc.id)}
-            >
-              {/* Neon Glow overlay */}
+        {/* Gallery Grid — Immersive Exhibition Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+          {services.map((svc, i) => {
+            const isExpanded = activeService === svc.id;
+
+            return (
               <div 
-                className="absolute inset-0 rounded-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500 blur-md pointer-events-none"
-                style={{ background: `linear-gradient(135deg, ${svc.color}, transparent)` }}
-              />
+                key={svc.id}
+                className={`relative rounded-2xl bg-[#0F1623] border border-[rgba(255,255,255,0.08)] overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.6)] transition-all duration-500 group cursor-pointer ${
+                  isExpanded ? "ring-1 border-opacity-100" : "hover:border-opacity-30 hover:-translate-y-1.5"
+                } ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                style={{
+                  borderColor: isExpanded ? svc.color : undefined,
+                  transitionDelay: `${i * 100}ms`,
+                  boxShadow: isExpanded ? `0 0 35px ${svc.color}25` : undefined
+                }}
+                onClick={() => setActiveService(isExpanded ? null : svc.id)}
+              >
+                {/* Subtle colored top accent line */}
+                <div 
+                  className="h-1 w-full"
+                  style={{ background: `linear-gradient(90deg, ${svc.color}, transparent)` }}
+                />
 
-              <div className="relative w-full h-full bg-[#0F1623] rounded-[10px] overflow-hidden flex flex-col z-10">
-                
-                {/* Capa do Serviço (Header Image) */}
-                <div className="relative h-48 w-full overflow-hidden shrink-0 border-b border-[rgba(255,255,255,0.05)]">
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0F1623] to-transparent z-10" />
-                  <img src={svc.image} alt={svc.title} className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" />
-                  <div 
-                    className="absolute bottom-4 left-6 z-20 w-12 h-12 rounded-xl flex items-center justify-center border bg-[#0F1623]/80 backdrop-blur-md shadow-lg"
-                    style={{ borderColor: `${svc.color}40`, color: svc.color }}
-                  >
-                    <svc.icon size={22} />
+                {/* Main Card Media & Overlay Container */}
+                <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-[#080C14]">
+                  {/* Full Uncropped High-Res Image */}
+                  <img 
+                    src={svc.image} 
+                    alt={svc.title} 
+                    className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-1000 ease-out" 
+                  />
+
+                  {/* Dark Gradient Overlay for Typography Contrast */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0F1623] via-[#0F1623]/80 via-40% to-transparent pointer-events-none" />
+
+                  {/* Top Floating Badge */}
+                  <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-20 pointer-events-none">
+                    <span 
+                      className="px-3 py-1 text-[0.65rem] font-mono-tech font-semibold uppercase tracking-widest border backdrop-blur-md rounded-md bg-[#080C14]/80 shadow-md"
+                      style={{ color: svc.color, borderColor: `${svc.color}40` }}
+                    >
+                      {svc.category}
+                    </span>
+
+                    <div 
+                      className="w-10 h-10 rounded-xl flex items-center justify-center border backdrop-blur-md bg-[#080C14]/80 shadow-lg"
+                      style={{ borderColor: `${svc.color}40`, color: svc.color }}
+                    >
+                      <svc.icon size={20} />
+                    </div>
                   </div>
-                </div>
 
-                <div className="flex-1 p-6 flex flex-col">
-                  <div className="mb-4">
-                    <h3 className="font-display font-800 text-xl text-[#F0F4FF] leading-tight mb-1 group-hover:text-white transition-colors duration-200">
+                  {/* Overlaid Card Info (Title, Subtitle, Description) */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 z-20 flex flex-col justify-end">
+                    <h3 className="font-display font-800 text-2xl sm:text-3xl text-[#F0F4FF] leading-tight group-hover:text-white transition-colors duration-200">
                       {svc.title}
                     </h3>
-                    <p className="text-xs font-mono-tech tracking-widest uppercase font-semibold mt-1" style={{ color: svc.color }}>
+                    
+                    <p className="text-xs font-mono-tech tracking-widest uppercase font-semibold mt-1 mb-3" style={{ color: svc.color }}>
                       {svc.subtitle}
                     </p>
-                  </div>
 
-                  <p className="text-[#8892A4] text-sm leading-relaxed mb-6 font-outfit">
-                  {svc.description}
-                </p>
+                    <p className="text-[#8892A4] text-xs sm:text-sm leading-relaxed font-outfit line-clamp-3">
+                      {svc.description}
+                    </p>
 
-                <div className="mt-auto">
-                  <div 
-                    className="inline-flex items-center gap-1.5 font-mono-tech text-[0.65rem] tracking-widest uppercase px-3 py-1.5 border transition-all duration-300"
-                    style={{ 
-                      color: svc.color, 
-                      backgroundColor: `${svc.color}05`, 
-                      borderColor: `${svc.color}20` 
-                    }}
-                  >
-                    {activeService === svc.id ? (
-                      <>
-                        <ChevronUp size={14} />
-                        <span>[-] Fechar Detalhes</span>
-                      </>
-                    ) : (
-                      <>
-                        <ChevronDown size={14} />
-                        <span>[+] Ver Entregáveis</span>
-                      </>
-                    )}
+                    {/* Expand Trigger Bar */}
+                    <div className="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
+                      <div 
+                        className="inline-flex items-center gap-2 font-mono-tech text-[0.65rem] tracking-widest uppercase font-bold"
+                        style={{ color: svc.color }}
+                      >
+                        {isExpanded ? (
+                          <>
+                            <ChevronUp size={14} />
+                            <span>[-] Ocultar Entregáveis</span>
+                          </>
+                        ) : (
+                          <>
+                            <ChevronDown size={14} />
+                            <span>[+] Ver Entregáveis & Método</span>
+                          </>
+                        )}
+                      </div>
+
+                      <span className="text-[10px] font-mono-tech text-[#8892A4]">
+                        Obra {i + 1}/4
+                      </span>
+                    </div>
                   </div>
                 </div>
 
-                {/* Expandable content */}
+                {/* Expanded Details Drawer */}
                 <div
-                  className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                    activeService === svc.id ? "max-h-[1000px] opacity-100 mt-6 pt-6 border-t border-[rgba(255,255,255,0.05)]" : "max-h-0 opacity-0"
+                  className={`overflow-hidden transition-all duration-500 ease-in-out bg-[#080C14]/95 backdrop-blur-xl ${
+                    isExpanded ? "max-h-[1400px] opacity-100 p-6 sm:p-8 border-t border-white/10" : "max-h-0 opacity-0 p-0"
                   }`}
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <h4 className="text-[#F0F4FF] font-semibold text-sm mb-4">Serviços Incluídos:</h4>
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                  <h4 className="text-[#F0F4FF] font-display font-700 text-base mb-4 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full" style={{ backgroundColor: svc.color }} />
+                    <span>Entregáveis Incluídos:</span>
+                  </h4>
+
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
                     {svc.features.map((feat, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-xs text-[#8892A4]">
-                        <CheckCircle2 size={14} style={{ color: svc.color }} className="flex-shrink-0 mt-0.5" />
-                        <span>{feat}</span>
+                      <li key={idx} className="flex items-start gap-2.5 text-xs text-[#8892A4] bg-[#0F1623] p-3 rounded-lg border border-white/5">
+                        <CheckCircle2 size={16} style={{ color: svc.color }} className="flex-shrink-0 mt-0.5" />
+                        <span className="leading-snug">{feat}</span>
                       </li>
                     ))}
                   </ul>
 
+                  {/* Interactive UTIO Method Component inside Master Plan card */}
                   {svc.detailsType === "utio" && (
-                    <UtioMethodHorizontal />
+                    <div className="my-6">
+                      <UtioMethodHorizontal />
+                    </div>
                   )}
 
+                  {/* Call to Action Button */}
                   <button 
                     onClick={() => {
                       setSelectedProductTitle(svc.title);
                       setIsModalOpen(true);
                     }}
-                    className="w-full flex items-center justify-center gap-2 py-3 bg-[rgba(255,255,255,0.03)] border transition-colors hover:bg-[rgba(255,255,255,0.08)] font-mono-tech text-xs tracking-widest uppercase"
-                    style={{ borderColor: `${svc.color}40`, color: svc.color }}
+                    className="w-full py-4 rounded-xl flex items-center justify-center gap-2 font-mono-tech text-xs tracking-widest uppercase font-bold transition-all duration-300 shadow-lg"
+                    style={{ 
+                      backgroundColor: `${svc.color}15`, 
+                      borderColor: `${svc.color}50`, 
+                      borderWidth: "1px",
+                      color: svc.color 
+                    }}
                   >
-                    Agendar Conversa Estratégica
+                    <span>Agendar Conversa Estratégica — {svc.title}</span>
                   </button>
                 </div>
               </div>
-            </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
