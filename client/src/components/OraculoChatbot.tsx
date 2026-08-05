@@ -185,7 +185,7 @@ export default function OraculoChatbot() {
 
   return (
     <>
-      {/* 1. BOTÃO FLUTUANTE — ORÁCULO™ com texto arqueado e bolinha orbitando */}
+      {/* 1. BOTÃO FLUTUANTE — ORÁCULO™ com texto arqueado e 1 única bolinha orbitando */}
       <div className="fixed bottom-6 right-6 z-50 select-none flex flex-col items-center">
         {/* Efeito Efeito Genie Burst Light Aura no click */}
         <AnimatePresence>
@@ -194,63 +194,63 @@ export default function OraculoChatbot() {
               initial={{ opacity: 1, scale: 0.4 }}
               animate={{ opacity: 0, scale: 3.5 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="absolute bottom-6 right-6 w-16 h-16 rounded-full bg-gradient-to-r from-[#00D4FF]/60 via-[#FF6B35]/40 to-[#00D4FF]/20 blur-xl pointer-events-none"
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="absolute bottom-6 right-6 w-16 h-16 rounded-full bg-gradient-to-r from-[#00D4FF]/50 to-[#FF6B35]/30 blur-xl pointer-events-none"
             />
           )}
         </AnimatePresence>
 
-        {/* Texto ORÁCULO™ arqueado suavemente acima do círculo (Fonte Syne do Projeto) */}
-        <div className="w-[100px] h-[28px] mb-[-2px] overflow-visible pointer-events-none z-10 flex items-center justify-center">
-          <svg viewBox="0 0 100 28" className="w-full h-full overflow-visible" aria-hidden="true">
-            <defs>
-              <path id="oraculoTopArc" d="M 10,25 A 46,46 0 0,1 90,25" />
-            </defs>
-            <text
-              fill="#FFFFFF"
-              fontSize="12.5"
-              fontWeight="800"
-              fontFamily="'Syne', 'Outfit', sans-serif"
-              letterSpacing="1.8"
-            >
-              <textPath href="#oraculoTopArc" startOffset="50%" textAnchor="middle">
-                ORÁCULO™
-              </textPath>
-            </text>
-          </svg>
-        </div>
-
-        {/* Círculo com Borda Cyan & Ícone Sparkles */}
-        <motion.button
+        {/* Container do Botão Completo */}
+        <motion.div
           onClick={() => setIsOpen(!isOpen)}
-          whileHover={{ scale: 1.08 }}
-          whileTap={{ scale: 0.92 }}
-          className="relative w-[68px] h-[68px] rounded-full bg-[#080C14]/90 border border-[#00D4FF]/45 shadow-[0_0_28px_rgba(0,212,255,0.3)] backdrop-blur-xl flex items-center justify-center"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.94 }}
+          className="relative flex flex-col items-center cursor-pointer group"
         >
-          {/* Glow suave pulsante */}
-          <div className="absolute inset-[-2px] rounded-full bg-[#00D4FF]/15 animate-ping opacity-60 blur-sm pointer-events-none" />
-
-          {/* Anel Interno com Ícone Sparkles */}
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#00D4FF]/20 to-[#FF6B35]/20 border border-[#00D4FF]/60 flex items-center justify-center shadow-inner">
-            <Sparkles className="w-5 h-5 text-[#00D4FF] animate-pulse" />
+          {/* Texto ORÁCULO™ Arqueado no Topo (SVG amplo sem cortar nenhuma letra) */}
+          <div className="w-[140px] h-[36px] mb-[-4px] pointer-events-none z-10">
+            <svg
+              viewBox="0 0 140 36"
+              className="w-full h-full overflow-visible"
+              aria-hidden="true"
+            >
+              <defs>
+                {/* Arco amplo suave centralizado */}
+                <path id="oraculoTopArcClean" d="M 10 32 A 60 60 0 0 1 130 32" />
+              </defs>
+              <text
+                fill="#FFFFFF"
+                fontSize="13"
+                fontWeight="800"
+                fontFamily="'Syne', 'Outfit', sans-serif"
+                letterSpacing="2.5"
+              >
+                <textPath href="#oraculoTopArcClean" startOffset="50%" textAnchor="middle">
+                  ORÁCULO™
+                </textPath>
+              </text>
+            </svg>
           </div>
 
-          {/* Bolinha Laranja Orbitando Continuamente */}
-          <div
-            className="absolute inset-0 rounded-full pointer-events-none"
-            style={{ animation: "spin 5s linear infinite" }}
-          >
-            <span
-              className="absolute w-[11px] h-[11px] rounded-full bg-[#FF6B35] shadow-[0_0_14px_#FF6B35] border border-[#080C14]"
-              style={{ top: "3px", right: "3px" }}
-            />
-          </div>
+          {/* Círculo Principal com Anel Orbitante */}
+          <div className="relative w-[64px] h-[64px] rounded-full bg-[#080C14] border border-[#00D4FF]/50 shadow-[0_0_24px_rgba(0,212,255,0.25)] backdrop-blur-xl flex items-center justify-center">
+            {/* Anel Interno com Ícone Sparkles */}
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#00D4FF]/20 to-[#FF6B35]/15 border border-[#00D4FF]/50 flex items-center justify-center">
+              <Sparkles className="w-5 h-5 text-[#00D4FF]" />
+            </div>
 
-          {/* Notificação de não lidas */}
-          {hasUnread && !isOpen && (
-            <span className="absolute top-0 right-0 w-3.5 h-3.5 bg-[#FF6B35] rounded-full border-2 border-[#080C14] animate-bounce z-20" />
-          )}
-        </motion.button>
+            {/* ÚNICA Bolinha Laranja Orbitando Continuamente no Anel Externo */}
+            <div
+              className="absolute inset-0 rounded-full pointer-events-none"
+              style={{ animation: "spin 5s linear infinite" }}
+            >
+              <span
+                className="absolute w-[10px] h-[10px] rounded-full bg-[#FF6B35] shadow-[0_0_10px_#FF6B35] border border-[#080C14]"
+                style={{ top: "2px", right: "2px" }}
+              />
+            </div>
+          </div>
+        </motion.div>
       </div>
 
       {/* 2. PAINEL DO CHAT — Efeito Genie de Abertura (macOS / Spatial Morphing) */}
