@@ -1,13 +1,13 @@
 /* ============================================================
    DESIGN: "Deep Space Broadcast" — ORÁCULO™ Chatbot
-   Modo Triagem com Ficha de Diagnóstico + Estimativa de Investimento
+   Modo Triagem de Alta Conversão + Soft-Gate de Captura
    ============================================================ */
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Sparkles, X, Send, ExternalLink, Bot,
-  ArrowRight, RefreshCw, ChevronRight, Zap,
+  ArrowRight, RefreshCw, ChevronRight, Zap, CheckCircle2,
 } from "lucide-react";
 import {
   ChatMessage,
@@ -15,12 +15,72 @@ import {
   processOraculoMessage,
   WHATSAPP_BASE_URL,
   resetTriagem,
+  LeadData,
 } from "../data/oraculoEngine";
 
-// ── Ficha de Diagnóstico (card visual embutido na mensagem) ──────────────────
+// ── Soft-Gate Form Component ──────────────────────────────────────────────────
+
+function SoftGateForm({ onSubmit }: { onSubmit: (data: LeadData) => void }) {
+  const [nome, setNome] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
+  const [empresa, setEmpresa] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!nome.trim() || !whatsapp.trim()) return;
+    onSubmit({ nome: nome.trim(), whatsapp: whatsapp.trim(), empresa: empresa.trim() });
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="mt-3.5 p-3.5 bg-[#060A10] border border-[#00D4FF]/40 rounded-xl space-y-2.5 shadow-lg">
+      <div className="text-[0.65rem] font-mono-tech text-[#00D4FF] uppercase tracking-wider font-bold flex items-center gap-1.5">
+        <Zap size={12} className="text-[#00D4FF]" />
+        <span>Liberar Detalhamento do Escopo</span>
+      </div>
+      <div>
+        <input
+          type="text"
+          required
+          value={nome}
+          onChange={(e) => setNome(e.target.value)}
+          placeholder="Seu nome completo"
+          className="w-full bg-[#0F1623] border border-white/10 rounded-lg px-3 py-2 text-xs text-[#F0F4FF] placeholder-[#8892A4] focus:outline-none focus:border-[#00D4FF]/60"
+        />
+      </div>
+      <div>
+        <input
+          type="text"
+          required
+          value={whatsapp}
+          onChange={(e) => setWhatsapp(e.target.value)}
+          placeholder="Seu WhatsApp com DDD (ex: 11 99999-9999)"
+          className="w-full bg-[#0F1623] border border-white/10 rounded-lg px-3 py-2 text-xs text-[#F0F4FF] placeholder-[#8892A4] focus:outline-none focus:border-[#00D4FF]/60"
+        />
+      </div>
+      <div>
+        <input
+          type="text"
+          value={empresa}
+          onChange={(e) => setEmpresa(e.target.value)}
+          placeholder="Nome da empresa (opcional)"
+          className="w-full bg-[#0F1623] border border-white/10 rounded-lg px-3 py-2 text-xs text-[#F0F4FF] placeholder-[#8892A4] focus:outline-none focus:border-[#00D4FF]/60"
+        />
+      </div>
+      <button
+        type="submit"
+        disabled={!nome.trim() || !whatsapp.trim()}
+        className="w-full py-2.5 px-3 rounded-lg bg-gradient-to-r from-[#00D4FF] to-[#0099FF] text-[#080C14] font-bold text-xs font-mono-tech disabled:opacity-40 disabled:cursor-not-allowed hover:brightness-110 transition-all flex items-center justify-center gap-1.5 shadow-md"
+      >
+        <span>⚡ Liberar Proposta & Conectar no WhatsApp</span>
+      </button>
+    </form>
+  );
+}
+
+// ── Ficha de Diagnóstico ──────────────────────────────────────────────────────
 
 function FichaDiagnostico({ triagem }: { triagem: NonNullable<ChatMessage["triagem"]> }) {
-  const { produto, nivel, urgencia, valorMinimo, valorMaximo, categoriaColor } = triagem;
+  const { produto, nivel, urgencia, faixaTexto, categoriaColor, isForaICP } = triagem;
 
   const nivelColors: Record<string, string> = {
     Essential: "#10b981",
@@ -30,10 +90,19 @@ function FichaDiagnostico({ triagem }: { triagem: NonNullable<ChatMessage["triag
   const nivelColor = nivelColors[nivel || "Essential"] || "#10b981";
   const urgEmoji = urgencia === "Alta" ? "🔴" : urgencia === "Média" ? "🟡" : "🟢";
 
-  const faixaTexto =
-    valorMinimo && valorMaximo
-      ? `Entre R$ ${valorMinimo.toLocaleString("pt-BR")} e R$ ${valorMaximo.toLocaleString("pt-BR")}`
-      : "Projeção sob consulta";
+  if (isForaICP) {
+    return (
+      <div className="mt-3 rounded-xl p-3.5 bg-[#060A10] border border-[#00D4FF]/30 text-xs space-y-2">
+        <div className="flex items-center gap-1.5 text-[#00D4FF] font-mono-tech font-bold uppercase text-[0.65rem]">
+          <CheckCircle2 size={13} />
+          <span>Fase Inicial Mapeada</span>
+        </div>
+        <p className="text-[#8892A4] leading-relaxed text-[0.7rem]">
+          Esta etapa é ideal para consumir conteúdos de direcionamento e preparar seu modelo de negócio para os pilares avançados.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -87,7 +156,7 @@ function FichaDiagnostico({ triagem }: { triagem: NonNullable<ChatMessage["triag
           </div>
         </div>
 
-        {/* Projeção de Investimento em Faixa (ex: Entre 5 mil e 7 mil) */}
+        {/* Projeção de Investimento em Faixa Proporcional */}
         <div
           className="rounded-xl p-3.5 border"
           style={{
@@ -99,10 +168,10 @@ function FichaDiagnostico({ triagem }: { triagem: NonNullable<ChatMessage["triag
             💰 Projeção de Investimento
           </div>
           <div className="font-display font-800 text-base sm:text-lg" style={{ color: categoriaColor }}>
-            {faixaTexto}
+            {faixaTexto || "Sob consulta"}
           </div>
           <div className="text-[0.6rem] text-[#8892A4] mt-1 leading-relaxed">
-            Estimativa calculada conforme a escala da sua operação. O valor exato é chancelado em alinhamento direto com Ícaro Albuquerque.
+            Estimativa calculada conforme o porte e momento da sua operação. O valor exato é alinhado diretamente com Ícaro Albuquerque.
           </div>
         </div>
 
@@ -144,14 +213,13 @@ export default function OraculoChatbot() {
     setInputValue("");
   };
 
-  const handleSend = (textOverride?: string) => {
+  const handleSend = (textOverride?: string, leadInput?: LeadData) => {
     const textToProcess = textOverride || inputValue;
-    if (!textToProcess.trim()) return;
+    if (!textToProcess.trim() && !leadInput) return;
 
-    // Tokens internos não aparecem como mensagem do usuário
     const isInternalToken = textToProcess.startsWith("__");
 
-    if (!isInternalToken) {
+    if (!isInternalToken && !leadInput) {
       const userMsg: ChatMessage = {
         id: "user-" + Date.now(),
         sender: "user",
@@ -161,10 +229,9 @@ export default function OraculoChatbot() {
       setMessages((prev) => [...prev, userMsg]);
     }
 
-    if (!textOverride) setInputValue("");
+    if (!textOverride && !leadInput) setInputValue("");
     setIsTyping(true);
 
-    // Tokens de WA abrem imediatamente, sem delay
     if (textToProcess.startsWith("__WA_OPEN__")) {
       const oraculoReply = processOraculoMessage(textToProcess);
       setMessages((prev) => [...prev, oraculoReply]);
@@ -173,10 +240,22 @@ export default function OraculoChatbot() {
     }
 
     setTimeout(() => {
-      const oraculoReply = processOraculoMessage(textToProcess);
+      const oraculoReply = processOraculoMessage(textToProcess, leadInput);
       setMessages((prev) => [...prev, oraculoReply]);
       setIsTyping(false);
     }, 700);
+  };
+
+  const handleSoftGateSubmit = (data: LeadData) => {
+    // Registra mensagem visual do usuário confirmando o envio
+    const userMsg: ChatMessage = {
+      id: "user-lead-" + Date.now(),
+      sender: "user",
+      text: `Nome: ${data.nome} | WhatsApp: ${data.whatsapp}${data.empresa ? ` | Empresa: ${data.empresa}` : ""}`,
+      timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+    };
+    setMessages((prev) => [...prev, userMsg]);
+    handleSend("", data);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -188,9 +267,8 @@ export default function OraculoChatbot() {
 
   return (
     <>
-      {/* 1. BOTÃO FLUTUANTE — ORÁCULO™ com texto arqueado e 1 única bolinha orbitando */}
+      {/* 1. BOTÃO FLUTUANTE — ORÁCULO com texto arqueado e 1 única bolinha orbitando */}
       <div className="fixed bottom-6 right-6 z-50 select-none flex flex-col items-center">
-        {/* Efeito Efeito Genie Burst Light Aura no click */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -203,20 +281,14 @@ export default function OraculoChatbot() {
           )}
         </AnimatePresence>
 
-        {/* Container do Botão Completo */}
         <motion.div
           onClick={() => setIsOpen(!isOpen)}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.94 }}
           className="relative flex flex-col items-center cursor-pointer group"
         >
-          {/* Texto ORÁCULO Arqueado Justo (Exatamente como na referência) */}
           <div className="w-[84px] h-[22px] mb-[-5px] pointer-events-none z-10">
-            <svg
-              viewBox="0 0 84 22"
-              className="w-full h-full overflow-visible"
-              aria-hidden="true"
-            >
+            <svg viewBox="0 0 84 22" className="w-full h-full overflow-visible" aria-hidden="true">
               <defs>
                 <path id="oraculoTopArcTight" d="M 10 20 A 34 34 0 0 1 74 20" />
               </defs>
@@ -234,14 +306,11 @@ export default function OraculoChatbot() {
             </svg>
           </div>
 
-          {/* Círculo Principal com Anel Orbitante */}
           <div className="relative w-[64px] h-[64px] rounded-full bg-[#080C14] border border-[#00D4FF]/50 shadow-[0_0_24px_rgba(0,212,255,0.25)] backdrop-blur-xl flex items-center justify-center">
-            {/* Anel Interno com Ícone Sparkles */}
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#00D4FF]/20 to-[#FF6B35]/15 border border-[#00D4FF]/50 flex items-center justify-center">
               <Sparkles className="w-5 h-5 text-[#00D4FF]" />
             </div>
 
-            {/* ÚNICA Bolinha Laranja Orbitando Continuamente no Anel Externo */}
             <div
               className="absolute inset-0 rounded-full pointer-events-none"
               style={{ animation: "spin 5s linear infinite" }}
@@ -255,7 +324,7 @@ export default function OraculoChatbot() {
         </motion.div>
       </div>
 
-      {/* 2. PAINEL DO CHAT — Efeito Genie de Abertura (macOS / Spatial Morphing) */}
+      {/* 2. PAINEL DO CHAT — Efeito Genie de Abertura */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -312,7 +381,7 @@ export default function OraculoChatbot() {
                     <span className="w-2 h-2 rounded-full bg-[#00D4FF] animate-pulse" />
                   </div>
                   <p className="font-mono-tech text-[0.65rem] text-[#8892A4]">
-                    Diagnóstico Rápido · Ícaro Albuquerque
+                    Consciência Estratégica · Ícaro Albuquerque
                   </p>
                 </div>
               </div>
@@ -331,22 +400,6 @@ export default function OraculoChatbot() {
                   <X size={18} />
                 </button>
               </div>
-            </div>
-
-            {/* WhatsApp direto */}
-            <div className="px-4 py-2.5 bg-gradient-to-r from-[#00D4FF]/10 to-[#25D366]/10 border-b border-white/5 flex items-center justify-between shrink-0">
-              <span className="text-[0.7rem] font-mono-tech text-[#8892A4]">
-                Prefere atendimento direto?
-              </span>
-              <a
-                href={WHATSAPP_BASE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-mono-tech font-bold text-[#25D366] hover:underline"
-              >
-                <span>Falar no WhatsApp</span>
-                <ExternalLink size={12} />
-              </a>
             </div>
 
             {/* Mensagens */}
@@ -368,8 +421,15 @@ export default function OraculoChatbot() {
                     >
                       <p className="whitespace-pre-line text-xs sm:text-sm">{msg.text}</p>
 
+                      {/* Soft-Gate Form */}
+                      {msg.isSoftGateStep && (
+                        <SoftGateForm onSubmit={handleSoftGateSubmit} />
+                      )}
+
                       {/* Ficha de diagnóstico */}
-                      {msg.triagem && <FichaDiagnostico triagem={msg.triagem} />}
+                      {msg.triagem && !msg.isSoftGateStep && (
+                        <FichaDiagnostico triagem={msg.triagem} />
+                      )}
 
                       {/* Produto recomendado (modo keyword) */}
                       {msg.recommendedProduct && !msg.triagem && (
@@ -390,7 +450,7 @@ export default function OraculoChatbot() {
                             className="inline-flex items-center justify-between w-full py-2.5 px-3 rounded-lg bg-[#0F1623] border text-xs font-mono-tech text-white hover:bg-white/10 transition-colors"
                             style={{ borderColor: `${msg.recommendedProduct.color}50` }}
                           >
-                            <span>Falar sobre este produto no WhatsApp</span>
+                            <span>Conectar no WhatsApp</span>
                             <ArrowRight size={14} style={{ color: msg.recommendedProduct.color }} />
                           </a>
                         </div>
@@ -431,14 +491,14 @@ export default function OraculoChatbot() {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Input */}
+            {/* Input Footer */}
             <div className="p-3 sm:p-4 bg-[#080C14] border-t border-white/10 flex items-center gap-2 shrink-0">
               <input
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Digite ou use as opções acima..."
+                placeholder="Digite sua dúvida ou selecione acima..."
                 className="flex-1 bg-[#0F1623] border border-white/10 rounded-xl px-4 py-2.5 text-xs sm:text-sm text-[#F0F4FF] placeholder-[#8892A4] focus:outline-none focus:border-[#00D4FF]/60 transition-colors font-outfit"
               />
               <button
