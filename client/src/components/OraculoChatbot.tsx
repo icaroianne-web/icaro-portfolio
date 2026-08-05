@@ -20,7 +20,7 @@ import {
 // ── Ficha de Diagnóstico (card visual embutido na mensagem) ──────────────────
 
 function FichaDiagnostico({ triagem }: { triagem: NonNullable<ChatMessage["triagem"]> }) {
-  const { produto, nivel, urgencia, valorMinimo, categoriaColor } = triagem;
+  const { produto, nivel, urgencia, valorMinimo, valorMaximo, categoriaColor } = triagem;
 
   const nivelColors: Record<string, string> = {
     Essential: "#10b981",
@@ -29,6 +29,11 @@ function FichaDiagnostico({ triagem }: { triagem: NonNullable<ChatMessage["triag
   };
   const nivelColor = nivelColors[nivel || "Essential"] || "#10b981";
   const urgEmoji = urgencia === "Alta" ? "🔴" : urgencia === "Média" ? "🟡" : "🟢";
+
+  const faixaTexto =
+    valorMinimo && valorMaximo
+      ? `Entre R$ ${valorMinimo.toLocaleString("pt-BR")} e R$ ${valorMaximo.toLocaleString("pt-BR")}`
+      : "Projeção sob consulta";
 
   return (
     <div
@@ -45,25 +50,23 @@ function FichaDiagnostico({ triagem }: { triagem: NonNullable<ChatMessage["triag
           className="text-[0.65rem] font-mono-tech uppercase tracking-widest font-bold"
           style={{ color: categoriaColor }}
         >
-          Diagnóstico Rápido — ORÁCULO™
+          Projeção Estratégica — ORÁCULO™
         </span>
       </div>
 
       {/* Body da ficha */}
       <div className="bg-[#060A10] px-4 py-4 space-y-3">
-        {/* Produto */}
+        {/* Arquitetura Recomendada */}
         <div>
           <div className="text-[0.6rem] font-mono-tech text-[#8892A4] uppercase tracking-wider mb-0.5">
-            Produto sugerido
+            Arquitetura Recomendada
           </div>
-          <div
-            className="font-display font-800 text-base text-[#F0F4FF]"
-          >
+          <div className="font-display font-800 text-base text-[#F0F4FF]">
             {produto}
           </div>
         </div>
 
-        {/* Nível & Urgência */}
+        {/* Nível & Janela */}
         <div className="grid grid-cols-2 gap-2">
           <div
             className="rounded-lg p-2.5 border"
@@ -76,7 +79,7 @@ function FichaDiagnostico({ triagem }: { triagem: NonNullable<ChatMessage["triag
           </div>
           <div className="rounded-lg p-2.5 border border-white/10 bg-white/5">
             <div className="text-[0.55rem] font-mono-tech uppercase tracking-wider text-[#8892A4] mb-0.5">
-              Urgência
+              Janela
             </div>
             <div className="text-xs font-bold text-[#F0F4FF]">
               {urgEmoji} {urgencia}
@@ -84,7 +87,7 @@ function FichaDiagnostico({ triagem }: { triagem: NonNullable<ChatMessage["triag
           </div>
         </div>
 
-        {/* Estimativa */}
+        {/* Projeção de Investimento em Faixa (ex: Entre 5 mil e 7 mil) */}
         <div
           className="rounded-xl p-3.5 border"
           style={{
@@ -93,20 +96,20 @@ function FichaDiagnostico({ triagem }: { triagem: NonNullable<ChatMessage["triag
           }}
         >
           <div className="text-[0.6rem] font-mono-tech text-[#8892A4] uppercase tracking-wider mb-1">
-            💰 Estimativa de investimento
+            💰 Projeção de Investimento
           </div>
-          <div className="font-display font-800 text-xl" style={{ color: categoriaColor }}>
-            A partir de R$ {valorMinimo?.toLocaleString("pt-BR")}
+          <div className="font-display font-800 text-base sm:text-lg" style={{ color: categoriaColor }}>
+            {faixaTexto}
           </div>
           <div className="text-[0.6rem] text-[#8892A4] mt-1 leading-relaxed">
-            Estimativa preliminar baseada no seu perfil. O valor real é definido após a conversa de diagnóstico com o Ícaro — pode ser menor ou maior conforme o escopo.
+            Estimativa calculada conforme a escala da sua operação. O valor exato é chancelado em alinhamento direto com Ícaro Albuquerque.
           </div>
         </div>
 
-        {/* Modelo de pagamento */}
+        {/* Modelo financeiro */}
         <div className="flex items-center gap-2 text-[0.6rem] font-mono-tech text-[#8892A4]">
           <span className="w-1.5 h-1.5 rounded-full bg-[#8892A4]" />
-          Pagamento: 60% entrada · 40% entrega
+          Modelo Financeiro: 60% entrada · 40% entrega
         </div>
       </div>
     </div>

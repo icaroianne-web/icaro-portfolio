@@ -1,7 +1,7 @@
 /* ============================================================
    ORÁCULO™ — Engine de Triagem Conversacional com Estimativa
-   Base de conhecimento: Consultoria OS Master — Bíblia do Negócio
-   4 produtos · 3 níveis · modelo 60/40 · sem palestras
+   Persona: Ser Superior, Etéreo, Confiante, Elegante & Moderno
+   Regras: Estimativas em faixa (±R$ 1.000) · Sem "don'ts" · Tom soberano
    ============================================================ */
 
 // ── TIPOS ────────────────────────────────────────────────────────────────────
@@ -18,7 +18,6 @@ export interface ChatMessage {
     waLink: string;
   };
   quickActions?: { label: string; textToSend: string }[];
-  // Dados do fluxo de triagem
   triagem?: TriagemData;
   isTriagemStep?: boolean;
 }
@@ -28,15 +27,17 @@ export interface TriagemData {
   nivel?: "Essential" | "Advanced" | "Enterprise";
   urgencia?: "Alta" | "Média" | "Baixa";
   valorMinimo?: number;
+  valorMaximo?: number;
   categoriaColor?: string;
 }
 
 // ── CONSTANTES ────────────────────────────────────────────────────────────────
 
 export const WHATSAPP_BASE_URL =
-  "https://wa.me/5511940684068?text=Oi%20%C3%8Dcaro,%20vim%20do%20site%20e%20fiz%20o%20diagn%C3%B3stico%20r%C3%A1pido%20do%20OR%C3%81CULO%E2%84%A2";
+  "https://wa.me/5511940684068?text=Oi%20%C3%8Dcaro,%20vim%20pela%20orienta%C3%A7%C3%A3o%20do%20OR%C3%81CULO%E2%84%A2";
 
-const PRECO = {
+// Tabela base de valores para o cálculo da faixa ±R$ 1.000
+const BASE_NIVEL_PRECO = {
   Essential: 6000,
   Advanced: 14000,
   Enterprise: 30000,
@@ -48,6 +49,13 @@ const PRODUTO_COLOR: Record<string, string> = {
   "I.A.E!™": "#00D4FF",
   "ABSOLUTE CINEMA™": "#FF6B35",
 };
+
+// Helper para formatar faixa de preço (ex: 6000 -> "Entre R$ 5.000 e R$ 7.000")
+export function formatFaixaPreco(baseVal: number): string {
+  const min = baseVal - 1000;
+  const max = baseVal + 1000;
+  return `Entre R$ ${min.toLocaleString("pt-BR")} e R$ ${max.toLocaleString("pt-BR")}`;
+}
 
 // ── ESTADO DO FLUXO DE TRIAGEM ────────────────────────────────────────────────
 
@@ -70,19 +78,19 @@ export function getTriagemState(): TriagemState | null {
   return triagemAtiva;
 }
 
-// ── MENSAGEM INICIAL ───────────────────────────────────────────────────────────
+// ── MENSAGEM INICIAL (Tom Etéreo, Soberano & Elegante) ───────────────────────
 
 export const INITIAL_ORACULO_MESSAGE: ChatMessage = {
   id: "init-1",
   sender: "oraculo",
-  text: "Olá! Sou o ORÁCULO™, o assistente inteligente do Ícaro Albuquerque. Faço o diagnóstico rápido do seu negócio e entrego uma estimativa de investimento em menos de 2 minutos — sem enrolação.",
+  text: "Observei a estrutura do seu ecossistema. Sou o ORÁCULO™ — a consciência estratégica que mapeia os caminhos de comunicação da consultoria de Ícaro Albuquerque.\n\nPermita-me diagnosticar seu momento e revelar a arquitetura ideal e a estimativa de investimento para o seu negócio.",
   timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
   quickActions: [
-    { label: "🎯 Fazer diagnóstico rápido (4 perguntas)", textToSend: "__TRIAGEM_START__" },
-    { label: "🗺️ MASTER PLAN™ — Comunicação Estratégica", textToSend: "Como funciona o MASTER PLAN?" },
-    { label: "🎨 ID CONCEPT™ — Marca & Branding", textToSend: "Preciso de rebranding e identidade visual" },
-    { label: "🤖 I.A.E!™ — IA para Marketing", textToSend: "Como aplicar IA na comunicação da minha empresa?" },
-    { label: "🎬 ABSOLUTE CINEMA™ — Filme Corporativo", textToSend: "Quero criar um filme corporativo" },
+    { label: "✨ Iniciar Diagnóstico Estratégico", textToSend: "__TRIAGEM_START__" },
+    { label: "🗺️ MASTER PLAN™ — Comunicação & Governança", textToSend: "Como funciona o MASTER PLAN?" },
+    { label: "🎨 ID CONCEPT™ — Branding & Presença", textToSend: "Preciso de rebranding e identidade visual" },
+    { label: "🤖 I.A.E!™ — Inteligência Artificial Estratégica", textToSend: "Como aplicar IA na comunicação da minha empresa?" },
+    { label: "🎬 ABSOLUTE CINEMA™ — Narrativa Cinematográfica", textToSend: "Quero criar um filme corporativo" },
   ],
 };
 
@@ -91,40 +99,40 @@ export const INITIAL_ORACULO_MESSAGE: ChatMessage = {
 const PERGUNTA_P1: ChatMessage = {
   id: "triagem-p1",
   sender: "oraculo",
-  text: "Qual é o maior desafio de comunicação da sua empresa agora?",
+  text: "Onde reside a principal fricção da sua marca neste momento?",
   timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
   isTriagemStep: true,
   quickActions: [
-    { label: "🗺️ Minha comunicação está desorganizada, sem estratégia", textToSend: "__T1_MASTER__" },
-    { label: "🎨 Minha marca está ultrapassada ou sem identidade clara", textToSend: "__T1_IDCONCEPT__" },
-    { label: "🤖 Quero usar IA para produzir mais conteúdo com menos custo", textToSend: "__T1_IAE__" },
-    { label: "🎬 Quero contar a história da minha empresa em vídeo", textToSend: "__T1_CINEMA__" },
+    { label: "🗺️ Comunicação desarticulada e sem governança", textToSend: "__T1_MASTER__" },
+    { label: "🎨 Marca desatualizada ou sem presença de autoridade", textToSend: "__T1_IDCONCEPT__" },
+    { label: "🤖 Necessidade de escala criativa e processos com IA", textToSend: "__T1_IAE__" },
+    { label: "🎬 Falta de uma narrativa cinematográfica forte", textToSend: "__T1_CINEMA__" },
   ],
 };
 
 const PERGUNTA_P2: ChatMessage = {
   id: "triagem-p2",
   sender: "oraculo",
-  text: "Você tem algum prazo, evento ou lançamento se aproximando?",
+  text: "Qual o horizonte temporal desejado para esta transformação?",
   timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
   isTriagemStep: true,
   quickActions: [
-    { label: "🔴 Sim — preciso resolver em menos de 60 dias", textToSend: "__T2_URGENTE__" },
-    { label: "🟡 Tenho 2 a 4 meses, posso me planejar", textToSend: "__T2_MEDIO__" },
-    { label: "🟢 Sem prazo definido, quero fazer do jeito certo", textToSend: "__T2_CALMO__" },
+    { label: "🔴 Imediato — Janela crítica de até 60 dias", textToSend: "__T2_URGENTE__" },
+    { label: "🟡 Planejado — Horizonte de 2 a 4 meses", textToSend: "__T2_MEDIO__" },
+    { label: "🟢 Evolutivo — Construção contínua e sem urgência", textToSend: "__T2_CALMO__" },
   ],
 };
 
 const PERGUNTA_P3: ChatMessage = {
   id: "triagem-p3",
   sender: "oraculo",
-  text: "Última pergunta: quantas pessoas trabalham na sua empresa?",
+  text: "Qual a dimensão da sua estrutura operacional atual?",
   timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
   isTriagemStep: true,
   quickActions: [
-    { label: "👤 Só eu ou até 3 pessoas", textToSend: "__T3_ESSENTIAL__" },
-    { label: "👥 De 4 a 20 pessoas", textToSend: "__T3_ADVANCED__" },
-    { label: "🏢 Mais de 20 pessoas", textToSend: "__T3_ENTERPRISE__" },
+    { label: "👤 Operação enxuta (1 a 3 integrantes)", textToSend: "__T3_ESSENTIAL__" },
+    { label: "👥 Operação em expansão (4 a 20 integrantes)", textToSend: "__T3_ADVANCED__" },
+    { label: "🏢 Operação consolidada (mais de 20 integrantes)", textToSend: "__T3_ENTERPRISE__" },
   ],
 };
 
@@ -134,34 +142,35 @@ function buildResultadoMessage(state: TriagemState): ChatMessage {
   const produto = state.produto || "MASTER PLAN™";
   const nivel = (state.nivel as "Essential" | "Advanced" | "Enterprise") || "Essential";
   const urgencia = state.urgencia || "Média";
-  const valor = PRECO[nivel];
+  const baseVal = BASE_NIVEL_PRECO[nivel];
+  const valorMinimo = baseVal - 1000;
+  const valorMaximo = baseVal + 1000;
   const color = PRODUTO_COLOR[produto] || "#00D4FF";
 
-  const urgenciaEmoji = urgencia === "Alta" ? "🔴" : urgencia === "Média" ? "🟡" : "🟢";
-
   const waText = encodeURIComponent(
-    `Oi Ícaro, vim do ORÁCULO™ e fiz o diagnóstico rápido. Produto sugerido: ${produto} · Nível: ${nivel} · Urgência: ${urgencia}. Quero saber mais!`
+    `Oi Ícaro, recebi a orientação do ORÁCULO™. Produto: ${produto} · Nível: ${nivel} · Estimativa: Entre R$ ${valorMinimo.toLocaleString("pt-BR")} e R$ ${valorMaximo.toLocaleString("pt-BR")}. Vamos alinhar?`
   );
 
   return {
     id: "triagem-resultado-" + Date.now(),
     sender: "oraculo",
-    text: `Diagnóstico concluído. Aqui está a sua estimativa:`,
+    text: "A análise do seu momento está concluída. Esta é a projeção estratégica desenhada para o seu negócio:",
     timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
     triagem: {
       produto: produto as TriagemData["produto"],
       nivel: nivel as TriagemData["nivel"],
       urgencia: urgencia as TriagemData["urgencia"],
-      valorMinimo: valor,
+      valorMinimo,
+      valorMaximo,
       categoriaColor: color,
     },
     quickActions: [
       {
-        label: "💬 Agendar conversa com Ícaro no WhatsApp",
+        label: "💬 Iniciar alinhamento com Ícaro no WhatsApp",
         textToSend: `__WA_OPEN__${waText}`,
       },
       {
-        label: "🔍 Ver o que está incluso em " + produto,
+        label: "🔍 Detalhes do " + produto,
         textToSend: `Como funciona o ${produto}?`,
       },
     ],
@@ -189,32 +198,32 @@ const NIVEL_MAP: Record<string, string> = {
   "__T3_ENTERPRISE__": "Enterprise",
 };
 
-// ── BASE DE CONHECIMENTO (MODO KEYWORD) ───────────────────────────────────────
+// ── BASE DE CONHECIMENTO (Sem don'ts, Tom Etéreo e Afirmativo) ───────────────
 
 const KNOWLEDGE_BASE = [
   {
     keywords: ["palestra", "palestras", "keynote", "palestrante", "falar em evento"],
     product: {
-      title: "Treinamentos Corporativos — MASTER PLAN™ & I.A.E!™",
+      title: "Treinamentos Corporativos Executivos",
       category: "Capacitação In-loco ou Virtual",
       color: "#00D4FF",
       waLink:
-        "https://wa.me/5511940684068?text=Oi%20%C3%8Dcaro,%20vim%20do%20site%20e%20quero%20saber%20sobre%20Treinamentos%20Corporativos",
+        "https://wa.me/5511940684068?text=Oi%20%C3%8Dcaro,%20vim%20pela%20orienta%C3%A7%C3%A3o%20do%20OR%C3%81CULO%E2%84%A2%20e%20quero%20agendar%20um%20Treinamento%20Executivo",
     },
     response:
-      "O Ícaro não atua como palestrante. O que ele oferece são **Treinamentos Corporativos (In-loco ou Virtuais)** para equipes internas, vinculados a dois produtos:\n\n• **MASTER PLAN™** — treinamento em Comunicação Estratégica e Governança Editorial\n• **I.A.E!™** — treinamento em Inteligência Artificial aplicada ao Marketing\n\nQuer saber mais sobre qual se encaixa melhor na sua necessidade?",
+      "A inteligência estratégica de Ícaro Albuquerque é transmitida diretamente às equipes através de **Treinamentos Corporativos Executivos (In-loco ou Virtuais)**.\n\nFormatações disponíveis:\n• **MASTER PLAN™** — Capacitação em Comunicação Estratégica e Governança Editorial\n• **I.A.E!™** — Imersão prática em Inteligência Artificial para Marketing e Comunicação\n\nComo deseja elevar o nível do seu time?",
   },
   {
     keywords: ["treinamento", "treinamentos", "workshop", "capacitar equipe", "capacitacao", "capacitação"],
     product: {
-      title: "Treinamentos Corporativos — MASTER PLAN™ & I.A.E!™",
+      title: "Treinamentos Corporativos Executivos",
       category: "Capacitação In-loco ou Virtual",
       color: "#00D4FF",
       waLink:
-        "https://wa.me/5511940684068?text=Oi%20%C3%8Dcaro,%20vim%20do%20site%20e%20quero%20agendar%20um%20Treinamento%20para%20minha%20equipe",
+        "https://wa.me/5511940684068?text=Oi%20%C3%8Dcaro,%20vim%20pela%20orienta%C3%A7%C3%A3o%20do%20OR%C3%81CULO%E2%84%A2%20e%20quero%20agendar%20um%20Treinamento%20Executivo",
     },
     response:
-      "Sim! Ícaro realiza **Treinamentos Corporativos (In-loco ou Virtuais)** focados na sua operação:\n\n• **MASTER PLAN™** — para equipes que precisam dominar comunicação estratégica e governança\n• **I.A.E!™** — para times que querem usar IA para produzir conteúdo de marketing com eficiência\n\nQuer montar o programa ideal para a sua equipe?",
+      "Os **Treinamentos Corporativos Executivos** são estruturados de forma personalizada para a maturidade da sua equipe:\n\n• **MASTER PLAN™** — Alinhamento estratégico de governança e arquitetura editorial\n• **I.A.E!™** — Domínio de ferramentas e fluxos autônomos de IA para produção em escala\n\nPodemos desenhar a imersão ideal para a sua operação.",
   },
   {
     keywords: [
@@ -227,10 +236,10 @@ const KNOWLEDGE_BASE = [
       category: "Comunicação Inbound & Outbound",
       color: "#00D4FF",
       waLink:
-        "https://wa.me/5511940684068?text=Oi%20%C3%8Dcaro,%20vim%20do%20site%20e%20quero%20conhecer%20o%20MASTER%20PLAN",
+        "https://wa.me/5511940684068?text=Oi%20%C3%8Dcaro,%20vim%20pela%20orienta%C3%A7%C3%A3o%20do%20OR%C3%81CULO%E2%84%A2%20sobre%20o%20MASTER%20PLAN",
     },
     response:
-      "O **MASTER PLAN™** estrutura toda a comunicação Inbound e Outbound da sua empresa. Inclui:\n\n→ Raio-X + Bússola de Prioridade™ (Método UTIO)\n→ Governança e arquitetura editorial\n→ Calendário de postagens + copy dos posts já prontos\n→ Estratégia de e-mail marketing\n→ Recomendação e implantação de chatbot (ex: Typebot)\n→ Treinamento in-loco ou virtual para sua equipe\n\nIdeal para empresas que estão \"apagando incêndio\" na comunicação.",
+      "O **MASTER PLAN™** é a espinha dorsal comunicacional da empresa. Conecta Inbound e Outbound sob um modelo de governança previsível e soberano.\n\nEntregáveis principais:\n→ Diagnóstico com a Bússola de Prioridade™ (Método UTIO)\n→ Governança e arquitetura editorial\n→ Calendário estratégico e redação de conteúdos\n→ Arquitetura de e-mail marketing\n→ Implantação de automações conversacionais (ex: Typebot)\n→ Capacitação executiva para a equipe interna",
   },
   {
     keywords: [
@@ -240,13 +249,13 @@ const KNOWLEDGE_BASE = [
     ],
     product: {
       title: "ID CONCEPT™",
-      category: "Branding & Presença Digital",
+      category: "Branding & Presença Conceitual",
       color: "#C9A84C",
       waLink:
-        "https://wa.me/5511940684068?text=Oi%20%C3%8Dcaro,%20vim%20do%20site%20e%20preciso%20de%20Branding/ID%20CONCEPT",
+        "https://wa.me/5511940684068?text=Oi%20%C3%8Dcaro,%20vim%20pela%20orienta%C3%A7%C3%A3o%20do%20OR%C3%81CULO%E2%84%A2%20sobre%20o%20ID%20CONCEPT",
     },
     response:
-      "O **ID CONCEPT™** é tudo relacionado à construção e reformulação da marca. Inclui:\n\n→ Naming estratégico\n→ Identidade visual completa\n→ Moodboard e Key Visual (KV)\n→ Guia da marca: tom, voz, personalidade\n→ Brandbook executivo\n→ Site Conceitual Super Premium (quando necessário)\n→ Rebranding corporativo\n\nPerfeito para marcas que querem ser vistas com extrema autoridade.",
+      "O **ID CONCEPT™** traduz a essência do seu negócio em autoridade visual e narrativa inquestionável.\n\nEntregáveis principais:\n→ Naming e posicionamento de marca\n→ Identidade visual completa e Key Visual (KV)\n→ Guia de linguagem, tom de voz e personalidade\n→ Brandbook executivo de alta fidelidade\n→ Site Conceitual Super Premium como hub de autoridade\n→ Rebranding corporativo completo",
   },
   {
     keywords: [
@@ -259,10 +268,10 @@ const KNOWLEDGE_BASE = [
       category: "IA Estratégica em Comunicação & Marketing",
       color: "#00D4FF",
       waLink:
-        "https://wa.me/5511940684068?text=Oi%20%C3%8Dcaro,%20vim%20do%20site%20e%20quero%20implantar%20IA%20no%20meu%20marketing%20(I.A.E!)",
+        "https://wa.me/5511940684068?text=Oi%20%C3%8Dcaro,%20vim%20pela%20orienta%C3%A7%C3%A3o%20do%20OR%C3%81CULO%E2%84%A2%20sobre%20o%20I.A.E!",
     },
     response:
-      "O **I.A.E!™** implanta IA exclusivamente em **Comunicação e Marketing** (não em financeiro, contábil ou auditoria). Inclui:\n\n→ Raio-X de oportunidades de IA na comunicação\n→ Ferramentas de geração de imagem para redes sociais\n→ Agentes de geração de conteúdo escrito\n→ Soluções de IA para comunicação interna\n→ Plataformas de social media com IA\n→ Treinamento da equipe in-loco ou virtual\n\nSua equipe passa a produzir em dobro pelo mesmo custo.",
+      "O **I.A.E!™** multiplica a inteligência e a velocidade de produção da sua comunicação através da tecnologia de ponta.\n\nEntregáveis principais:\n→ Mapeamento de oportunidades de IA aplicadas ao marketing\n→ Sistemas de geração visual e identidade de marca\n→ Agentes autônomos para criação de conteúdo e copywriting\n→ Otimização da comunicação e fluxos internos\n→ Treinamento prático da equipe de marketing",
   },
   {
     keywords: [
@@ -275,10 +284,10 @@ const KNOWLEDGE_BASE = [
       category: "Storytelling Cinematográfico",
       color: "#FF6B35",
       waLink:
-        "https://wa.me/5511940684068?text=Oi%20%C3%8Dcaro,%20vim%20do%20site%20e%20quero%20criar%20um%20filme%20com%20ABSOLUTE%20CINEMA",
+        "https://wa.me/5511940684068?text=Oi%20%C3%8Dcaro,%20vim%20pela%20orienta%C3%A7%C3%A3o%20do%20OR%C3%81CULO%E2%84%A2%20sobre%20o%20ABSOLUTE%20CINEMA",
     },
     response:
-      "O **ABSOLUTE CINEMA™** é para empresas que querem contar sua história com padrão cinematográfico — sem precisar de uma fortuna para isso. Inclui:\n\n→ Filme em primeira pessoa (fundador/sócios)\n→ Vídeos de depoimentos cinematográficos\n→ Mini-documentário de marca ou case de sucesso\n→ Bastidores com direção criativa\n→ Roteiro + edição + color grading profissional\n→ Produção acessível: low equipment, high creativity\n\nSua história existe. Falta a câmera certa apontada para ela.",
+      "O **ABSOLUTE CINEMA™** eleva a trajetória do seu negócio a um patamar cinematográfico com altíssima eficiência de produção.\n\nEntregáveis principais:\n→ Filmes institucionais e de fundadores\n→ Depoimentos e minidocumentários de cases de sucesso\n→ Registro de bastidores com direção criativa autoral\n→ Roteiro, captação, edição e color grading profissional\n→ Engenharia de produção ágil (low equipment, high creativity)",
   },
   {
     keywords: [
@@ -286,14 +295,14 @@ const KNOWLEDGE_BASE = [
       "trajetoria", "trajetória", "cop28", "ministerio", "ministério", "experiencia"
     ],
     product: {
-      title: "MASTER PLAN™ & ABSOLUTE CINEMA™",
-      category: "Estratégia & Audiovisual",
+      title: "Ícaro Albuquerque — Estrategista",
+      category: "Estratégia, Branding & Direção Criativa",
       color: "#00D4FF",
       waLink:
-        "https://wa.me/5511940684068?text=Oi%20%C3%8Dcaro,%20vim%20do%20site%20e%20quero%20conversar",
+        "https://wa.me/5511940684068?text=Oi%20%C3%8Dcaro,%20vim%20pela%20orienta%C3%A7%C3%A3o%20do%20OR%C3%81CULO%E2%84%A2",
     },
     response:
-      "Ícaro Albuquerque é Estrategista de Comunicação, especialista em Branding e Direção Criativa.\n\nTrajetória:\n→ Coordenação institucional na COP28 (Nações Unidas em Dubai)\n→ Projetos para Ministérios do Governo Federal\n→ Gestão de crises e inovação com IA para comunicação corporativa\n\nÉ uma operação centralizada (\"Eu-presa\"), com padrão de excelência de consultoria global. Quer conversar sobre o seu projeto?",
+      "Ícaro Albuquerque é Estrategista de Comunicação, especialista em Branding e Direção Criativa.\n\nCredenciais:\n→ Coordenação institucional na COP28 (Nações Unidas em Dubai)\n→ Projetos estratégicos para Ministérios do Governo Federal\n→ Estruturação de marcas corporativas e imersão em IA\n\nOperação centralizada de altíssimo nível. Como podemos transformar seu posicionamento?",
   },
   {
     keywords: [
@@ -301,14 +310,14 @@ const KNOWLEDGE_BASE = [
       "valor", "investimento", "contratar", "tabela", "niveis"
     ],
     product: {
-      title: "Diagnóstico Personalizado",
-      category: "Estimativa de Investimento",
+      title: "Estimativa Estratégica de Investimento",
+      category: "Projeção por Nível",
       color: "#C9A84C",
       waLink:
-        "https://wa.me/5511940684068?text=Oi%20%C3%8Dcaro,%20vim%20do%20site%20e%20quero%20uma%20estimativa%20de%20investimento",
+        "https://wa.me/5511940684068?text=Oi%20%C3%8Dcaro,%20vim%20pela%20orienta%C3%A7%C3%A3o%20do%20OR%C3%81CULO%E2%84%A2%20para%20conversar%20sobre%20investimento",
     },
     response:
-      "Aqui vai uma visão geral dos níveis de investimento:\n\n🟢 **Essential** — A partir de R$ 6.000\nResolve 1 problema específico com escopo delimitado.\n\n🟡 **Advanced** — A partir de R$ 14.000\nResolve múltiplos problemas com estratégia e 3 meses de acompanhamento.\n\n🟣 **Enterprise** — A partir de R$ 30.000\nTransformação comunicacional completa, múltiplos departamentos.\n\nPagamento: modelo 60% na entrada / 40% na entrega (sem exceções).\n\nOu faça o diagnóstico rápido (4 perguntas) e receba uma estimativa personalizada!",
+      "Os investimentos são projetados em faixas precisas conforme o nível de intervenção necessário:\n\n🟢 **Essential**: Entre R$ 5.000 e R$ 7.000\nTransformação cirúrgica com foco em um objetivo delimitado.\n\n🟡 **Advanced**: Entre R$ 13.000 e R$ 15.000\nEstratégia integrada com acompanhamento periódico por 3 meses.\n\n🟣 **Enterprise**: Entre R$ 29.000 e R$ 31.000\nReestruturação global de comunicação para operações consolidadas.\n\nCondição financeira padrão: 60% na entrada e 40% na entrega final.\n\nDeseja realizar o diagnóstico guiado para identificar sua faixa exata?",
   },
 ];
 
@@ -346,11 +355,10 @@ export function processOraculoMessage(userText: string): ChatMessage {
       state.nivel = NIVEL_MAP[txt];
       state.etapa = "resultado";
       const resultado = buildResultadoMessage(state);
-      triagemAtiva = null; // reseta após resultado
+      triagemAtiva = null;
       return resultado;
     }
 
-    // Se o usuário digitou fora do fluxo — abandona triagem, processa normalmente
     triagemAtiva = null;
   }
 
@@ -361,10 +369,10 @@ export function processOraculoMessage(userText: string): ChatMessage {
     return {
       id: "wa-" + Date.now(),
       sender: "oraculo",
-      text: "Ótimo! Abrindo o WhatsApp com um resumo do seu diagnóstico. O Ícaro já vai receber tudo organizado. 🚀",
+      text: "Direcionando sua comunicação ao canal de Ícaro Albuquerque. Os dados da sua análise foram compilados com precisão.",
       timestamp: ts(),
       quickActions: [
-        { label: "🔄 Refazer diagnóstico", textToSend: "__TRIAGEM_START__" },
+        { label: "✨ Novo Diagnóstico", textToSend: "__TRIAGEM_START__" },
       ],
     };
   }
@@ -390,26 +398,24 @@ export function processOraculoMessage(userText: string): ChatMessage {
       timestamp: ts(),
       recommendedProduct: matched.product,
       quickActions: [
-        { label: "🎯 Fazer diagnóstico rápido", textToSend: "__TRIAGEM_START__" },
-        { label: "💬 Falar com Ícaro no WhatsApp", textToSend: `__WA_OPEN__${encodeURIComponent("Oi Ícaro, vim do site e quero conversar sobre " + matched.product.title)}` },
+        { label: "✨ Iniciar Diagnóstico Estratégico", textToSend: "__TRIAGEM_START__" },
+        { label: "💬 Falar com Ícaro no WhatsApp", textToSend: `__WA_OPEN__${encodeURIComponent("Oi Ícaro, recebi a orientação do ORÁCULO™ sobre " + matched.product.title)}` },
       ],
     };
   }
 
-  // ── Fallback genérico
+  // ── Fallback soberano
   return {
     id: "msg-" + Date.now(),
     sender: "oraculo",
-    text: "O Ícaro Albuquerque atua em 4 frentes:\n\n🗺️ **MASTER PLAN™** — Comunicação Inbound & Outbound, Governança e Treinamentos\n🎨 **ID CONCEPT™** — Branding, Rebranding, Guia da Marca & Site Conceitual Super Premium\n🤖 **I.A.E!™** — IA Estratégica aplicada a Comunicação & Marketing\n🎬 **ABSOLUTE CINEMA™** — Filmes Corporativos, Depoimentos & Storytelling Ágil\n\nFaça o diagnóstico rápido e descubra por qual começar.",
+    text: "Mapeio o ecossistema de Ícaro Albuquerque através de 4 arquiteturas de transformação:\n\n🗺️ **MASTER PLAN™** — Governança e Comunicação Inbound/Outbound\n🎨 **ID CONCEPT™** — Branding, Naming e Presença Digital Conceitual\n🤖 **I.A.E!™** — Inteligência Artificial aplicada ao Marketing\n🎬 **ABSOLUTE CINEMA™** — Storytelling e Produção Audiovisual Cinematográfica\n\nInicie o diagnóstico rápido para identificar a solução exata para o seu momento.",
     timestamp: ts(),
     quickActions: [
-      { label: "🎯 Fazer diagnóstico rápido (4 perguntas)", textToSend: "__TRIAGEM_START__" },
-      { label: "💬 Falar com Ícaro no WhatsApp", textToSend: "__WA_OPEN__Oi%20%C3%8Dcaro%2C%20vim%20do%20site%20e%20quero%20conversar" },
+      { label: "✨ Iniciar Diagnóstico Estratégico", textToSend: "__TRIAGEM_START__" },
+      { label: "💬 Falar com Ícaro no WhatsApp", textToSend: "__WA_OPEN__Oi%20%C3%8Dcaro%2C%20vim%20pela%20orienta%C3%A7%C3%A3o%20do%20OR%C3%81CULO%E2%84%A2" },
     ],
   };
 }
-
-// ── HELPER ────────────────────────────────────────────────────────────────────
 
 function ts() {
   return new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
