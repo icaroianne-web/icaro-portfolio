@@ -78,7 +78,7 @@ const services = [
   },
   {
     id: 4,
-    title: "Absolute Cinema™",
+    title: "ABSOLUTE CINEMA™",
     subtitle: "Conteúdo que não precisa de contexto para impactar.",
     description: "Toda empresa tem uma história melhor do que imagina. O trabalho aqui é encontrar a sua essência e contá-la do jeito certo — transformando trajetória em narrativa inesquecível. Não entrego um vídeo institucional. Entrego o argumento audiovisual que abre portas, gera autoridade e fica na memória de quem importa.",
     icon: Clapperboard,

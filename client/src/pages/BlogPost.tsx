@@ -291,7 +291,7 @@ export default function BlogPost() {
                   ? "MASTER PLAN™ (Método UTIO)"
                   : post.relatedProductId === "marca-viva"
                   ? "ID CONCEPT™: Branding & Presença Premium"
-                  : "Absolute Cinema™: Storytelling Corporativo"}
+                  : "ABSOLUTE CINEMA™: Storytelling Corporativo"}
               </h3>
               <p className="text-[#8892A4] text-sm max-w-xl">
                 Quer aplicar este nível de clareza e autoridade na comunicação do seu negócio? Agende um diagnóstico exclusivo diretamente com Ícaro Albuquerque.

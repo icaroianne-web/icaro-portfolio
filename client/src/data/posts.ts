@@ -124,18 +124,18 @@ Se o seu site ou a sua marca visual parecem desalinhados do nível real do seu p
   {
     id: "3",
     slug: "absolute-cinema-storytelling-audiovisual-corporativo",
-    title: "Absolute Cinema™: Transformando histórias corporativas em documentários de alto impacto",
+    title: "ABSOLUTE CINEMA™: Transformando histórias corporativas em documentários de alto impacto",
     excerpt: "Como utilizar a linguagem cinematográfica e o storytelling autêntico para conectar executivos, clientes e investidores.",
     category: "Storytelling & Vídeo",
     readTime: "7 min de leitura",
     publishedAt: "28 de Julho, 2026",
     author: {
       name: "Ícaro Albuquerque",
-      role: "Coordenador de Comunicação & Produtor Multimídia",
+      role: "Estrategista de Comunicação & Direção Criativa",
       avatar: "/icaro-avatar.jpg",
     },
     featuredImage: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1200&auto=format&fit=crop",
-    tags: ["Absolute Cinema", "Audiovisual", "Storytelling", "COP28"],
+    tags: ["ABSOLUTE CINEMA™", "Audiovisual", "Storytelling", "COP28"],
     relatedProductId: "absolute-cinema",
     content: `
 ## O Fim dos Vídeos Institucionais Genéricos
@@ -146,17 +146,18 @@ Na nossa trajetória — que vai de projetos governamentais até grandes palcos 
 
 ---
 
-## O Que Torna uma Produção "Absolute Cinema™"?
+## O Que Torna uma Produção "ABSOLUTE CINEMA™"?
 
 - **Roteirização com Arco Dramático Real:** Descobrimos o elemento humano e os bastidores marcantes da sua empresa.
-- **Direção de Arte Cinematográfica:** Iluminação, enquadramento e color grading que rivalizan com grandes estúdios.
+- **Direção de Arte Cinematográfica:** Iluminação, enquadramento e color grading que rivalizam com grandes estúdios.
 - **Distribuição Multiplataforma:** Do formato widescreen para salas de conselho aos vídeos verticais estratégicos para Reels e LinkedIn Premium.
 
 ---
 
 ## Eleve a Narrativa da Sua Empresa
 
-Descubra como o **Absolute Cinema™** pode transformar a trajetória do seu negócio em um ativo audiovisual memorável.
+Descubra como o **ABSOLUTE CINEMA™** pode transformar a trajetória do seu negócio em um ativo audiovisual memorável.
     `,
   },
+
 ];
