@@ -2,10 +2,14 @@
    DESIGN: "Deep Space Broadcast" — Services Section (Museum Storytelling Gallery)
    Exibição dos 4 produtos com imagens completas de storytelling (MASP)
    Ordem: 1. MASTER PLAN™ -> 2. ID CONCEPT™ -> 3. I.A.E!™ -> 4. Absolute Cinema™
+   
+   Comportamento ao expandir:
+   - Fechado: Card de prévia com gradiente e textos sobrepostos na imagem.
+   - Expandido: A imagem fica 100% LIMPA e COMPLETA sem nenhum texto em cima (apenas a tag da categoria), e todos os textos (título, subtítulo, descrição, entregáveis, UTIO e CTA) descem para a seção expandida abaixo.
    ============================================================ */
 
 import { useEffect, useRef, useState } from "react";
-import { Network, Activity, BrainCircuit, Clapperboard, ChevronDown, ChevronUp, CheckCircle2, Sparkles } from "lucide-react";
+import { Network, Activity, BrainCircuit, Clapperboard, ChevronDown, ChevronUp, CheckCircle2, Sparkles, ArrowRight } from "lucide-react";
 import LeadFormModal from "./LeadFormModal";
 import UtioMethodHorizontal from "./UtioMethodHorizontal";
 
@@ -21,7 +25,6 @@ const services = [
     color: "#00D4FF",
     fromClass: "from-[#00D4FF]",
     image: "/assets/service_master_plan_masp.png",
-    storyTitle: "01. Fachada & Sede Estratégica (MASP)",
     features: [
       "Raio-X de Comunicação",
       "Método UTIO: Bússola de Prioridades",
@@ -42,7 +45,6 @@ const services = [
     color: "#C9A84C",
     fromClass: "from-[#C9A84C]",
     image: "/assets/service_id_concept_masp.png",
-    storyTitle: "02. Lançamento de Marca nos Cavaletes de Vidro",
     features: [
       "Conceito de Marca e Naming Estratégico",
       "Identidade Visual e Manual de Marca",
@@ -63,7 +65,6 @@ const services = [
     color: "#00D4FF",
     fromClass: "from-[#00D4FF]",
     image: "/assets/service_iae_masp.png",
-    storyTitle: "03. Laboratório de Restauração & Tecnologia Digital",
     features: [
       "Diagnóstico e Mapeamento de Gargalos",
       "Implementação de Stack de IA Sob Medida",
@@ -84,7 +85,6 @@ const services = [
     color: "#FF6B35",
     fromClass: "from-[#FF6B35]",
     image: "/assets/service_cinema_masp.png",
-    storyTitle: "04. Estúdio de Gravação & Cadeira do Diretor",
     features: [
       "Filmes Institucionais & Documentários",
       "Storytelling de Marca & Cases de Sucesso",
@@ -144,7 +144,7 @@ export default function ServicesSection() {
           </div>
           <div className="line-accent max-w-xs ml-[calc(clamp(4rem,10vw,8rem)+1rem)]" />
           <p className="text-[#8892A4] mt-4 ml-[calc(clamp(4rem,10vw,8rem)+1rem)] max-w-xl text-base leading-relaxed">
-            Uma narrativa visual em 4 etapas atemporais. Clique em cada obra para explorar entregáveis e agendar um diagnóstico exclusivo.
+            Clique no card para revelar a obra completa e explorar todos os entregáveis e métodos.
           </p>
         </div>
 
@@ -157,7 +157,7 @@ export default function ServicesSection() {
               <div 
                 key={svc.id}
                 className={`relative rounded-2xl bg-[#0F1623] border border-[rgba(255,255,255,0.08)] overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.6)] transition-all duration-500 group cursor-pointer ${
-                  isExpanded ? "ring-1 border-opacity-100" : "hover:border-opacity-30 hover:-translate-y-1.5"
+                  isExpanded ? "ring-1 border-opacity-100 shadow-[0_0_40px_rgba(0,0,0,0.8)]" : "hover:border-opacity-30 hover:-translate-y-1.5"
                 } ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
                 style={{
                   borderColor: isExpanded ? svc.color : undefined,
@@ -166,96 +166,113 @@ export default function ServicesSection() {
                 }}
                 onClick={() => setActiveService(isExpanded ? null : svc.id)}
               >
-                {/* Subtle colored top accent line */}
+                {/* Colored Top Border Line */}
                 <div 
                   className="h-1 w-full"
                   style={{ background: `linear-gradient(90deg, ${svc.color}, transparent)` }}
                 />
 
-                {/* Main Card Media & Overlay Container */}
-                <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-[#080C14]">
-                  {/* Full Uncropped High-Res Image */}
+                {/* 1. MEDIA CONTAINER */}
+                <div className={`relative w-full overflow-hidden transition-all duration-700 bg-[#080C14] ${
+                  isExpanded ? "aspect-[16/9] sm:aspect-[16/9]" : "aspect-[16/10] sm:aspect-[16/9]"
+                }`}>
+                  {/* High-Res Artwork Image */}
                   <img 
                     src={svc.image} 
                     alt={svc.title} 
-                    className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-1000 ease-out" 
+                    className={`w-full h-full object-cover transition-transform duration-1000 ease-out ${
+                      isExpanded ? "scale-100 opacity-100" : "opacity-90 group-hover:scale-105"
+                    }`}
                   />
 
-                  {/* Dark Gradient Overlay for Typography Contrast */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0F1623] via-[#0F1623]/80 via-40% to-transparent pointer-events-none" />
+                  {/* Dark Gradient Overlay — ONLY visible when COLLAPSED */}
+                  {!isExpanded && (
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0F1623] via-[#0F1623]/80 via-40% to-transparent pointer-events-none transition-opacity duration-500" />
+                  )}
 
-                  {/* Top Floating Badge */}
+                  {/* ONLY THE CATEGORY TAG IS OVERLAID AT TOP LEFT */}
                   <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-20 pointer-events-none">
                     <span 
-                      className="px-3 py-1 text-[0.65rem] font-mono-tech font-semibold uppercase tracking-widest border backdrop-blur-md rounded-md bg-[#080C14]/80 shadow-md"
+                      className="px-3 py-1.5 text-[0.65rem] font-mono-tech font-semibold uppercase tracking-widest border backdrop-blur-md rounded-md bg-[#080C14]/85 shadow-md"
                       style={{ color: svc.color, borderColor: `${svc.color}40` }}
                     >
                       {svc.category}
                     </span>
 
                     <div 
-                      className="w-10 h-10 rounded-xl flex items-center justify-center border backdrop-blur-md bg-[#080C14]/80 shadow-lg"
+                      className="w-9 h-9 rounded-lg flex items-center justify-center border backdrop-blur-md bg-[#080C14]/85 shadow-lg"
                       style={{ borderColor: `${svc.color}40`, color: svc.color }}
                     >
-                      <svc.icon size={20} />
+                      <svc.icon size={18} />
                     </div>
                   </div>
 
-                  {/* Overlaid Card Info (Title, Subtitle, Description) */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 z-20 flex flex-col justify-end">
-                    <h3 className="font-display font-800 text-2xl sm:text-3xl text-[#F0F4FF] leading-tight group-hover:text-white transition-colors duration-200">
-                      {svc.title}
-                    </h3>
-                    
-                    <p className="text-xs font-mono-tech tracking-widest uppercase font-semibold mt-1 mb-3" style={{ color: svc.color }}>
-                      {svc.subtitle}
-                    </p>
+                  {/* OVERLAID PREVIEW TEXT — ONLY visible when COLLAPSED */}
+                  {!isExpanded && (
+                    <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 z-20 flex flex-col justify-end">
+                      <h3 className="font-display font-800 text-2xl sm:text-3xl text-[#F0F4FF] leading-tight group-hover:text-white transition-colors duration-200">
+                        {svc.title}
+                      </h3>
+                      
+                      <p className="text-xs font-mono-tech tracking-widest uppercase font-semibold mt-1 mb-2" style={{ color: svc.color }}>
+                        {svc.subtitle}
+                      </p>
 
-                    <p className="text-[#8892A4] text-xs sm:text-sm leading-relaxed font-outfit line-clamp-3">
-                      {svc.description}
-                    </p>
+                      {/* Trigger Bar */}
+                      <div className="mt-3 pt-3 border-t border-white/10 flex items-center justify-between">
+                        <div 
+                          className="inline-flex items-center gap-2 font-mono-tech text-[0.65rem] tracking-widest uppercase font-bold"
+                          style={{ color: svc.color }}
+                        >
+                          <ChevronDown size={14} />
+                          <span>[+] Ver Obra Completa & Detalhes</span>
+                        </div>
 
-                    {/* Expand Trigger Bar */}
-                    <div className="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
-                      <div 
-                        className="inline-flex items-center gap-2 font-mono-tech text-[0.65rem] tracking-widest uppercase font-bold"
-                        style={{ color: svc.color }}
-                      >
-                        {isExpanded ? (
-                          <>
-                            <ChevronUp size={14} />
-                            <span>[-] Ocultar Entregáveis</span>
-                          </>
-                        ) : (
-                          <>
-                            <ChevronDown size={14} />
-                            <span>[+] Ver Entregáveis & Método</span>
-                          </>
-                        )}
+                        <span className="text-[10px] font-mono-tech text-[#8892A4]">
+                          0{i + 1}/04
+                        </span>
                       </div>
-
-                      <span className="text-[10px] font-mono-tech text-[#8892A4]">
-                        Obra {i + 1}/4
-                      </span>
                     </div>
-                  </div>
+                  )}
                 </div>
 
-                {/* Expanded Details Drawer */}
+                {/* 2. EXPANDED CONTENT DRAWER — Below the clean image when clicked */}
                 <div
-                  className={`overflow-hidden transition-all duration-500 ease-in-out bg-[#080C14]/95 backdrop-blur-xl ${
-                    isExpanded ? "max-h-[1400px] opacity-100 p-6 sm:p-8 border-t border-white/10" : "max-h-0 opacity-0 p-0"
+                  className={`overflow-hidden transition-all duration-500 ease-in-out bg-[#0F1623] ${
+                    isExpanded ? "max-h-[1600px] opacity-100 p-6 sm:p-8 border-t border-white/10" : "max-h-0 opacity-0 p-0"
                   }`}
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <h4 className="text-[#F0F4FF] font-display font-700 text-base mb-4 flex items-center gap-2">
+                  {/* Service Title & Subtitle */}
+                  <div className="mb-6">
+                    <div className="flex items-center justify-between mb-1">
+                      <h3 className="font-display font-800 text-3xl text-[#F0F4FF] leading-tight">
+                        {svc.title}
+                      </h3>
+                      <span className="text-xs font-mono-tech text-[#8892A4]">
+                        Obra 0{i + 1}/04
+                      </span>
+                    </div>
+
+                    <p className="text-xs font-mono-tech tracking-widest uppercase font-semibold mt-1" style={{ color: svc.color }}>
+                      {svc.subtitle}
+                    </p>
+                  </div>
+
+                  {/* Description Paragraph */}
+                  <p className="text-[#8892A4] text-sm leading-relaxed font-outfit mb-8 pb-6 border-b border-white/5">
+                    {svc.description}
+                  </p>
+
+                  {/* Deliverables List */}
+                  <h4 className="text-[#F0F4FF] font-display font-700 text-sm uppercase tracking-wider mb-4 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full" style={{ backgroundColor: svc.color }} />
                     <span>Entregáveis Incluídos:</span>
                   </h4>
 
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
                     {svc.features.map((feat, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5 text-xs text-[#8892A4] bg-[#0F1623] p-3 rounded-lg border border-white/5">
+                      <li key={idx} className="flex items-start gap-2.5 text-xs text-[#8892A4] bg-[#080C14]/80 p-3.5 rounded-xl border border-white/5">
                         <CheckCircle2 size={16} style={{ color: svc.color }} className="flex-shrink-0 mt-0.5" />
                         <span className="leading-snug">{feat}</span>
                       </li>
@@ -264,18 +281,18 @@ export default function ServicesSection() {
 
                   {/* Interactive UTIO Method Component inside Master Plan card */}
                   {svc.detailsType === "utio" && (
-                    <div className="my-6">
+                    <div className="my-8">
                       <UtioMethodHorizontal />
                     </div>
                   )}
 
-                  {/* Call to Action Button */}
+                  {/* CTA Action Button */}
                   <button 
                     onClick={() => {
                       setSelectedProductTitle(svc.title);
                       setIsModalOpen(true);
                     }}
-                    className="w-full py-4 rounded-xl flex items-center justify-center gap-2 font-mono-tech text-xs tracking-widest uppercase font-bold transition-all duration-300 shadow-lg"
+                    className="w-full py-4 rounded-xl flex items-center justify-center gap-2 font-mono-tech text-xs tracking-widest uppercase font-bold transition-all duration-300 shadow-lg mb-4"
                     style={{ 
                       backgroundColor: `${svc.color}15`, 
                       borderColor: `${svc.color}50`, 
@@ -284,6 +301,16 @@ export default function ServicesSection() {
                     }}
                   >
                     <span>Agendar Conversa Estratégica — {svc.title}</span>
+                    <ArrowRight size={14} />
+                  </button>
+
+                  {/* Collapse Bar */}
+                  <button
+                    onClick={() => setActiveService(null)}
+                    className="w-full text-center py-2 font-mono-tech text-[0.65rem] tracking-widest uppercase text-[#8892A4] hover:text-white transition-colors flex items-center justify-center gap-1"
+                  >
+                    <ChevronUp size={12} />
+                    <span>[-] Ocultar Detalhes & Retornar à Galeria</span>
                   </button>
                 </div>
               </div>
