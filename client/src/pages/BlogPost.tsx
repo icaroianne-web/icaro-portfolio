@@ -288,9 +288,9 @@ export default function BlogPost() {
               </div>
               <h3 className="font-display font-800 text-2xl text-[#F0F4FF]">
                 {post.relatedProductId === "plano-diretor"
-                  ? "Plano Diretor de Comunicação (Método UTIO)"
+                  ? "MASTER PLAN™ (Método UTIO)"
                   : post.relatedProductId === "marca-viva"
-                  ? "Marca Viva: Branding & UX Web"
+                  ? "ID CONCEPT™: Branding & Presença Premium"
                   : "Absolute Cinema™: Storytelling Corporativo"}
               </h3>
               <p className="text-[#8892A4] text-sm max-w-xl">

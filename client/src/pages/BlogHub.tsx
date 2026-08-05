@@ -233,7 +233,7 @@ export default function BlogHub() {
               Precisa de um diagnóstico estratégico para a sua marca?
             </h3>
             <p className="text-[#8892A4] text-base max-w-2xl mx-auto mb-8">
-              Desenvolva o seu Plano Diretor de Comunicação ou reconstrua a sua identidade digital com acompanhamento sênior e exclusivo.
+              Desenvolva o seu MASTER PLAN™ de Comunicação ou construa o seu ID CONCEPT™ com acompanhamento sênior e exclusivo.
             </p>
 
             <a
