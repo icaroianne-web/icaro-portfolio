@@ -27,8 +27,10 @@ export type PressEvidence = {
   url: string;
   source: string; // ex: "G1", "Folha de S.Paulo"
   headline: string;
+  caption?: string;
   date?: string;
 };
+
 
 export type Evidence = ImageEvidence | VideoEvidence | BeforeAfterEvidence | PressEvidence;
 

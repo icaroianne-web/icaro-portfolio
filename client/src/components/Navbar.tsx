@@ -7,7 +7,14 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { useLocation, Link } from "wouter";
 
-const navLinks = [
+interface NavLink {
+  label: string;
+  href: string;
+  isRoute?: boolean;
+  external?: boolean;
+}
+
+const navLinks: NavLink[] = [
   { label: "Início", href: "/", isRoute: true },
   { label: "Sobre", href: "#sobre", isRoute: false },
   { label: "Cases", href: "#cases", isRoute: false },
@@ -16,6 +23,7 @@ const navLinks = [
   { label: "Showreel", href: "#showreel", isRoute: false },
   { label: "Contato", href: "#contato", isRoute: false },
 ];
+
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);

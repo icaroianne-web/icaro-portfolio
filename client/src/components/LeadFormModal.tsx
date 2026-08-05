@@ -46,7 +46,7 @@ export default function LeadFormModal({ isOpen, onClose, selectedProduct }: Lead
       // ⚠️ IMPORTANTE: O usuário vai colar a URL do Google Apps Script aqui depois
       const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz3xD8vQwhhNA5aFSI0NAWhz2xAUIh4mR0DlVDHBEDrF0I6J0zRuYMdHCeoDGM29rcz/exec"; 
       
-      if (GOOGLE_SCRIPT_URL === "SUA_URL_DO_APPS_SCRIPT_AQUI") {
+      if ((GOOGLE_SCRIPT_URL as string) === "SUA_URL_DO_APPS_SCRIPT_AQUI") {
         // Simulando sucesso se ainda não configurou a URL
         await new Promise((resolve) => setTimeout(resolve, 1500));
         console.log("Simulação de Envio:", dataToSubmit);
