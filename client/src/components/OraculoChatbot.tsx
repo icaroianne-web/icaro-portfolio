@@ -207,26 +207,25 @@ export default function OraculoChatbot() {
           whileTap={{ scale: 0.94 }}
           className="relative flex flex-col items-center cursor-pointer group"
         >
-          {/* Texto ORÁCULO™ Arqueado no Topo (SVG amplo sem cortar nenhuma letra) */}
-          <div className="w-[140px] h-[36px] mb-[-4px] pointer-events-none z-10">
+          {/* Texto ORÁCULO Arqueado Justo (Exatamente como na referência) */}
+          <div className="w-[84px] h-[22px] mb-[-5px] pointer-events-none z-10">
             <svg
-              viewBox="0 0 140 36"
+              viewBox="0 0 84 22"
               className="w-full h-full overflow-visible"
               aria-hidden="true"
             >
               <defs>
-                {/* Arco amplo suave centralizado */}
-                <path id="oraculoTopArcClean" d="M 10 32 A 60 60 0 0 1 130 32" />
+                <path id="oraculoTopArcTight" d="M 10 20 A 34 34 0 0 1 74 20" />
               </defs>
               <text
                 fill="#FFFFFF"
-                fontSize="13"
-                fontWeight="800"
-                fontFamily="'Syne', 'Outfit', sans-serif"
-                letterSpacing="2.5"
+                fontSize="11"
+                fontWeight="600"
+                fontFamily="'Outfit', sans-serif"
+                letterSpacing="1"
               >
-                <textPath href="#oraculoTopArcClean" startOffset="50%" textAnchor="middle">
-                  ORÁCULO™
+                <textPath href="#oraculoTopArcTight" startOffset="50%" textAnchor="middle">
+                  ORÁCULO
                 </textPath>
               </text>
             </svg>
