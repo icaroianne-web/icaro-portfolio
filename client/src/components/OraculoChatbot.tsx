@@ -185,31 +185,72 @@ export default function OraculoChatbot() {
 
   return (
     <>
-      {/* 1. BOTÃO FLUTUANTE */}
+      {/* 1. BOTÃO FLUTUANTE — ORÁCULO™ com texto em arco circular */}
       <div className="fixed bottom-6 right-6 z-50 select-none">
         <motion.button
           onClick={() => setIsOpen(!isOpen)}
-          whileHover={{ scale: 1.08 }}
-          whileTap={{ scale: 0.94 }}
-          className="relative group flex items-center gap-3 p-3.5 sm:px-5 sm:py-3.5 rounded-full bg-[#0F1623] border border-[#00D4FF]/40 text-[#F0F4FF] shadow-[0_0_30px_rgba(0,212,255,0.3)] backdrop-blur-xl"
+          whileHover={{ scale: 1.06 }}
+          whileTap={{ scale: 0.93 }}
+          className="relative w-[78px] h-[78px] rounded-full bg-[#0F1623] border border-[#00D4FF]/35 shadow-[0_0_32px_rgba(0,212,255,0.28)] backdrop-blur-xl"
+          style={{ overflow: "visible" }}
         >
-          <div className="absolute inset-0 rounded-full bg-[#00D4FF]/20 animate-ping opacity-75 blur-md pointer-events-none" />
-          <div className="relative z-10 w-9 h-9 rounded-full bg-gradient-to-br from-[#00D4FF] to-[#FF6B35] p-[1px] flex items-center justify-center">
-            <div className="w-full h-full rounded-full bg-[#080C14] flex items-center justify-center">
-              <Sparkles className="w-4 h-4 text-[#00D4FF] animate-pulse" />
+          {/* Ambient glow ring pulsing */}
+          <div className="absolute inset-[-3px] rounded-full bg-[#00D4FF]/14 animate-ping opacity-55 blur-sm pointer-events-none" />
+
+          {/* ── SVG: ORÁCULO™ seguindo o arco do círculo ── */}
+          <svg
+            viewBox="0 0 78 78"
+            className="absolute inset-0 w-full h-full"
+            style={{ overflow: "visible" }}
+            aria-hidden="true"
+          >
+            <defs>
+              {/*
+                Arco superior anti-horário: da esquerda (9,39) para a direita (69,39)
+                passando pelo topo (39,10) — texto aparece curvando no topo do botão
+              */}
+              <path
+                id="oraculoArcPath"
+                d="M 9,39 A 30,30 0 0,0 69,39"
+              />
+            </defs>
+
+            {/* Texto ORÁCULO™ acompanhando o arco */}
+            <text
+              fill="white"
+              fontSize="8"
+              fontWeight="900"
+              fontFamily="'Space Grotesk', 'Syne', 'Inter', sans-serif"
+              letterSpacing="2.2"
+              dominantBaseline="auto"
+            >
+              <textPath
+                href="#oraculoArcPath"
+                startOffset="50%"
+                textAnchor="middle"
+              >
+                ORÁCULO™
+              </textPath>
+            </text>
+          </svg>
+
+          {/* Centro: ícone Sparkles */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#00D4FF]/18 to-[#FF6B35]/18 border border-[#00D4FF]/45 flex items-center justify-center shadow-inner">
+              <Sparkles className="w-[18px] h-[18px] text-[#00D4FF] animate-pulse" />
             </div>
           </div>
-          <div className="hidden sm:flex flex-col items-start text-left z-10">
-            <span className="font-display font-800 text-xs text-[#F0F4FF] tracking-wider uppercase">
-              ORÁCULO™
-            </span>
-            <span className="font-mono-tech text-[0.6rem] text-[#00D4FF]">
-              Diagnóstico Rápido
-            </span>
+
+          {/* Ponto laranja orbitando o círculo */}
+          <div
+            className="absolute inset-0 rounded-full pointer-events-none"
+            style={{ animation: "spin 5s linear infinite" }}
+          >
+            <span
+              className="absolute w-[12px] h-[12px] rounded-full bg-[#FF6B35] shadow-[0_0_14px_rgba(255,107,53,0.95)]"
+              style={{ top: "-5px", left: "50%", transform: "translateX(-50%)" }}
+            />
           </div>
-          {hasUnread && !isOpen && (
-            <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-[#FF6B35] rounded-full border-2 border-[#080C14] animate-bounce" />
-          )}
         </motion.button>
       </div>
 
