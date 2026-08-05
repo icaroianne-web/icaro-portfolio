@@ -7,6 +7,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import BlogHub from "./pages/BlogHub";
 import BlogPost from "./pages/BlogPost";
+import OraculoChatbot from "./components/OraculoChatbot";
 
 function Router() {
   return (
@@ -27,10 +28,12 @@ function App() {
         <TooltipProvider>
           <Toaster />
           <Router />
+          <OraculoChatbot />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
   );
 }
+
 
 export default App;
