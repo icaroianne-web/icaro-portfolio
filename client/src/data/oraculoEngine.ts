@@ -1,7 +1,7 @@
 /* ============================================================
    ORÁCULO™ — Engine de Triagem Conversacional de Alta Conversão
    Base de conhecimento: Consultoria OS Master — Bíblia do Negócio
-   4 produtos · 3 níveis (proporcionais) · Soft-Gate · Filtro de ICP
+   Alinhamento 100% com o documento da Trilha de Atendimento
    ============================================================ */
 
 // ── TIPOS ────────────────────────────────────────────────────────────────────
@@ -24,7 +24,7 @@ export interface ChatMessage {
 }
 
 export interface TriagemData {
-  produto?: "MASTER PLAN™" | "ID CONCEPT™" | "I.A.E!™" | "ABSOLUTE CINEMA™";
+  produto?: "MASTER PLAN™" | "ID CONCEPT™" | "I.A.E!™" | "ABSOLUTE CINEMA™" | "ORIENTAÇÃO";
   nivel?: "Essential" | "Advanced" | "Enterprise";
   urgencia?: "Alta" | "Média" | "Baixa";
   porte?: string;
@@ -38,6 +38,7 @@ export interface TriagemData {
 export interface LeadData {
   nome: string;
   whatsapp: string;
+  email: string;
   empresa?: string;
 }
 
@@ -46,11 +47,11 @@ export interface LeadData {
 export const WHATSAPP_BASE_URL =
   "https://wa.me/5511940684068?text=Oi%20%C3%8Dcaro,%20vim%20pela%20orienta%C3%A7%C3%A3o%20do%20OR%C3%81CULO%E2%84%A2";
 
-// Tabela de Preços e Faixas Sedutoras Proporcionais
+// Tabela de Preços e Faixas Sedutoras Proporcionais (Base: 6k | 14k | 30k)
 export const FAIXAS_INVESTIMENTO = {
-  Essential: { base: 6000, faixaTexto: "R$ 5.000 a R$ 7.000", min: 5000, max: 7000 },
-  Advanced: { base: 14000, faixaTexto: "R$ 11.500 a R$ 16.500", min: 11500, max: 16500 },
-  Enterprise: { base: 30000, faixaTexto: "R$ 25.000 a R$ 35.000", min: 25000, max: 35000 },
+  Essential: { base: 6000, faixaTexto: "R$ 5.000 – R$ 7.000", min: 5000, max: 7000 },
+  Advanced: { base: 14000, faixaTexto: "R$ 11.500 – R$ 16.500", min: 11500, max: 16500 },
+  Enterprise: { base: 30000, faixaTexto: "R$ 25.000 – R$ 35.000", min: 25000, max: 35000 },
 };
 
 const PRODUTO_COLOR: Record<string, string> = {
@@ -58,6 +59,7 @@ const PRODUTO_COLOR: Record<string, string> = {
   "ID CONCEPT™": "#C9A84C",
   "I.A.E!™": "#00D4FF",
   "ABSOLUTE CINEMA™": "#FF6B35",
+  "ORIENTAÇÃO": "#00D4FF",
 };
 
 // ── ESTADO DO FLUXO DE TRIAGEM ────────────────────────────────────────────────
@@ -86,7 +88,7 @@ export function getTriagemState(): TriagemState | null {
   return triagemAtiva;
 }
 
-// ── MENSAGEM INICIAL (Direta, Acolhedora & Coesa) ───────────────────────────
+// ── MENSAGEM INICIAL ───────────────────────────────────────────────────────────
 
 export const INITIAL_ORACULO_MESSAGE: ChatMessage = {
   id: "init-1",
@@ -102,50 +104,51 @@ export const INITIAL_ORACULO_MESSAGE: ChatMessage = {
   ],
 };
 
-// ── PERGUNTAS DA TRILHA DE ATENDIMENTO ────────────────────────────────────────
+// ── PERGUNTAS CONFORME COPY DO DOCUMENTO ──────────────────────────────────────
 
 const PERGUNTA_P1: ChatMessage = {
   id: "triagem-p1",
   sender: "oraculo",
-  text: "Qual desafio você mais precisa resolver agora na comunicação da sua empresa?",
+  text: "Qual desafio você mais precisa resolver agora na comunicação da sua marca?",
   timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
   isTriagemStep: true,
   quickActions: [
     { label: "🧭 Preciso estruturar comunicação e conteúdo", textToSend: "__T1_MASTER__" },
     { label: "🎨 Minha marca ou site estão desatualizados", textToSend: "__T1_IDCONCEPT__" },
     { label: "🤖 Quero usar IA de forma estratégica na empresa", textToSend: "__T1_IAE__" },
-    { label: "🎬 Preciso contar a história da minha marca em vídeo", textToSend: "__T1_CINEMA__" },
+    { label: "🎬 Preciso contar a história da minha marca", textToSend: "__T1_CINEMA__" },
+    { label: "❓ Ainda não sei, quero orientação", textToSend: "__T1_ORIENTACAO__" },
   ],
 };
 
 const PERGUNTA_P2: ChatMessage = {
   id: "triagem-p2",
   sender: "oraculo",
-  text: "Quantas pessoas trabalham com você hoje na operação?",
+  text: "Quantas pessoas trabalham com você hoje?",
   timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
   isTriagemStep: true,
   quickActions: [
     { label: "👤 Só eu", textToSend: "__T2_PORTE_1__" },
-    { label: "👥 2 a 10 pessoas", textToSend: "__T2_PORTE_2__" },
-    { label: "🏢 11 a 50 pessoas", textToSend: "__T2_PORTE_3__" },
-    { label: "🚀 Mais de 50 pessoas", textToSend: "__T2_PORTE_4__" },
+    { label: "👥 2 a 10", textToSend: "__T2_PORTE_2__" },
+    { label: "🏢 11 a 50", textToSend: "__T2_PORTE_3__" },
+    { label: "🚀 50+", textToSend: "__T2_PORTE_4__" },
   ],
 };
 
 const PERGUNTA_P3: ChatMessage = {
   id: "triagem-p3",
   sender: "oraculo",
-  text: "Para quando você precisa desta solução estruturada?",
+  text: "Para quando isso precisa estar resolvido?",
   timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
   isTriagemStep: true,
   quickActions: [
-    { label: "🔴 É urgente (até 60 dias)", textToSend: "__T3_URGENTE__" },
+    { label: "🔴 É urgente (crise/lançamento)", textToSend: "__T3_URGENTE__" },
     { label: "🟡 Em 1 a 3 meses", textToSend: "__T3_MEDIO__" },
     { label: "🟢 Ainda estou planejando", textToSend: "__T3_CALMO__" },
   ],
 };
 
-// ── PROCESSAMENTO E MOTOR DE SCORE ───────────────────────────────────────────
+// ── MOTOR DE QUALIFICAÇÃO (SCORE) ──────────────────────────────────────────────
 
 function calcularTier(portePontos: number, urgenciaPontos: number): "Essential" | "Advanced" | "Enterprise" {
   const scoreTotal = portePontos + urgenciaPontos;
@@ -164,12 +167,12 @@ function buildResultadoMessage(state: TriagemState, lead?: LeadData): ChatMessag
   const nivel = calcularTier(portePontos, urgenciaPontos);
   const faixa = FAIXAS_INVESTIMENTO[nivel];
 
-  // Caso Exceção de ICP: "Só eu" + "Ainda estou planejando"
+  // Exceção de ICP: "Só eu" + "Ainda estou planejando" (score 0)
   if (isForaICP) {
     return {
       id: "resultado-icp-" + Date.now(),
       sender: "oraculo",
-      text: "Compreendo seu momento de planejamento. Para estruturas individuais em fase inicial, o Ícaro oferece conteúdos de orientação e atendimentos pontuais.\n\nQuando estiver pronto para acelerar a contratação da consultoria, estarei aqui para mapear seu projeto.",
+      text: "Compreendo seu momento inicial de planejamento. Para estruturas individuais em fase embrionária, o Ícaro disponibiliza materiais de orientação e conteúdos estratégicos.\n\nQuando sua operação estiver pronta para dar o próximo passo, estaremos prontos para desenhar seu projeto.",
       timestamp: ts(),
       triagem: {
         produto,
@@ -180,23 +183,21 @@ function buildResultadoMessage(state: TriagemState, lead?: LeadData): ChatMessag
         isForaICP: true,
       },
       quickActions: [
-        { label: "💬 Mandar mensagem direta no WhatsApp", textToSend: "__WA_OPEN__Oi%20%C3%8Dcaro,%20estou%20em%20fase%20de%20planejamento%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida" },
-        { label: "🔄 Refazer diagnóstico", textToSend: "__TRIAGEM_START__" },
+        { label: "💬 Mandar mensagem no WhatsApp", textToSend: "__WA_OPEN__Oi%20%C3%8Dcaro,%20estou%20em%20fase%20de%20planejamento%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida" },
+        { label: "🔄 Refazer estimativa", textToSend: "__TRIAGEM_START__" },
       ],
     };
   }
 
-  const nomeLead = lead?.nome ? lead.nome.split(" ")[0] : "";
-  const saudacaoLead = nomeLead ? `${nomeLead}, ` : "";
-
+  const contatoEnvio = lead?.email || lead?.whatsapp || "seu contato";
   const waText = encodeURIComponent(
-    `Oi Ícaro! Meu nome é ${lead?.nome || "Cliente"}, da empresa ${lead?.empresa || "Não informada"}. Fiz a estimativa no ORÁCULO™ para o ${produto} (Nível ${nivel}). A projeção ficou em ${faixa.faixaTexto}. Quero agendar a conversa!`
+    `Oi Ícaro! Meu nome é ${lead?.nome || "Cliente"}, da empresa ${lead?.empresa || "Não informada"}. Fiz a estimativa no ORÁCULO™ para o ${produto} (${nivel}). A projeção ficou entre ${faixa.faixaTexto}. Gostaria de agendar nossa conversa rápida!`
   );
 
   return {
     id: "resultado-ok-" + Date.now(),
     sender: "oraculo",
-    text: `${saudacaoLead}a análise da sua marca está concluída. Aqui está a projeção estimada para o seu investimento:`,
+    text: `Prontinho! Proposta registrada para **${contatoEnvio}**.\n\nCom base no perfil da sua operação, sua projeção estimada é **${faixa.faixaTexto}** (${nivel}).\n\nSe quiser, já podemos agendar uma conversa rápida com o Ícaro para alinhar os próximos passos:`,
     timestamp: ts(),
     triagem: {
       produto,
@@ -211,7 +212,7 @@ function buildResultadoMessage(state: TriagemState, lead?: LeadData): ChatMessag
     },
     quickActions: [
       {
-        label: "🚀 Agendar reunião no WhatsApp com Ícaro",
+        label: "💬 Agendar conversa rápida no WhatsApp",
         textToSend: `__WA_OPEN__${waText}`,
       },
       {
@@ -229,19 +230,20 @@ const PRODUTO_MAP: Record<string, { produto: string; label: string }> = {
   "__T1_IDCONCEPT__": { produto: "ID CONCEPT™", label: "Branding & Presença Digital" },
   "__T1_IAE__": { produto: "I.A.E!™", label: "IA Estratégica para Marketing" },
   "__T1_CINEMA__": { produto: "ABSOLUTE CINEMA™", label: "Narrativa Audiovisual Cinematográfica" },
+  "__T1_ORIENTACAO__": { produto: "ORIENTAÇÃO", label: "Orientação Estratégica" },
 };
 
 const PORTE_MAP: Record<string, { pontos: number; label: string }> = {
   "__T2_PORTE_1__": { pontos: 0, label: "Só eu" },
-  "__T2_PORTE_2__": { pontos: 1, label: "2 a 10 pessoas" },
-  "__T2_PORTE_3__": { pontos: 2, label: "11 a 50 pessoas" },
-  "__T2_PORTE_4__": { pontos: 3, label: "Mais de 50 pessoas" },
+  "__T2_PORTE_2__": { pontos: 1, label: "2 a 10" },
+  "__T2_PORTE_3__": { pontos: 2, label: "11 a 50" },
+  "__T2_PORTE_4__": { pontos: 3, label: "50+" },
 };
 
 const URGENCIA_MAP: Record<string, { pontos: number; label: string }> = {
-  "__T3_URGENTE__": { pontos: 2, label: "Urgente (até 60 dias)" },
+  "__T3_URGENTE__": { pontos: 2, label: "É urgente (crise/lançamento)" },
   "__T3_MEDIO__": { pontos: 1, label: "Em 1 a 3 meses" },
-  "__T3_CALMO__": { pontos: 0, label: "Ainda planejando" },
+  "__T3_CALMO__": { pontos: 0, label: "Ainda estou planejando" },
 };
 
 // ── BASE DE CONHECIMENTO (Afirmativa, Soberana, Sem Don'ts) ───────────────────
@@ -363,7 +365,7 @@ const KNOWLEDGE_BASE = [
         "https://wa.me/5511940684068?text=Oi%20%C3%8Dcaro,%20vim%20pela%20orienta%C3%A7%C3%A3o%20do%20OR%C3%81CULO%E2%84%A2%20para%20conversar%20sobre%20investimento",
     },
     response:
-      "Os investimentos são projetados em faixas proporcionais ao nível de intervenção necessário:\n\n🟢 **Essential**: R$ 5.000 a R$ 7.000\nTransformação cirúrgica com foco em um objetivo delimitado.\n\n🟡 **Advanced**: R$ 11.500 a R$ 16.500\nEstratégia integrada com acompanhamento periódico por 3 meses.\n\n🟣 **Enterprise**: R$ 25.000 a R$ 35.000\nReestruturação global de comunicação para operações consolidadas.\n\nCondição financeira padrão: 60% na entrada e 40% na entrega final.\n\nDeseja realizar a estimativa rápida de 2 minutos?",
+      "Os investimentos são projetados em faixas proporcionais ao nível de intervenção necessário:\n\n🟢 **Essential**: R$ 5.000 – R$ 7.000\nTransformação cirúrgica com foco em um objetivo delimitado.\n\n🟡 **Advanced**: R$ 11.500 – R$ 16.500\nEstratégia integrada com acompanhamento periódico por 3 meses.\n\n🟣 **Enterprise**: R$ 25.000 – R$ 35.000\nReestruturação global de comunicação para operações consolidadas.\n\nCondição financeira padrão: 60% na entrada e 40% na entrega final.\n\nDeseja realizar a estimativa rápida de 2 minutos?",
   },
 ];
 
@@ -400,7 +402,7 @@ export function processOraculoMessage(userText: string, leadInput?: LeadData): C
       return { ...PERGUNTA_P3, id: "p3-" + Date.now(), timestamp: ts() };
     }
 
-    // P3: Urgência -> vai para o Soft-Gate (captura) ou direto se fora de ICP
+    // P3: Urgência -> Teaser com Soft-Gate ou Exceção de ICP
     if (state.etapa === "p3_urgencia" && URGENCIA_MAP[txt]) {
       const match = URGENCIA_MAP[txt];
       state.urgenciaPontos = match.pontos;
@@ -415,7 +417,7 @@ export function processOraculoMessage(userText: string, leadInput?: LeadData): C
         return resultado;
       }
 
-      // Entra no Soft-Gate
+      // Entra no Soft-Gate com a mensagem Exata do Teaser (Section 5)
       state.etapa = "gate";
       const produtoNome = state.produto || "MASTER PLAN™";
       const nivelNome = calcularTier(state.portePontos || 0, match.pontos);
@@ -424,7 +426,7 @@ export function processOraculoMessage(userText: string, leadInput?: LeadData): C
       return {
         id: "gate-" + Date.now(),
         sender: "oraculo",
-        text: `Com base no que você compartilhou, a projeção preliminar para o seu **${produtoNome}** fica entre **${faixaObj.faixaTexto}**.\n\nPara liberar os detalhes completos do escopo e encaminhar seu atendimento direto ao Ícaro, digite seu nome e WhatsApp abaixo:`,
+        text: `Com base no que você me contou, seu investimento estimado com o **${produtoNome}** fica entre **${faixaObj.faixaTexto}**.\n\nQuer receber agora sua proposta personalizada, com escopo e prazos detalhados?`,
         timestamp: ts(),
         isSoftGateStep: true,
         triagem: {
@@ -455,7 +457,7 @@ export function processOraculoMessage(userText: string, leadInput?: LeadData): C
     return {
       id: "wa-" + Date.now(),
       sender: "oraculo",
-      text: "Direcionando sua comunicação ao canal direto de Ícaro Albuquerque. A análise da sua marca foi compilada.",
+      text: "Direcionando sua comunicação ao canal direto de Ícaro Albuquerque. A análise da sua marca foi compilada com sucesso.",
       timestamp: ts(),
       quickActions: [
         { label: "⚡ Nova Estimativa", textToSend: "__TRIAGEM_START__" },

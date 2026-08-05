@@ -18,24 +18,30 @@ import {
   LeadData,
 } from "../data/oraculoEngine";
 
-// ── Soft-Gate Form Component ──────────────────────────────────────────────────
+// ── Soft-Gate Form Component (Section 5: 4 campos) ───────────────────────────
 
 function SoftGateForm({ onSubmit }: { onSubmit: (data: LeadData) => void }) {
   const [nome, setNome] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
+  const [email, setEmail] = useState("");
   const [empresa, setEmpresa] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!nome.trim() || !whatsapp.trim()) return;
-    onSubmit({ nome: nome.trim(), whatsapp: whatsapp.trim(), empresa: empresa.trim() });
+    if (!nome.trim() || !whatsapp.trim() || !email.trim()) return;
+    onSubmit({
+      nome: nome.trim(),
+      whatsapp: whatsapp.trim(),
+      email: email.trim(),
+      empresa: empresa.trim(),
+    });
   };
 
   return (
     <form onSubmit={handleSubmit} className="mt-3.5 p-3.5 bg-[#060A10] border border-[#00D4FF]/40 rounded-xl space-y-2.5 shadow-lg">
       <div className="text-[0.65rem] font-mono-tech text-[#00D4FF] uppercase tracking-wider font-bold flex items-center gap-1.5">
         <Zap size={12} className="text-[#00D4FF]" />
-        <span>Liberar Detalhamento do Escopo</span>
+        <span>Receber Proposta Personalizada</span>
       </div>
       <div>
         <input
@@ -43,7 +49,7 @@ function SoftGateForm({ onSubmit }: { onSubmit: (data: LeadData) => void }) {
           required
           value={nome}
           onChange={(e) => setNome(e.target.value)}
-          placeholder="Seu nome completo"
+          placeholder="Seu nome"
           className="w-full bg-[#0F1623] border border-white/10 rounded-lg px-3 py-2 text-xs text-[#F0F4FF] placeholder-[#8892A4] focus:outline-none focus:border-[#00D4FF]/60"
         />
       </div>
@@ -53,7 +59,17 @@ function SoftGateForm({ onSubmit }: { onSubmit: (data: LeadData) => void }) {
           required
           value={whatsapp}
           onChange={(e) => setWhatsapp(e.target.value)}
-          placeholder="Seu WhatsApp com DDD (ex: 11 99999-9999)"
+          placeholder="Seu WhatsApp (com DDD)"
+          className="w-full bg-[#0F1623] border border-white/10 rounded-lg px-3 py-2 text-xs text-[#F0F4FF] placeholder-[#8892A4] focus:outline-none focus:border-[#00D4FF]/60"
+        />
+      </div>
+      <div>
+        <input
+          type="email"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Seu e-mail corporativo"
           className="w-full bg-[#0F1623] border border-white/10 rounded-lg px-3 py-2 text-xs text-[#F0F4FF] placeholder-[#8892A4] focus:outline-none focus:border-[#00D4FF]/60"
         />
       </div>
@@ -62,16 +78,16 @@ function SoftGateForm({ onSubmit }: { onSubmit: (data: LeadData) => void }) {
           type="text"
           value={empresa}
           onChange={(e) => setEmpresa(e.target.value)}
-          placeholder="Nome da empresa (opcional)"
+          placeholder="Nome da sua empresa (opcional)"
           className="w-full bg-[#0F1623] border border-white/10 rounded-lg px-3 py-2 text-xs text-[#F0F4FF] placeholder-[#8892A4] focus:outline-none focus:border-[#00D4FF]/60"
         />
       </div>
       <button
         type="submit"
-        disabled={!nome.trim() || !whatsapp.trim()}
+        disabled={!nome.trim() || !whatsapp.trim() || !email.trim()}
         className="w-full py-2.5 px-3 rounded-lg bg-gradient-to-r from-[#00D4FF] to-[#0099FF] text-[#080C14] font-bold text-xs font-mono-tech disabled:opacity-40 disabled:cursor-not-allowed hover:brightness-110 transition-all flex items-center justify-center gap-1.5 shadow-md"
       >
-        <span>⚡ Liberar Proposta & Conectar no WhatsApp</span>
+        <span>⚡ Quero minha proposta</span>
       </button>
     </form>
   );
@@ -247,11 +263,11 @@ export default function OraculoChatbot() {
   };
 
   const handleSoftGateSubmit = (data: LeadData) => {
-    // Registra mensagem visual do usuário confirmando o envio
+    // Registra mensagem visual do usuário confirmando o envio dos 4 campos
     const userMsg: ChatMessage = {
       id: "user-lead-" + Date.now(),
       sender: "user",
-      text: `Nome: ${data.nome} | WhatsApp: ${data.whatsapp}${data.empresa ? ` | Empresa: ${data.empresa}` : ""}`,
+      text: `Nome: ${data.nome} | WhatsApp: ${data.whatsapp} | E-mail: ${data.email}${data.empresa ? ` | Empresa: ${data.empresa}` : ""}`,
       timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
     };
     setMessages((prev) => [...prev, userMsg]);
