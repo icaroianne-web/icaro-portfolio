@@ -185,84 +185,116 @@ export default function OraculoChatbot() {
 
   return (
     <>
-      {/* 1. BOTÃO FLUTUANTE — ORÁCULO™ com texto em arco circular */}
-      <div className="fixed bottom-6 right-6 z-50 select-none">
-        <motion.button
-          onClick={() => setIsOpen(!isOpen)}
-          whileHover={{ scale: 1.06 }}
-          whileTap={{ scale: 0.93 }}
-          className="relative w-[78px] h-[78px] rounded-full bg-[#0F1623] border border-[#00D4FF]/35 shadow-[0_0_32px_rgba(0,212,255,0.28)] backdrop-blur-xl"
-          style={{ overflow: "visible" }}
-        >
-          {/* Ambient glow ring pulsing */}
-          <div className="absolute inset-[-3px] rounded-full bg-[#00D4FF]/14 animate-ping opacity-55 blur-sm pointer-events-none" />
+      {/* 1. BOTÃO FLUTUANTE — ORÁCULO™ com texto arqueado e bolinha orbitando */}
+      <div className="fixed bottom-6 right-6 z-50 select-none flex flex-col items-center">
+        {/* Efeito Efeito Genie Burst Light Aura no click */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 1, scale: 0.4 }}
+              animate={{ opacity: 0, scale: 3.5 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="absolute bottom-6 right-6 w-16 h-16 rounded-full bg-gradient-to-r from-[#00D4FF]/60 via-[#FF6B35]/40 to-[#00D4FF]/20 blur-xl pointer-events-none"
+            />
+          )}
+        </AnimatePresence>
 
-          {/* ── SVG: ORÁCULO™ seguindo o arco do círculo ── */}
-          <svg
-            viewBox="0 0 78 78"
-            className="absolute inset-0 w-full h-full"
-            style={{ overflow: "visible" }}
-            aria-hidden="true"
-          >
+        {/* Texto ORÁCULO™ arqueado suavemente acima do círculo (Fonte Syne do Projeto) */}
+        <div className="w-[100px] h-[28px] mb-[-2px] overflow-visible pointer-events-none z-10 flex items-center justify-center">
+          <svg viewBox="0 0 100 28" className="w-full h-full overflow-visible" aria-hidden="true">
             <defs>
-              {/*
-                Arco superior anti-horário: da esquerda (9,39) para a direita (69,39)
-                passando pelo topo (39,10) — texto aparece curvando no topo do botão
-              */}
-              <path
-                id="oraculoArcPath"
-                d="M 9,39 A 30,30 0 0,0 69,39"
-              />
+              <path id="oraculoTopArc" d="M 10,25 A 46,46 0 0,1 90,25" />
             </defs>
-
-            {/* Texto ORÁCULO™ acompanhando o arco */}
             <text
-              fill="white"
-              fontSize="8"
-              fontWeight="900"
-              fontFamily="'Space Grotesk', 'Syne', 'Inter', sans-serif"
-              letterSpacing="2.2"
-              dominantBaseline="auto"
+              fill="#FFFFFF"
+              fontSize="12.5"
+              fontWeight="800"
+              fontFamily="'Syne', 'Outfit', sans-serif"
+              letterSpacing="1.8"
             >
-              <textPath
-                href="#oraculoArcPath"
-                startOffset="50%"
-                textAnchor="middle"
-              >
+              <textPath href="#oraculoTopArc" startOffset="50%" textAnchor="middle">
                 ORÁCULO™
               </textPath>
             </text>
           </svg>
+        </div>
 
-          {/* Centro: ícone Sparkles */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#00D4FF]/18 to-[#FF6B35]/18 border border-[#00D4FF]/45 flex items-center justify-center shadow-inner">
-              <Sparkles className="w-[18px] h-[18px] text-[#00D4FF] animate-pulse" />
-            </div>
+        {/* Círculo com Borda Cyan & Ícone Sparkles */}
+        <motion.button
+          onClick={() => setIsOpen(!isOpen)}
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.92 }}
+          className="relative w-[68px] h-[68px] rounded-full bg-[#080C14]/90 border border-[#00D4FF]/45 shadow-[0_0_28px_rgba(0,212,255,0.3)] backdrop-blur-xl flex items-center justify-center"
+        >
+          {/* Glow suave pulsante */}
+          <div className="absolute inset-[-2px] rounded-full bg-[#00D4FF]/15 animate-ping opacity-60 blur-sm pointer-events-none" />
+
+          {/* Anel Interno com Ícone Sparkles */}
+          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#00D4FF]/20 to-[#FF6B35]/20 border border-[#00D4FF]/60 flex items-center justify-center shadow-inner">
+            <Sparkles className="w-5 h-5 text-[#00D4FF] animate-pulse" />
           </div>
 
-          {/* Ponto laranja orbitando o círculo */}
+          {/* Bolinha Laranja Orbitando Continuamente */}
           <div
             className="absolute inset-0 rounded-full pointer-events-none"
             style={{ animation: "spin 5s linear infinite" }}
           >
             <span
-              className="absolute w-[12px] h-[12px] rounded-full bg-[#FF6B35] shadow-[0_0_14px_rgba(255,107,53,0.95)]"
-              style={{ top: "-5px", left: "50%", transform: "translateX(-50%)" }}
+              className="absolute w-[11px] h-[11px] rounded-full bg-[#FF6B35] shadow-[0_0_14px_#FF6B35] border border-[#080C14]"
+              style={{ top: "3px", right: "3px" }}
             />
           </div>
+
+          {/* Notificação de não lidas */}
+          {hasUnread && !isOpen && (
+            <span className="absolute top-0 right-0 w-3.5 h-3.5 bg-[#FF6B35] rounded-full border-2 border-[#080C14] animate-bounce z-20" />
+          )}
         </motion.button>
       </div>
 
-      {/* 2. PAINEL DO CHAT */}
+      {/* 2. PAINEL DO CHAT — Efeito Genie de Abertura (macOS / Spatial Morphing) */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 30, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 30, scale: 0.95 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="fixed bottom-0 right-0 sm:bottom-24 sm:right-6 z-50 w-full sm:w-[420px] h-[85vh] sm:h-[600px] max-h-[90vh] bg-[#0F1623]/95 border-t sm:border border-[rgba(0,212,255,0.25)] rounded-t-3xl sm:rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.8)] backdrop-blur-2xl flex flex-col overflow-hidden"
+            initial={{
+              opacity: 0,
+              scale: 0.05,
+              y: 120,
+              x: 80,
+              scaleY: 0.15,
+              scaleX: 0.3,
+              borderRadius: "500px",
+              filter: "blur(12px) brightness(2)",
+            }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              x: 0,
+              scaleY: 1,
+              scaleX: 1,
+              borderRadius: "24px",
+              filter: "blur(0px) brightness(1)",
+            }}
+            exit={{
+              opacity: 0,
+              scale: 0.05,
+              y: 100,
+              x: 60,
+              scaleY: 0.15,
+              scaleX: 0.3,
+              borderRadius: "500px",
+              filter: "blur(10px) brightness(1.5)",
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 280,
+              damping: 24,
+              mass: 0.7,
+            }}
+            style={{ transformOrigin: "bottom right" }}
+            className="fixed bottom-0 right-0 sm:bottom-24 sm:right-6 z-50 w-full sm:w-[420px] h-[85vh] sm:h-[600px] max-h-[90vh] bg-[#0F1623]/95 border-t sm:border border-[rgba(0,212,255,0.3)] rounded-t-3xl sm:rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.85)] backdrop-blur-2xl flex flex-col overflow-hidden"
           >
             {/* Header */}
             <div className="p-4 sm:p-5 bg-[#080C14] border-b border-white/10 flex items-center justify-between shrink-0">
