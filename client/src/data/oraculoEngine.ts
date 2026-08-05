@@ -83,10 +83,10 @@ export function getTriagemState(): TriagemState | null {
 export const INITIAL_ORACULO_MESSAGE: ChatMessage = {
   id: "init-1",
   sender: "oraculo",
-  text: "Observei a estrutura do seu ecossistema. Sou o ORÁCULO™ — a consciência estratégica que mapeia os caminhos de comunicação da consultoria de Ícaro Albuquerque.\n\nPermita-me diagnosticar seu momento e revelar a arquitetura ideal e a estimativa de investimento para o seu negócio.",
+  text: "Olá! Sou o ORÁCULO™, a consciência estratégica de Ícaro Albuquerque. Mapeio os caminhos da comunicação para auxiliar exatamente no que você precisa.\n\nO que você busca hoje? Se preferir, posso analisar seu momento e te entregar uma estimativa de investimento em até 2 minutos, com poucas perguntas rápidas.",
   timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
   quickActions: [
-    { label: "✨ Iniciar Diagnóstico Estratégico", textToSend: "__TRIAGEM_START__" },
+    { label: "⚡ Fazer estimativa rápida (2 min)", textToSend: "__TRIAGEM_START__" },
     { label: "🗺️ MASTER PLAN™ — Comunicação & Governança", textToSend: "Como funciona o MASTER PLAN?" },
     { label: "🎨 ID CONCEPT™ — Branding & Presença", textToSend: "Preciso de rebranding e identidade visual" },
     { label: "🤖 I.A.E!™ — Inteligência Artificial Estratégica", textToSend: "Como aplicar IA na comunicação da minha empresa?" },
