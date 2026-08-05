@@ -6,7 +6,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, MessageSquare, X, Send, ExternalLink, Bot, ArrowRight, CornerDownLeft, RefreshCw } from "lucide-react";
-import { ChatMessage, INITIAL_ORACULO_MESSAGE, processOraculoMessage, WHATSAPP_BASE_URL } from "@/data/oraculoEngine";
+import { ChatMessage, INITIAL_ORACULO_MESSAGE, processOraculoMessage, WHATSAPP_BASE_URL } from "../data/oraculoEngine";
 
 export default function OraculoChatbot() {
   const [isOpen, setIsOpen] = useState(false);
