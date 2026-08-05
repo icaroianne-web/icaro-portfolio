@@ -19,19 +19,19 @@ const services = [
   {
     id: 1,
     title: "MASTER PLAN™",
-    subtitle: "A estratégia que os outros consultores deveriam ter te vendido primeiro.",
-    description: "Crescimento sem plano é sorte — não é método. O MASTER PLAN é o sistema completo de comunicação do seu negócio: do diagnóstico ao calendário, do posicionamento à crise. Construído com o Método UTIO — Urgente, Timing, Imprescindível, Opcional — para que você invista energia apenas onde gera resultado de verdade.",
+    subtitle: "A estrutura completa da sua comunicação Inbound & Outbound.",
+    description: "Crescimento sem plano é sorte — não é método. O MASTER PLAN é o sistema completo de comunicação do seu negócio: da governança ao calendário editorial (com entrega de posts prontos por período), dos chatbots no site (Typebot) ao e-mail marketing. Construído com a Bússola UTIO para você investir energia onde gera resultado de verdade. Inclui Treinamentos In-loco ou Virtuais para sua equipe.",
     icon: Network,
     color: "#00D4FF",
     fromClass: "from-[#00D4FF]",
     image: "/assets/service_master_plan_masp.png",
     features: [
-      "Raio-X de Comunicação",
+      "Estruturação Inbound & Outbound",
       "Método UTIO: Bússola de Prioridades",
-      "Arquitetura e Calendário Editorial",
-      "Governança e Gestão de Crises",
-      "Framework de E-mail Marketing",
-      "Consultoria Estratégica Contínua"
+      "Arquitetura Editorial & Posts Prontos",
+      "Chatbots no Site (Typebot) & E-mail",
+      "Governança & Gestão de Crises",
+      "Treinamentos In-loco ou Virtuais"
     ],
     detailsType: "utio",
     category: "Comunicação & Estratégia"
@@ -39,19 +39,19 @@ const services = [
   {
     id: 2,
     title: "ID CONCEPT™",
-    subtitle: "Definimos quem você é antes que o mercado decida por você.",
-    description: "Não começo pelo logo. Começo pelo conceito — a ideia central que define sua posição no mercado e onde você quer ser visto daqui a 10 anos. Daí nasce tudo: a estética, a linguagem, o site conceitual premium e até a denominação que você ainda não tinha para si mesmo. Uma identidade que não é apenas bonita — é um argumento comercial.",
+    subtitle: "Marca, Branding, Rebranding & Presença Digital Super Premium.",
+    description: "Definimos quem sua marca é antes que o mercado decida por você. Do Naming e Rebranding à conceitualização de Key Visual (KV), Moodboard, Guia da Marca (tom e voz) e UX Writing. Desenvolvemos o seu Site Conceitual Super Premium caso precise de uma repaginação total de autoridade. Uma identidade que não é apenas bonita — é um argumento comercial.",
     icon: Activity,
     color: "#C9A84C",
     fromClass: "from-[#C9A84C]",
     image: "/assets/service_id_concept_masp.png",
     features: [
-      "Conceito de Marca e Naming Estratégico",
-      "Identidade Visual e Manual de Marca",
-      "Site Conceitual Premium & Funcional",
-      "Direção de Arte e KV (Key Visual)",
-      "Posicionamento, Tom de Voz e Copy",
-      "Direcionamento de Pauta e Presença Pública"
+      "Conceito de Marca, Naming & Rebranding",
+      "Key Visual (KV), Moodboard & Guia da Marca",
+      "Site Conceitual Super Premium & Funcional",
+      "UX Writing, Tom & Voz da Marca",
+      "Arquitetura da Informação & Copywriting",
+      "Repaginação Total de Presença Digital"
     ],
     detailsType: "list",
     category: "Branding & Presença"
@@ -59,19 +59,19 @@ const services = [
   {
     id: 3,
     title: "I.A.E!™",
-    subtitle: "Sua equipe produzindo em dobro. Seu custo produzindo pela metade.",
-    description: "A maioria das empresas usa IA para experimentar. Eu uso para escalar. O I.A.E! implanta inteligência artificial no fluxo real da sua operação — com realismo, qualidade e identidade de marca intactos. Saída de conteúdo premium em fração do tempo, equipe treinada e autônoma, e processos que continuam funcionando quando você não está. Produção inteligente também é produção consciente.",
+    subtitle: "Inteligência Artificial Estratégica aplicada à Comunicação & Marketing.",
+    description: "Através de um Raio-X de processos, prestamos consultoria para implantar IA focada exclusivamente em Comunicação e Marketing (geração de imagens, conteúdo para redes sociais, automações e comunicação interna assistida). Sem foco em auditoria/financeiro. Inclui Treinamentos In-loco ou Virtuais para capacitar seu time a produzir em dobro pela metade do custo.",
     icon: BrainCircuit,
     color: "#00D4FF",
     fromClass: "from-[#00D4FF]",
     image: "/assets/service_iae_masp.png",
     features: [
-      "Diagnóstico e Mapeamento de Gargalos",
-      "Implementação de Stack de IA Sob Medida",
-      "Produção de Conteúdo Premium com IA",
-      "Fluxos Escaláveis para a Equipe",
-      "Treinamento In-loco ou Remoto",
-      "Autonomia: Você sai funcionando, não dependente"
+      "Raio-X de Oportunidades de IA no Marketing",
+      "Geração de Imagens & Conteúdo para Redes",
+      "Comunicação Interna Assistida por IA",
+      "Agentes & Plataformas Sob Medida",
+      "Treinamentos In-loco ou Virtuais",
+      "Autonomia Operacional para a Equipe"
     ],
     detailsType: "list",
     category: "Inovação & Tech"
@@ -79,19 +79,19 @@ const services = [
   {
     id: 4,
     title: "ABSOLUTE CINEMA™",
-    subtitle: "Conteúdo que não precisa de contexto para impactar.",
-    description: "Toda empresa tem uma história melhor do que imagina. O trabalho aqui é encontrar a sua essência e contá-la do jeito certo — transformando trajetória em narrativa inesquecível. Não entrego um vídeo institucional. Entrego o argumento audiovisual que abre portas, gera autoridade e fica na memória de quem importa.",
+    subtitle: "Filmes corporativos e depoimentos com storytelling de cinema.",
+    description: "Voltado para marcas que querem criar um filme corporativo em primeira pessoa, vídeos de depoimentos ou bastidores. Trazemos o storytelling cinematográfico com estrutura ágil e poucos equipamentos — desmistificando a ideia de que a empresa precisa gastar uma fortuna para contar sua história com alto impacto.",
     icon: Clapperboard,
     color: "#FF6B35",
     fromClass: "from-[#FF6B35]",
     image: "/assets/service_cinema_masp.png",
     features: [
-      "Filmes Institucionais & Documentários",
-      "Storytelling de Marca & Cases de Sucesso",
-      "Séries para YouTube e Reels",
-      "Roteirização e Direção Criativa",
-      "Media Training para Executivos",
-      "Cobertura de Eventos Internacionais"
+      "Filmes Corporativos em Primeira Pessoa",
+      "Vídeos de Depoimentos & Bastidores",
+      "Storytelling Ágil (Poucos Equipamentos)",
+      "Cases de Sucesso & Documentários",
+      "Séries para YouTube e Redes Sociais",
+      "Roteirização, Direção & Media Training"
     ],
     detailsType: "list",
     category: "Audiovisual & Cinema"
@@ -117,6 +117,23 @@ export default function ServicesSection() {
   const [activeService, setActiveService] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProductTitle, setSelectedProductTitle] = useState("");
+  const cardRefs = useRef<Record<number, HTMLDivElement | null>>({});
+
+  const handleToggleService = (id: number) => {
+    const willExpand = activeService !== id;
+    setActiveService(willExpand ? id : null);
+
+    if (willExpand) {
+      setTimeout(() => {
+        const el = cardRefs.current[id];
+        if (el) {
+          const yOffset = -80; // offset for sticky header/navbar
+          const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
+      }, 100);
+    }
+  };
 
   return (
     <section id="services" className="relative py-24 bg-[#080C14] overflow-hidden border-t border-[rgba(0,212,255,0.05)]">
@@ -130,21 +147,21 @@ export default function ServicesSection() {
         {/* Header */}
         <div className={`mb-16 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="flex items-start gap-4 mb-4">
-            <span className="section-number" style={{ position: "relative", fontSize: "clamp(4rem,10vw,8rem)" }}>04</span>
+            <span className="section-number" style={{ position: "relative", fontSize: "clamp(4rem,10vw,8rem)" }}>02</span>
             <div>
               <div className="tech-badge mb-2">
                 <Sparkles size={12} />
                 <span>GALERIA DE PRODUTOS</span>
               </div>
               <h2 className="font-display font-800 text-[clamp(2rem,5vw,3.5rem)] text-[#F0F4FF] leading-tight">
-                Soluções <br />
-                <span className="gradient-text-cyan">Estratégicas</span>
+                Produtos & <br />
+                <span className="gradient-text-cyan">Sistemas de Comunicação</span>
               </h2>
             </div>
           </div>
           <div className="line-accent max-w-xs ml-[calc(clamp(4rem,10vw,8rem)+1rem)]" />
           <p className="text-[#8892A4] mt-4 ml-[calc(clamp(4rem,10vw,8rem)+1rem)] max-w-xl text-base leading-relaxed">
-            Clique no card para revelar a obra completa e explorar todos os entregáveis e métodos.
+            Conheça as 4 soluções estruturadas para acelerar a autoridade, a presença digital e a escala do seu negócio.
           </p>
         </div>
 
@@ -156,6 +173,7 @@ export default function ServicesSection() {
             return (
               <div 
                 key={svc.id}
+                ref={(el) => (cardRefs.current[svc.id] = el)}
                 className={`relative rounded-2xl bg-[#0F1623] border border-[rgba(255,255,255,0.08)] overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.6)] transition-all duration-500 group cursor-pointer ${
                   isExpanded ? "ring-1 border-opacity-100 shadow-[0_0_40px_rgba(0,0,0,0.8)]" : "hover:border-opacity-30 hover:-translate-y-1.5"
                 } ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
@@ -164,7 +182,7 @@ export default function ServicesSection() {
                   transitionDelay: `${i * 100}ms`,
                   boxShadow: isExpanded ? `0 0 35px ${svc.color}25` : undefined
                 }}
-                onClick={() => setActiveService(isExpanded ? null : svc.id)}
+                onClick={() => handleToggleService(svc.id)}
               >
                 {/* Colored Top Border Line */}
                 <div 
@@ -172,9 +190,9 @@ export default function ServicesSection() {
                   style={{ background: `linear-gradient(90deg, ${svc.color}, transparent)` }}
                 />
 
-                {/* 1. MEDIA CONTAINER */}
+                {/* 1. MEDIA CONTAINER — Larger before click */}
                 <div className={`relative w-full overflow-hidden transition-all duration-700 bg-[#080C14] ${
-                  isExpanded ? "aspect-[16/9] sm:aspect-[16/9]" : "aspect-[16/10] sm:aspect-[16/9]"
+                  isExpanded ? "aspect-[16/9] sm:aspect-[16/9] min-h-[260px] sm:min-h-[360px]" : "aspect-[4/3] sm:aspect-[16/10] min-h-[320px] sm:min-h-[420px]"
                 }`}>
                   {/* High-Res Artwork Image */}
                   <img 

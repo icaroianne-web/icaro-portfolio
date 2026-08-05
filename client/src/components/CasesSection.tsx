@@ -178,6 +178,23 @@ function useInView(threshold = 0.1) {
 export default function CasesSection() {
   const { ref, inView } = useInView();
   const [activeCase, setActiveCase] = useState<number | null>(null);
+  const caseRefs = useRef<Record<number, HTMLDivElement | null>>({});
+
+  const handleToggleCase = (id: number) => {
+    const willExpand = activeCase !== id;
+    setActiveCase(willExpand ? id : null);
+
+    if (willExpand) {
+      setTimeout(() => {
+        const el = caseRefs.current[id];
+        if (el) {
+          const yOffset = -80; // offset for sticky header/navbar
+          const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
+      }, 100);
+    }
+  };
 
   return (
     <section id="cases" className="relative py-24 overflow-hidden bg-[#080C14]">
@@ -189,7 +206,7 @@ export default function CasesSection() {
       <div className="container relative z-10" ref={ref}>
         <div className={`mb-16 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="flex items-start gap-4 mb-4">
-            <span className="section-number" style={{ position: "relative", fontSize: "clamp(4rem,10vw,8rem)" }}>01</span>
+            <span className="section-number" style={{ position: "relative", fontSize: "clamp(4rem,10vw,8rem)" }}>03</span>
             <div>
               <div className="tech-badge mb-2">Portfólio</div>
               <h2 className="font-display font-800 text-[clamp(2rem,5vw,3.5rem)] text-[#F0F4FF] leading-tight">
@@ -200,7 +217,7 @@ export default function CasesSection() {
           </div>
           <div className="line-accent max-w-xs ml-[calc(clamp(4rem,10vw,8rem)+1rem)]" />
           <p className="text-[#8892A4] mt-4 ml-[calc(clamp(4rem,10vw,8rem)+1rem)] max-w-lg">
-            Projetos estratégicos de alto impacto — do âmbito local ao palco diplomático internacional.
+            Projetos reais onde aplicamos as metodologias do MASTER PLAN™, ID CONCEPT™ e ABSOLUTE CINEMA™ na prática.
           </p>
         </div>
 
@@ -208,20 +225,22 @@ export default function CasesSection() {
           {cases.map((item, i) => (
             <div
               key={item.id}
+              ref={(el) => (caseRefs.current[item.id] = el)}
               className={`case-card group cursor-pointer transition-all duration-500 flex flex-col justify-between overflow-hidden ${
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: `${i * 80}ms` }}
-              onClick={() => setActiveCase(activeCase === item.id ? null : item.id)}
+              onClick={() => handleToggleCase(item.id)}
             >
               <div>
-                <div className="relative h-48 overflow-hidden border-b border-[rgba(0,212,255,0.08)] bg-[#0F1623]">
+                {/* Header Image Container — Larger before click */}
+                <div className="relative h-64 sm:h-72 min-h-[260px] sm:min-h-[300px] overflow-hidden border-b border-[rgba(0,212,255,0.08)] bg-[#0F1623]">
                   <img
                     src={item.image}
                     alt={item.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0F1623] to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0F1623] via-[#0F1623]/40 to-transparent" />
                 </div>
 
                 <div className="p-6">

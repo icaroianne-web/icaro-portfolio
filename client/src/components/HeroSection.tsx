@@ -140,7 +140,7 @@ export default function HeroSection() {
             >
               <div className="line-accent w-16 mb-4" />
               <p className="text-[#00D4FF] drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] font-outfit text-lg leading-relaxed max-w-2xl font-medium">
-                Transformo narrativas em ativos comerciais. Estratégia, branding e IA para quem quer ser <span className="text-white font-semibold">lembrado com precisão</span> — de <span className="text-[#C9A84C] font-semibold">Ministérios do Governo Federal</span> à <span className="text-[#C9A84C] font-semibold">Conferência Mundial do Clima (COP28), em Dubai</span>.
+                Transformo a comunicação de marcas em um <span className="text-white font-semibold">ativo comercial de alta conversão</span>. Estratégia, branding e IA com autoridade comprovada — de <span className="text-[#C9A84C] font-semibold">Ministérios do Governo Federal</span> à <span className="text-[#C9A84C] font-semibold">Conferência Mundial do Clima (COP28), em Dubai</span>.
               </p>
             </div>
 
@@ -172,7 +172,7 @@ export default function HeroSection() {
                 }}
                 className="btn-primary"
               >
-                Consultoria Estratégica
+                Agendar Conversa Estratégica
               </a>
               <a
                 href="#cases"

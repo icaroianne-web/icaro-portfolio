@@ -138,13 +138,13 @@ export default function AboutSection() {
         {/* Section header */}
         <div className={`mb-16 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: '0ms' }}>
           <div className="flex items-start gap-4 mb-4">
-            <span className="section-number" style={{ position: "relative", fontSize: "clamp(4rem,10vw,8rem)" }}>02</span>
+            <span className="section-number" style={{ position: "relative", fontSize: "clamp(4rem,10vw,8rem)" }}>01</span>
             <div>
               <div className="tech-badge mb-2">Sobre</div>
               <h2 className="font-display font-800 text-[clamp(2rem,5vw,3.5rem)] text-[#F0F4FF] leading-tight">
-                Multimídia.<br />
-                <span className="gradient-text-cyan">Multitask.</span><br />
-                Multifacetado.
+                Estratégia Criativa.<br />
+                <span className="gradient-text-cyan">Tecnologia.</span><br />
+                Visão de Mercado.
               </h2>
             </div>
           </div>

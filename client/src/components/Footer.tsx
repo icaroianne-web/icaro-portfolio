@@ -47,6 +47,17 @@ export default function Footer() {
             ))}
           </div>
         </div>
+
+        {/* Selo de Assinatura de Autor / Presença Digital */}
+        <div className="mt-6 pt-4 border-t border-[rgba(255,255,255,0.04)] flex flex-col sm:flex-row items-center justify-between text-[0.65rem] font-mono-tech text-[#8892A4] gap-2">
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00D4FF] animate-pulse" />
+            <span>Presença Digital Arquitetada por <strong className="text-[#F0F4FF] font-semibold">Ícaro Albuquerque</strong></span>
+          </div>
+          <span className="px-2 py-0.5 rounded bg-[rgba(0,212,255,0.06)] border border-[rgba(0,212,255,0.15)] text-[#00D4FF]">
+            ID CONCEPT™ Studio
+          </span>
+        </div>
       </div>
     </footer>
   );

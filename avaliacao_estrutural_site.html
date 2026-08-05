@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reavaliação Estrutural Completa — icaroalbuquerque.com</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #080C14;
+      --card-bg: #0F1623;
+      --card-border: rgba(0, 212, 255, 0.15);
+      --text-main: #F0F4FF;
+      --text-muted: #8892A4;
+      --cyan: #00D4FF;
+      --gold: #C9A84C;
+      --orange: #FF6B35;
+      --green: #10B981;
+      --red: #EF4444;
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'Outfit', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      padding: 2.5rem 1.5rem;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(0, 212, 255, 0.05) 0%, transparent 45%),
+        radial-gradient(circle at 85% 85%, rgba(201, 168, 76, 0.04) 0%, transparent 45%);
+    }
+
+    .container { max-width: 1150px; margin: 0 auto; }
+
+    header {
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--cyan);
+      background: rgba(0, 212, 255, 0.08);
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      padding: 0.35rem 0.85rem;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #FFFFFF 0%, #00D4FF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 900px;
+    }
+
+    .section-block { margin-bottom: 4rem; }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text-main);
+    }
+
+    .section-num { font-family: var(--font-mono); color: var(--cyan); }
+    .section-desc { color: var(--text-muted); margin-bottom: 1.75rem; font-size: 0.98rem; }
+
+    /* REORDERING FLOW CONTAINER */
+    .flow-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .flow-grid { grid-template-columns: 1fr; }
+    }
+
+    .flow-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .flow-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .flow-card.atual h3 { color: var(--red); }
+    .flow-card.proposto h3 { color: var(--green); }
+
+    .order-list {
+      list-style: none;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
+
+    .order-list li {
+      padding: 0.6rem 0.8rem;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .order-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.75rem;
+    }
+
+    /* HEADLINE COMPARISON CARDS */
+    .diff-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .diff-header {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text-main);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .diff-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: 768px) {
+      .diff-grid { grid-template-columns: 1fr; }
+    }
+
+    .diff-box { padding: 1.5rem; }
+    .diff-box.antes { background: rgba(239, 68, 68, 0.02); border-right: 1px solid rgba(255, 255, 255, 0.06); }
+    .diff-box.depois { background: rgba(16, 185, 129, 0.02); }
+
+    .box-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+    }
+
+    .antes .box-label { color: var(--red); }
+    .depois .box-label { color: var(--green); }
+
+    .content-box {
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 1.2rem;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    .content-box strong { color: var(--cyan); }
+
+    .rationale {
+      padding: 1.1rem 1.5rem;
+      background: rgba(0, 0, 0, 0.25);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .rationale strong { color: var(--gold); font-family: var(--font-mono); }
+
+    /* SIGNATURE SPECIFICATION BOX */
+    .signature-spec {
+      background: rgba(0, 212, 255, 0.04);
+      border: 1px solid rgba(0, 212, 255, 0.25);
+      border-radius: 12px;
+      padding: 1.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .signature-preview {
+      margin-top: 1.25rem;
+      padding: 1.25rem;
+      background: #080C14;
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .signature-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .signature-badge span.author {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .signature-badge span.brand {
+      color: var(--cyan);
+      background: rgba(0, 212, 255, 0.1);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      border: 1px solid rgba(0, 212, 255, 0.3);
+    }
+
+    /* BLOG TEASER SPECIFICATION */
+    .blog-teaser-mockup {
+      background: #0F1623;
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      border-radius: 14px;
+      padding: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .blog-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .blog-card-item {
+      background: #080C14;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 1.25rem;
+      transition: all 0.3s ease;
+    }
+
+    .blog-card-item:hover {
+      border-color: var(--cyan);
+    }
+
+    .blog-tag {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--cyan);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+    }
+
+    .blog-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-excerpt {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .blog-link {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--cyan);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding-top: 2rem;
+      margin-top: 4rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <header>
+      <div class="badge">Avaliação Estrutural Completa • UX, Headlines & Arquitetura</div>
+      <h1>Diagnóstico de Ordem, Headlines & Recursos</h1>
+      <p class="subtitle">
+        Análise cirúrgica da <strong>ordem narrativa das seções</strong>, reformulação dos <strong>títulos e headlines de cada bloco</strong>, especificação do <strong>Teaser do Blog na Home</strong> e criação do modelo da sua <strong>Assinatura de Autor/Estúdio</strong>.
+      </p>
+    </header>
+
+    <!-- SEÇÃO 1: REORDENAMENTO DAS SEÇÕES NA HOME -->
+    <div class="section-block">
+      <div class="section-title">
+        <span class="section-num">01.</span> Reordenamento Narrativo das Seções na Home
+      </div>
+      <p class="section-desc">
+        Atualmente, o site exibe os Produtos (MASTER PLAN™, ID CONCEPT™, etc.) <strong>quase no final da página</strong>, depois de Cases e Sobre. Para vender seus produtos/serviços, o visitante precisa entender o que você oferece <em>logo no primeiro scroll</em>, usando os Cases como prova social do que os produtos entregam.
+      </p>
+
+      <div class="flow-grid">
+        <!-- ORDEM ATUAL -->
+        <div class="flow-card atual">
+          <h3>❌ Ordem Atual na Home (Sub-otimizada)</h3>
+          <ol class="order-list">
+            <li><span class="order-num">1</span> HeroSection (Apresentação)</li>
+            <li><span class="order-num">2</span> MarqueeSection (Logos)</li>
+            <li><span class="order-num">3</span> StatsSection (Números)</li>
+            <li><span class="order-num">4</span> CasesSection (Cases de Sucesso)</li>
+            <li><span class="order-num">5</span> AboutSection (Sobre / Trajetória)</li>
+            <li><span class="order-num">6</span> ServicesSection (Galeria de Produtos — LÁ EMBAIXO!)</li>
+            <li><span class="order-num">7</span> ShowreelSection (Audiovisual)</li>
+            <li><span class="order-num">8</span> ContactSection (Contato)</li>
+            <li><span class="order-num">--</span> ⚠️ (Sem Teaser do Blog na Home)</li>
+          </ol>
+        </div>
+
+        <!-- NOVA ORDEM PROPOSTA -->
+        <div class="flow-card proposto">
+          <h3>⚡ Sequência Exata Aplicada na Home</h3>
+          <ol class="order-list">
+            <li><span class="order-num">1</span> <strong>HeroSection</strong> (Apresentação & Promessa de Valor)</li>
+            <li><span class="order-num">2</span> <strong>AboutSection (Seção 01: Sobre)</strong> 👈 <em>IMEDIATAMENTE APÓS O HERO</em></li>
+            <li><span class="order-num">3</span> <strong>ServicesSection (Seção 02: Produtos & Sistemas)</strong> 👈 <em>LOGO APÓS O SOBRE</em></li>
+            <li><span class="order-num">4</span> <strong>CasesSection (Seção 03: Cases de Sucesso)</strong> 👈 <em>LOGO APÓS OS PRODUTOS</em></li>
+            <li><span class="order-num">5</span> <strong>MarqueeSection</strong> (Logos e Marcas)</li>
+            <li><span class="order-num">6</span> <strong>StatsSection</strong> (Métricas & Impacto)</li>
+            <li><span class="order-num">7</span> <strong>BlogTeaserSection (Seção 04: Central de Insights)</strong></li>
+            <li><span class="order-num">8</span> <strong>ShowreelSection</strong> (Audiovisual Cinematográfico)</li>
+            <li><span class="order-num">9</span> <strong>ContactSection</strong> (Triagem / Diagnóstico)</li>
+            <li><span class="order-num">10</span> <strong>Footer com Assinatura do Autor</strong> (ID CONCEPT™ Studio)</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEÇÃO 2: AVALIAÇÃO DE TÍTULOS E HEADLINES -->
+    <div class="section-block">
+      <div class="section-title">
+        <span class="section-num">02.</span> Avaliação dos Títulos, Headlines e Textos de Cada Seção
+      </div>
+      <p class="section-desc">
+        Reavaliação crítica dos textos, títulos principais e subtítulos da página para eliminar termos fracos ou ambíguos e aumentar a força comercial.
+      </p>
+
+      <!-- HEADLINE HERO -->
+      <div class="diff-card">
+        <div class="diff-header">1. Hero Section — Headline & Subtítulo</div>
+        <div class="diff-grid">
+          <div class="diff-box antes">
+            <div class="box-label">❌ COMO ESTÁ HOJE</div>
+            <div class="content-box">
+              <strong>Badge:</strong> ESTRATÉGIA • BRANDING • INTELIGÊNCIA ARTIFICIAL<br><br>
+              <strong>Tagline:</strong> "Transformo narrativas em ativos comerciais. Estratégia, branding e IA para quem quer ser lembrado com precisão — de Ministérios do Governo Federal à Conferência Mundial do Clima (COP28), em Dubai."
+            </div>
+          </div>
+          <div class="diff-box depois">
+            <div class="box-label">⚡ SUGESTÃO DE MUDANÇA (Mais Direta & Comercial)</div>
+            <div class="content-box">
+              <strong>Badge:</strong> ESTRATÉGIA • BRANDING • INTELIGÊNCIA ARTIFICIAL<br><br>
+              <strong>Tagline:</strong> "Transformo a comunicação de marcas em um <strong>ativo comercial de alta conversão</strong>. Estratégia, branding e IA com autoridade comprovada — da <strong>COP28 em Dubai</strong> a <strong>Ministérios do Governo Federal</strong>."
+            </div>
+          </div>
+        </div>
+        <div class="rationale">
+          <strong>💡 Raciocínio:</strong> Adiciona a palavra "negócio/marcas" e "alta conversão", tornando a promessa tangível para o tomador de decisão.
+        </div>
+      </div>
+
+      <!-- HEADLINE PRODUTOS -->
+      <div class="diff-card">
+        <div class="diff-header">2. Galeria de Produtos — Título & Subtítulo</div>
+        <div class="diff-grid">
+          <div class="diff-box antes">
+            <div class="box-label">❌ COMO ESTÁ HOJE</div>
+            <div class="content-box">
+              <strong>Título:</strong> Soluções Estratégicas<br>
+              <strong>Subtítulo:</strong> "Clique no card para revelar a obra completa e explorar todos os entregáveis e métodos."
+            </div>
+          </div>
+          <div class="diff-box depois">
+            <div class="box-label">⚡ SUGESTÃO DE MUDANÇA (Foco nos 4 Produtos)</div>
+            <div class="content-box">
+              <strong>Título:</strong> Produtos & Sistemas de Comunicação<br>
+              <strong>Subtítulo:</strong> "Conheça as 4 soluções estruturadas para acelerar a autoridade, a presença digital e a escala do seu negócio."
+            </div>
+          </div>
+        </div>
+        <div class="rationale">
+          <strong>💡 Raciocínio:</strong> "Soluções Estratégicas" é abstrato. "Produtos & Sistemas de Comunicação" deixa claro que são pacotes estruturados prontos para contratação.
+        </div>
+      </div>
+
+      <!-- HEADLINE SOBRE -->
+      <div class="diff-card">
+        <div class="diff-header">3. Seção Sobre — Título de Apresentação</div>
+        <div class="diff-grid">
+          <div class="diff-box antes">
+            <div class="box-label">❌ COMO ESTÁ HOJE</div>
+            <div class="content-box">
+              <strong>Título:</strong> Multimídia. Multitask. Multifacetado.
+            </div>
+          </div>
+          <div class="diff-box depois">
+            <div class="box-label">⚡ SUGESTÃO DE MUDANÇA (Elimina o Tom 'Generalista')</div>
+            <div class="content-box">
+              <strong>Título:</strong> Estratégia Criativa. Tecnologia. Visão de Mercado.
+            </div>
+          </div>
+        </div>
+        <div class="rationale">
+          <strong>💡 Raciocínio:</strong> A palavra "Multitask / Multifacetado" pode soar como generalista ("faz de tudo um pouco"). Para vender consultoria de ticket alto, a tríade "Estratégia, Tecnologia e Visão de Mercado" posiciona você como especialista sênior.
+        </div>
+      </div>
+    </div>
+
+    <!-- SEÇÃO 3: NOVO TEASER DO BLOG NA HOME -->
+    <div class="section-block">
+      <div class="section-title">
+        <span class="section-num">03.</span> Integração do Blog na Home (Novo Teaser de Artigos)
+      </div>
+      <p class="section-desc">
+        Atualmente, o visitante só descobre que você tem um blog se clicar no menu superior. Para gerar autoridade e tempo de permanência no site, propomos a criação de um <strong>Teaser do Blog direto na Home</strong>.
+      </p>
+
+      <div class="blog-teaser-mockup">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <span class="badge" style="margin-bottom: 0.5rem;">CENTRAL DE INSIGHTS</span>
+            <h3 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 800;">Artigos & Estratégia</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Leituras essenciais sobre comunicação, branding e inteligência artificial.</p>
+          </div>
+          <a href="/blog" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--cyan); text-decoration: none; border: 1px solid rgba(0,212,255,0.3); padding: 0.5rem 1rem; border-radius: 6px;">[Ver Todos os Artigos →]</a>
+        </div>
+
+        <!-- CARDS DE PREVIA DO BLOG -->
+        <div class="blog-cards-grid">
+          <div class="blog-card-item">
+            <span class="blog-tag">Estratégia & IA</span>
+            <div class="blog-title">Como a IA Generativa Está Transformando o Workflow de Marketing Corporativo</div>
+            <div class="blog-excerpt">Descubra como equipes enxutas estão produzindo o dobro de ativos com padrão cinematográfico...</div>
+            <a href="#" class="blog-link">Ler Artigo Completo →</a>
+          </div>
+
+          <div class="blog-card-item">
+            <span class="blog-tag">Branding</span>
+            <div class="blog-title">Rebranding 'Ice Tech': O Caso de Estudo Finamac Global</div>
+            <div class="blog-excerpt">Como unimos a engenharia de alta performance com a estética premium para conquistar mercados...</div>
+            <a href="#" class="blog-link">Ler Artigo Completo →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEÇÃO 4: ASSINATURA DE AUTOR / ESTÚDIO NO RODAPÉ -->
+    <div class="section-block">
+      <div class="section-title">
+        <span class="section-num">04.</span> Assinatura do Autor no Rodapé (Selo de Autoria)
+      </div>
+      <p class="section-desc">
+        Para que você possa replicar essa assinatura nos sites dos seus futuros clientes e marcar a sua autoria, criamos a especificação visual e o selo de rodapé do <strong>Ícaro Albuquerque Studio</strong>.
+      </p>
+
+      <div class="signature-spec">
+        <strong style="color: var(--gold); font-family: var(--font-mono); text-transform: uppercase; font-size: 0.8rem;">Especificação Visual do Selo de Assinatura:</strong>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">
+          No rodapé do seu site (e dos sites que você criar para seus clientes), inserimos uma linha elegante com indicador de status, nome do autor e produto correspondente.
+        </p>
+
+        <!-- PREVIEW DA ASSINATURA -->
+        <div class="signature-preview">
+          <div class="signature-badge">
+            <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 8px var(--cyan);"></div>
+            <span>Presença Digital Arquitetada por</span>
+            <span class="author">Ícaro Albuquerque</span>
+          </div>
+
+          <div class="signature-badge">
+            <span class="brand">ID CONCEPT™ Studio</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      Diagnóstico Estrutural Completo — Ícaro Albuquerque • 2026
+    </footer>
+
+  </div>
+
+</body>
+</html>

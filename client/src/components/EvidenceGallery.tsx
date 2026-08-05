@@ -79,33 +79,33 @@ function BeforeAfterSlider({ item, color }: { item: BeforeAfterEvidence; color: 
   return (
     <div
       ref={containerRef}
-      className="relative h-[80vh] max-h-[800px] aspect-[9/16] overflow-hidden select-none cursor-ns-resize border border-[rgba(0,212,255,0.2)] bg-[#0F1623] mx-auto rounded shadow-2xl"
+      className="relative h-[70vh] sm:h-[80vh] max-h-[800px] w-full max-w-3xl overflow-hidden select-none cursor-ns-resize border border-[rgba(0,212,255,0.2)] bg-[#0F1623] mx-auto rounded-xl shadow-2xl flex items-center justify-center"
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
     >
       {/* Depois (base) */}
-      <img src={item.after} alt="Depois" className="absolute inset-0 w-full h-full object-cover" draggable={false} />
+      <img src={item.after} alt="Depois" className="absolute inset-0 w-full h-full object-contain bg-[#080C14]" draggable={false} />
       {/* Watermark Depois */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <span className="text-[12vh] sm:text-[14vh] font-display font-black text-white/25 uppercase tracking-tighter drop-shadow-2xl -rotate-90 translate-x-12 sm:translate-x-16">Depois</span>
+      <div className="absolute top-4 right-4 pointer-events-none z-10">
+        <span className="text-xs sm:text-sm font-mono-tech font-bold text-white/80 bg-black/70 px-3 py-1.5 rounded-md border border-white/20 uppercase tracking-widest backdrop-blur-md shadow-lg">Depois</span>
       </div>
 
       {/* Antes (recortado pelo clip-path de cima para baixo) */}
       <div className="absolute inset-0 overflow-hidden" style={{ clipPath: `inset(0 0 ${100 - pos}% 0)` }}>
-        <img src={item.before} alt="Antes" className="absolute inset-0 w-full h-full object-cover" draggable={false} />
-        {/* Watermark Antes (dentro do clip-path, logo cortado perfeitamente) */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <span className="text-[12vh] sm:text-[14vh] font-display font-black text-white/25 uppercase tracking-tighter drop-shadow-2xl -rotate-90 -translate-x-12 sm:-translate-x-16">Antes</span>
+        <img src={item.before} alt="Antes" className="absolute inset-0 w-full h-full object-contain bg-[#080C14]" draggable={false} />
+        {/* Watermark Antes */}
+        <div className="absolute top-4 left-4 pointer-events-none z-10">
+          <span className="text-xs sm:text-sm font-mono-tech font-bold text-white/80 bg-black/70 px-3 py-1.5 rounded-md border border-white/20 uppercase tracking-widest backdrop-blur-md shadow-lg">Antes</span>
         </div>
       </div>
 
       {/* Divisor Horizontal */}
-      <div className="absolute left-0 right-0 h-[2px]" style={{ top: `${pos}%`, backgroundColor: color }}>
+      <div className="absolute left-0 right-0 h-[2px] z-20" style={{ top: `${pos}%`, backgroundColor: color }}>
         <div
-          className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center border-2"
+          className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center border-2 shadow-xl"
           style={{ borderColor: color, backgroundColor: "#0F1623" }}
         >
-          <SlidersHorizontal size={14} style={{ color, transform: 'rotate(90deg)' }} />
+          <SlidersHorizontal size={16} style={{ color, transform: 'rotate(90deg)' }} />
         </div>
       </div>
     </div>
@@ -122,7 +122,7 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
   const scroll = (direction: "left" | "right") => {
     const container = scrollContainerRef.current;
     if (!container) return;
-    const scrollAmount = 300;
+    const scrollAmount = 340;
     container.scrollBy({
       left: direction === "left" ? -scrollAmount : scrollAmount,
       behavior: "smooth"
@@ -212,7 +212,7 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
             {(currentItems as ImageEvidence[]).map((mat, idx) => (
               <div
                 key={idx}
-                className="relative flex-none w-[240px] aspect-video bg-[#0F1623] border border-[rgba(0,212,255,0.1)] group/img cursor-zoom-in snap-start overflow-hidden rounded"
+                className="relative flex-none w-[280px] sm:w-[340px] aspect-video bg-[#0F1623] border border-[rgba(0,212,255,0.1)] group/img cursor-zoom-in snap-start overflow-hidden rounded-lg shadow-md"
                 onClick={(e) => { e.stopPropagation(); setLightboxIndex(idx); }}
               >
                 <img
@@ -224,7 +224,7 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
                 <div className="absolute inset-0 bg-black/40 opacity-100 group-hover/img:opacity-0 transition-opacity duration-200 flex items-center justify-center">
                   <Eye size={18} className="text-[#00D4FF] opacity-80 group-hover/img:opacity-100" />
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 bg-black/75 px-2 py-1 text-[0.55rem] text-[#F0F4FF] font-mono-tech truncate border-t border-[rgba(0,212,255,0.05)]">
+                <div className="absolute bottom-0 left-0 right-0 bg-black/80 px-2.5 py-1.5 text-[0.6rem] text-[#F0F4FF] font-mono-tech truncate border-t border-[rgba(0,212,255,0.05)]">
                   {mat.caption}
                 </div>
               </div>
@@ -233,7 +233,7 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
         </div>
       )}
 
-      {/* Conteúdo: BEFORE / AFTER */}
+      {/* Conteúdo: BEFORE / AFTER — Larger thumbnails before click */}
       {activeTab === "before_after" && (
         <div className="relative group/carousel">
           {/* Scroll Arrows */}
@@ -254,12 +254,12 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
 
           <div
             ref={scrollContainerRef}
-            className="flex gap-3 overflow-x-auto pb-3 scrollbar-thin snap-x overflow-y-hidden scroll-smooth"
+            className="flex gap-4 overflow-x-auto pb-3 scrollbar-thin snap-x overflow-y-hidden scroll-smooth"
           >
             {(currentItems as BeforeAfterEvidence[]).map((ba, idx) => (
               <div
                 key={idx}
-                className="relative flex-none w-[200px] aspect-[9/16] bg-[#0F1623] border border-[rgba(0,212,255,0.1)] group/img cursor-pointer snap-start overflow-hidden rounded"
+                className="relative flex-none w-[260px] sm:w-[320px] aspect-[4/5] sm:aspect-[3/4] bg-[#0F1623] border border-[rgba(0,212,255,0.15)] group/img cursor-pointer snap-start overflow-hidden rounded-xl shadow-lg"
                 onClick={(e) => { e.stopPropagation(); setLightboxIndex(idx); }}
               >
                 <img
@@ -276,13 +276,21 @@ export default function EvidenceGallery({ evidences, color }: { evidences: Evide
                     crossOrigin="anonymous"
                   />
                 </div>
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+                {/* Badges Antes / Depois on thumbnail */}
+                <div className="absolute top-2 left-2 pointer-events-none z-10">
+                  <span className="text-[9px] font-mono-tech font-bold text-white/90 bg-black/75 px-2 py-0.5 rounded border border-white/20 uppercase tracking-wider backdrop-blur-sm">Antes</span>
+                </div>
+                <div className="absolute bottom-8 right-2 pointer-events-none z-10">
+                  <span className="text-[9px] font-mono-tech font-bold text-white/90 bg-black/75 px-2 py-0.5 rounded border border-white/20 uppercase tracking-wider backdrop-blur-sm">Depois</span>
+                </div>
+
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-200 flex items-center justify-center z-20">
                   <div className="flex flex-col items-center gap-2">
-                    <Eye size={20} className="text-[#00D4FF]" />
-                    <span className="font-mono-tech text-[0.65rem] text-[#F0F4FF] tracking-widest bg-black/80 px-2.5 py-1 rounded border border-[rgba(0,212,255,0.2)]">Interagir</span>
+                    <Eye size={22} className="text-[#00D4FF]" />
+                    <span className="font-mono-tech text-[0.65rem] text-[#F0F4FF] tracking-widest bg-black/90 px-3 py-1 rounded-md border border-[rgba(0,212,255,0.3)] shadow-md">Abrir Slider Interativo</span>
                   </div>
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 bg-black/75 px-2 py-1.5 text-[0.55rem] text-[#F0F4FF] font-mono-tech truncate border-t border-[rgba(0,212,255,0.05)] z-10">
+                <div className="absolute bottom-0 left-0 right-0 bg-black/85 px-3 py-2 text-[0.6rem] text-[#F0F4FF] font-mono-tech truncate border-t border-[rgba(0,212,255,0.1)] z-10">
                   {ba.caption}
                 </div>
               </div>
